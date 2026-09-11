@@ -1704,15 +1704,20 @@ section { padding: 56px 0; border-top: 1px dashed var(--line-soft); }
     border-top: 1px dashed var(--line-soft);
     border-bottom: 2px solid var(--ink);
     flex-direction: column;
-    padding: 6px 24px 14px;
+    padding: 4px 0 10px;
     z-index: 20;
   }
 
   .topnav.is-open { display: flex; }
 
+  /* Horizontal padding lives on the links, so the tap target spans the
+     full width while the text stays aligned with the page content.
+     env() keeps it clear of the notch/curve on newer iPhones. */
   .topnav a {
     margin-left: 0;
-    padding: 13px 0;
+    display: block;
+    padding: 14px calc(24px + env(safe-area-inset-left, 0px));
+    padding-right: calc(24px + env(safe-area-inset-right, 0px));
     font-size: 15px;
     border-bottom: 1px dashed var(--line-soft);
   }
@@ -1720,14 +1725,9 @@ section { padding: 56px 0; border-top: 1px dashed var(--line-soft); }
   .topnav a:last-child { border-bottom: none; }
 
   .topnav a.is-active {
-    border-bottom: 1px dashed var(--line-soft);
-    padding-bottom: 13px;
     color: var(--sev1);
-  }
-
-  .topnav a.is-active::before {
-    content: "\2014\00a0";
-    color: var(--sev1);
+    border-left: 3px solid var(--sev1);
+    padding-left: calc(21px + env(safe-area-inset-left, 0px));
   }
 }
 
