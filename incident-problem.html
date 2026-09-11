@@ -48,6 +48,102 @@
       <p class="hero-sub">A working severity matrix, escalation rules, status-update templates, and a root-cause process built from years running on-call programs and high-severity response: encoded so Claude can run the workflow the way a real ops team would.</p>
     </div>
   </section>
+  <section id="overview" class="overview-section">
+    <div class="wrap">
+      <p class="section-label">At a glance</p>
+      <h2>The shape of the workflow.</h2>
+      <p class="section-sub">Two practices, seven skills, one continuous loop. The warm half runs while the service is down and the clock matters. The cool half runs afterwards, when getting it right matters more than getting it fast.</p>
+
+      <div class="wf">
+        <svg viewBox="0 0 920 350" role="img" aria-labelledby="wfTitle wfDesc" class="wf-svg">
+          <title id="wfTitle">Incident and problem management workflow</title>
+          <desc id="wfDesc">Detection feeds triage, diagnosis, communication and resolution during the incident. Resolution hands off to a problem record, root cause analysis and a known error record, which feeds back into triage on the next occurrence.</desc>
+
+          <defs>
+            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M1 1 L9 5 L1 9" fill="none" stroke="#565A50" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+            <marker id="arLoop" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M1 1 L9 5 L1 9" fill="none" stroke="#2E4EBF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+
+          <!-- phase bands -->
+          <rect x="14" y="52" width="500" height="128" fill="#6B1220" opacity="0.05"/>
+          <rect x="530" y="52" width="376" height="128" fill="#131C42" opacity="0.05"/>
+          <text x="24" y="44" class="wf-band">INCIDENT &#183; service is down, the clock matters</text>
+          <text x="540" y="44" class="wf-band wf-band-cool">PROBLEM &#183; afterwards, getting it right matters</text>
+
+          <!-- incident nodes -->
+          <g class="wf-node">
+            <rect x="24" y="76" width="106" height="60" fill="#6B1220"/>
+            <text x="77" y="100" class="wf-t wf-t-on">Detect</text>
+            <text x="77" y="118" class="wf-s wf-s-on">alerts, users</text>
+          </g>
+          <g class="wf-node">
+            <rect x="150" y="76" width="106" height="60" fill="#C81E2C"/>
+            <text x="203" y="94" class="wf-n wf-n-on">01</text>
+            <text x="203" y="112" class="wf-t wf-t-on">Triage</text>
+            <text x="203" y="128" class="wf-s wf-s-on">severity, engage</text>
+          </g>
+          <g class="wf-node">
+            <rect x="276" y="76" width="106" height="60" fill="#C81E2C"/>
+            <text x="329" y="94" class="wf-n wf-n-on">03</text>
+            <text x="329" y="112" class="wf-t wf-t-on">Diagnose</text>
+            <text x="329" y="128" class="wf-s wf-s-on">hypotheses</text>
+          </g>
+          <g class="wf-node">
+            <rect x="402" y="76" width="106" height="60" fill="#E0A39A"/>
+            <text x="455" y="94" class="wf-n wf-n-dark">04</text>
+            <text x="455" y="112" class="wf-t">Resolve</text>
+            <text x="455" y="128" class="wf-s wf-s-dark">verify, RFO</text>
+          </g>
+
+          <!-- problem nodes -->
+          <g class="wf-node">
+            <rect x="540" y="76" width="106" height="60" fill="#131C42"/>
+            <text x="593" y="94" class="wf-n wf-n-on">05</text>
+            <text x="593" y="112" class="wf-t wf-t-on">Problem</text>
+            <text x="593" y="128" class="wf-s wf-s-on">priority</text>
+          </g>
+          <g class="wf-node">
+            <rect x="666" y="76" width="106" height="60" fill="#2E4EBF"/>
+            <text x="719" y="94" class="wf-n wf-n-on">06</text>
+            <text x="719" y="112" class="wf-t wf-t-on">Root cause</text>
+            <text x="719" y="128" class="wf-s wf-s-on">CAPA</text>
+          </g>
+          <g class="wf-node">
+            <rect x="792" y="76" width="106" height="60" fill="#ACA6E6"/>
+            <text x="845" y="94" class="wf-n wf-n-dark">07</text>
+            <text x="845" y="112" class="wf-t">Known error</text>
+            <text x="845" y="128" class="wf-s wf-s-dark">searchable</text>
+          </g>
+
+          <!-- connectors -->
+          <line x1="132" y1="106" x2="146" y2="106" stroke="#565A50" stroke-width="1.4" marker-end="url(#ar)"/>
+          <line x1="258" y1="106" x2="272" y2="106" stroke="#565A50" stroke-width="1.4" marker-end="url(#ar)"/>
+          <line x1="384" y1="106" x2="398" y2="106" stroke="#565A50" stroke-width="1.4" marker-end="url(#ar)"/>
+          <line x1="510" y1="106" x2="536" y2="106" stroke="#565A50" stroke-width="1.4" marker-end="url(#ar)"/>
+          <line x1="648" y1="106" x2="662" y2="106" stroke="#565A50" stroke-width="1.4" marker-end="url(#ar)"/>
+          <line x1="774" y1="106" x2="788" y2="106" stroke="#565A50" stroke-width="1.4" marker-end="url(#ar)"/>
+
+          <!-- communications, running alongside -->
+          <g class="wf-node">
+            <rect x="150" y="200" width="358" height="46" fill="none" stroke="#C81E2C" stroke-width="1.4" stroke-dasharray="4 3"/>
+            <text x="329" y="222" class="wf-t wf-t-warm">02 &#183; Status updates</text>
+            <text x="329" y="238" class="wf-s wf-s-warm">four audiences, one set of facts, running throughout</text>
+          </g>
+          <line x1="203" y1="140" x2="203" y2="196" stroke="#C81E2C" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#ar)"/>
+          <line x1="455" y1="140" x2="455" y2="196" stroke="#C81E2C" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#ar)"/>
+
+          <!-- feedback loop -->
+          <path d="M845 140 L845 332 L100 332 L100 58 L203 58 L203 72" fill="none" stroke="#2E4EBF" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#arLoop)"/>
+          <text x="500" y="322" class="wf-loop">a known error recognised here means the next occurrence is never investigated twice</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
   <section id="demo" class="demo-section">
     <div class="wrap">
       <p class="section-label">See it run</p>

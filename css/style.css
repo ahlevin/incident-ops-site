@@ -1657,6 +1657,61 @@ section { padding: 56px 0; border-top: 1px dashed var(--line-soft); }
 }
 
 
+
+/* Workflow diagram */
+
+.wf {
+  border: 1.5px solid var(--ink);
+  background: var(--paper-card);
+  padding: 18px;
+  margin-top: 6px;
+}
+
+.wf-svg { width: 100%; height: auto; display: block; }
+
+.wf-band {
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  fill: var(--sev0);
+  letter-spacing: .04em;
+}
+.wf-band-cool { fill: var(--sev3); }
+
+.wf-n {
+  font-family: var(--font-body);
+  font-size: 9.5px;
+  fill: var(--ink-soft);
+  text-anchor: middle;
+}
+.wf-n-on { fill: rgba(255,255,255,.7); }
+
+.wf-t {
+  font-family: var(--font-body);
+  font-size: 13px;
+  fill: var(--ink);
+  text-anchor: middle;
+}
+.wf-t-on { fill: var(--paper); }
+.wf-t-warm { fill: var(--sev1); }
+
+.wf-s {
+  font-family: var(--font-body);
+  font-size: 9.5px;
+  fill: var(--ink-soft);
+  text-anchor: middle;
+}
+.wf-s-on { fill: rgba(255,255,255,.75); }
+.wf-s-warm { fill: var(--ink-soft); }
+.wf-s-dark { fill: #3A2326; }
+.wf-n-dark { fill: #6B1220; }
+
+.wf-loop {
+  font-family: var(--font-body);
+  font-size: 10px;
+  fill: var(--sev4);
+  text-anchor: middle;
+}
+
 /* Mobile navigation */
 
 .navtoggle {
