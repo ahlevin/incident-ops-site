@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+*.log
+
+# Never commit plaintext skill sources.
+# The build reads them from OUTSIDE this repo and emits only ciphertext
+# into js/skills-locked.js. If a SKILL.md ever appears here, that is a leak.
+SKILL.md
+**/SKILL.md
+skills-plain/
+*.skill

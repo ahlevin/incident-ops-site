@@ -1,0 +1,31 @@
+#!/bin/sh
+# Blocks any commit containing plaintext skill source.
+# Patterns are markdown structures unique to SKILL.md files — they cannot
+# occur in ordinary page copy, only in an embedded skill body.
+# Bypass only if certain: git commit --no-verify
+
+PATTERNS='^## Metrics this step feeds|^## Output shape|^## Why this skill exists|^## Why this is a different job|^name: [a-z-]+$'
+
+STAGED=$(git diff --cached --name-only --diff-filter=ACM \
+  | grep -E '\.(html|js|md)$' \
+  | grep -v 'js/skills-locked.js' \
+  | grep -v '^README.md$')
+[ -z "$STAGED" ] && exit 0
+
+HITS=""
+for f in $STAGED; do
+  [ -f "$f" ] || continue
+  if grep -qE "$PATTERNS" "$f" 2>/dev/null; then
+    HITS="$HITS $f"
+  fi
+done
+
+if [ -n "$HITS" ]; then
+  echo "BLOCKED: plaintext skill source detected in:"
+  for f in $HITS; do echo "   $f"; done
+  echo ""
+  echo "Skill sources must only ever exist as ciphertext in js/skills-locked.js."
+  echo "Re-run: python3 build/encrypt_skills.py \"<passphrase>\""
+  exit 1
+fi
+exit 0

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service desk &mdash; Alan Levin</title>
+<meta name="description" content="Seven tested Claude skills covering the service desk lifecycle, with the metrics tracked at each step.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="spectrum"><span class="s0"></span><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><span class="s5"></span></div>
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html">A. Levin &mdash; Case File</a>
+    <nav class="topnav">
+      <a href="index.html">Home</a>
+      <a href="service-desk.html" class="is-active">Service desk</a>
+      <a href="incident-problem.html">Incident &amp; problem</a>
+      <a href="change-enablement.html">Change</a>
+      <a href="resume.html">R&eacute;sum&eacute;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="case-header">
+    <span>Subject: <b>Service Desk, contact to closure</b></span>
+    <span>Filed by: <b>Alan Levin</b></span>
+    <span>Practice: <b>7 tested Claude skills</b></span>
+  </div>
+</div>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="kicker">Practice area &middot; built</p>
+      <h1>The front door to everything else &mdash; seven skills for the service desk lifecycle.</h1>
+      <p class="hero-sub">Most incidents don't start with an alert. They start with someone calling to say something is broken. The service desk is where that contact gets classified, resolved or escalated, and either fed into incident management or closed properly &mdash; and it's where the metrics that tell you whether any of it is working actually get captured.</p>
+    </div>
+  </section>
+
+  <section id="demo" class="demo-section">
+    <div class="wrap">
+      <p class="section-label">See it run</p>
+      <h2>One user contact, through the desk and beyond.</h2>
+      <p class="section-sub">A finance user can't log in to the expense system. Watch it get classified, resolved at first touch, then reclassified as an incident when six more people report the same thing.</p>
+
+      <div class="console" id="console">
+        <div class="console-head">
+          <span class="console-title">service-desk &middot; expense-login</span>
+          <button class="run-btn run-btn-secondary" id="stepBtn">Step through</button>
+          <button class="run-btn" id="runBtn">Run all</button>
+        </div>
+        <div class="console-body" id="consoleBody">
+          <p class="console-hint">"Run all" streams the whole contact lifecycle. "Step through" reveals one skill's output at a time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="selfservice" class="selfservice-section">
+    <div class="wrap">
+      <p class="section-label">Deflection layer</p>
+      <h2>Self-service chat, grounded in the public knowledge base.</h2>
+      <p class="section-sub">A chat assistant that answers from the model's own memory is worse than none at all &mdash; it invents confident, specific, wrong instructions, and the user follows them. This one can only answer from articles it actually retrieved. Below is exactly how that works, call by call.</p>
+
+      <div class="flow-controls">
+        <button class="run-btn run-btn-secondary" id="ragStepBtn">Step through</button>
+        <button class="run-btn" id="ragBtn">Run all</button>
+        <span class="flow-status" id="ragStatus">Idle</span>
+      </div>
+
+      <div class="flow" id="ragFlow">
+
+        <div class="flow-band" data-stage="ask">
+          <div class="flow-band-head">
+            <span class="flow-band-name">User asks</span>
+            <span class="flow-band-tools">Slack &middot; Teams &middot; in-product widget &middot; portal &middot; IVR deflect-to-SMS &mdash; see channel options below</span>
+          </div>
+          <div class="flow-band-body">
+            <p class="flow-band-desc">"I can't get into the expense system, it just spins after I log in."</p>
+            <span class="autonomy auto">Automated</span>
+          </div>
+        </div>
+
+        <div class="flow-arrow">
+          <span class="flow-pip" aria-hidden="true"></span>
+          <span class="payload-label">user turn &rarr; model, with the skill loaded as system context</span>
+          <pre class="payload-sample">{ message, session_id, user_context{ locale, product_tier },
+  tools_available: [search_knowledge_base, create_ticket] }</pre>
+        </div>
+
+        <div class="flow-band" data-stage="decide">
+          <div class="flow-band-head">
+            <span class="flow-band-name">Model decides to search</span>
+            <span class="flow-band-tools">Claude + self-service-knowledge-assistant skill</span>
+          </div>
+          <div class="flow-band-body">
+            <p class="flow-band-desc">The skill forbids answering support questions from memory, so the model emits a tool call rather than a reply. It searches on the user's symptom wording, not its guess at the cause &mdash; articles are written to be found by people describing what they see.</p>
+            <span class="autonomy auto">Automated</span>
+          </div>
+        </div>
+
+        <div class="flow-arrow">
+          <span class="flow-pip" aria-hidden="true"></span>
+          <span class="payload-label">MCP tool call &mdash; JSON-RPC over the MCP transport</span>
+          <pre class="payload-sample">{ "method": "tools/call",
+  "params": { "name": "search_knowledge_base",
+    "arguments": { "query": "expense system spins after login",
+                   "top_k": 5 } } }</pre>
+        </div>
+
+        <div class="flow-band flow-band-skill" data-stage="mcp">
+          <div class="flow-band-head">
+            <span class="flow-band-name">MCP server receives the call</span>
+            <span class="flow-band-tools">self-hosted inside the org network &middot; holds the credentials, the model never does</span>
+          </div>
+          <div class="flow-band-body">
+            <p class="flow-band-desc">MCP is the <em>interface</em>, not the retrieval. It exposes two tools &mdash; search and create-ticket &mdash; and is where authentication, rate limiting, and audit logging live. The model can only do what the server exposes.</p>
+            <span class="autonomy auto">Automated</span>
+          </div>
+        </div>
+
+        <div class="flow-arrow">
+          <span class="flow-pip" aria-hidden="true"></span>
+          <span class="payload-label">query &rarr; retrieval backend</span>
+          <pre class="payload-sample">embed(query) &rarr; vector[1536]
+hybrid search: BM25 keyword + kNN vector similarity
+FILTER: visibility = "public" AND status = "published"</pre>
+        </div>
+
+        <div class="flow-band flow-band-skill" data-stage="retrieve">
+          <div class="flow-band-head">
+            <span class="flow-band-name">Retrieval &amp; access control</span>
+            <span class="flow-band-tools">Elasticsearch / OpenSearch kNN &middot; pgvector &middot; Pinecone &middot; Weaviate &middot; ServiceNow AI Search</span>
+          </div>
+          <div class="flow-band-body">
+            <p class="flow-band-desc">Hybrid retrieval &mdash; keyword catches exact error strings, vector catches paraphrases &mdash; then a reranker orders by actual relevance. <b>The public-only filter is applied here, in the query, not by asking the model to behave.</b> Internal runbooks aren't in the candidate set at all, so no prompt can talk the assistant into revealing them.</p>
+            <span class="autonomy auto">Automated &middot; access enforced server-side</span>
+          </div>
+        </div>
+
+        <div class="flow-arrow">
+          <span class="flow-pip" aria-hidden="true"></span>
+          <span class="payload-label">tool result &rarr; model</span>
+          <pre class="payload-sample">{ results: [
+    { article_id: "KB-1187", title: "Expense login hangs after SSO",
+      chunk: "...clear the SSO session and re-authenticate...",
+      url, last_updated: "2026-04-02", score: 0.91,
+      linked_known_error: "KE-044" }, ... ] }</pre>
+        </div>
+
+        <div class="flow-band flow-band-skill" data-stage="ground">
+          <div class="flow-band-head">
+            <span class="flow-band-name">Grounded answer, or an honest miss</span>
+            <span class="flow-band-tools">answer synthesized only from retrieved chunks</span>
+          </div>
+          <div class="flow-band-body">
+            <p class="flow-band-desc">Direct match &rarr; answer and cite. Partial match &rarr; say what was found and name the gap. No real match &rarr; say so and escalate. Similarity search <em>always</em> returns something, so judging relevance is a separate step from retrieving &mdash; the failure mode is treating a near-miss as an answer because it sounds confident.</p>
+            <span class="autonomy gate">Never invents steps &middot; cites every source</span>
+          </div>
+        </div>
+
+        <div class="flow-arrow">
+          <span class="flow-pip" aria-hidden="true"></span>
+          <span class="payload-label">answer + confirmation prompt</span>
+          <pre class="payload-sample">"That's a known issue &mdash; clearing your SSO session and signing
+ in again should get you through. [KB-1187]  Did that fix it?"
+{ cited: ["KB-1187"], known_error: "KE-044", awaiting_confirmation }</pre>
+        </div>
+
+        <div class="flow-band" data-stage="confirm">
+          <div class="flow-band-head">
+            <span class="flow-band-name">Confirm &mdash; did it actually work?</span>
+            <span class="flow-band-tools">deflection is only measurable if you ask</span>
+          </div>
+          <div class="flow-band-body">
+            <p class="flow-band-desc">A user who reads an article and leaves is indistinguishable from one who gave up unless you ask. Confirmed resolution counts as deflection; silence counts as abandonment; "no, still stuck" goes straight to escalation without retrying the same article.</p>
+            <span class="autonomy auto">Automated</span>
+          </div>
+        </div>
+
+        <div class="flow-arrow">
+          <span class="flow-pip" aria-hidden="true"></span>
+          <span class="payload-label">second MCP tool call &mdash; only when the answer wasn't there</span>
+          <pre class="payload-sample">{ "name": "create_ticket", "arguments": {
+    "short_description": "Expense login hangs after SSO",
+    "transcript": [...], "articles_tried": ["KB-1187"],
+    "outcome": "workaround did not resolve",
+    "channel": "self-service-chat" } }</pre>
+        </div>
+
+        <div class="flow-band flow-band-skill" data-stage="escalate">
+          <div class="flow-band-head">
+            <span class="flow-band-name">Escalate with the conversation attached</span>
+            <span class="flow-band-tools">ServiceNow / Jira Service Management / Zendesk &rarr; service-desk-intake</span>
+          </div>
+          <div class="flow-band-body">
+            <p class="flow-band-desc">The whole point is that the user doesn't repeat themselves. The ticket carries their own words, which articles were tried, and what didn't work &mdash; so the deflection attempt becomes a head start for the agent instead of wasted time. Classification then runs as normal.</p>
+            <span class="autonomy gate">Ticket created &middot; human picks it up</span>
+          </div>
+        </div>
+
+        <div class="flow-loop">
+          <span class="flow-loop-label">no-match questions &rarr; knowledge management</span>
+          <pre class="payload-sample">Questions that found nothing are a ranked list of articles that
+should exist. This is the most valuable output of the system.</pre>
+        </div>
+
+      </div>
+
+      <div class="autonomy-legend">
+        <p class="autonomy-legend-title">Two things people conflate</p>
+        <p class="autonomy-legend-body"><b>MCP is the interface; RAG is the strategy.</b> MCP is how the model is given tools it can call &mdash; a server that exposes <code>search_knowledge_base</code> and <code>create_ticket</code>, holds the credentials, and logs every call. RAG is what happens behind that tool: embed the query, search a hybrid index, filter by visibility, rerank, return chunks. You can do RAG without MCP and MCP without RAG. Here they're stacked, and the split matters because it's the seam where security lives.</p>
+        <p class="autonomy-legend-body"><b>Access control belongs in the query, not the prompt.</b> The single most common mistake in these builds is instructing the model not to reveal internal content. That's not a control &mdash; it's a request. The public-visibility filter runs in the retrieval query, so restricted articles are never in the candidate set and there is nothing for a clever prompt to extract.</p>
+        <ul class="autonomy-key">
+          <li><span class="autonomy auto">Automated</span> search, retrieval, filtering, ticket creation</li>
+          <li><span class="autonomy gate">Constrained</span> answers only from retrieved sources, always cited</li>
+          <li><span class="autonomy human">Human-led</span> anything destructive, irreversible, or requiring authorization</li>
+        </ul>
+      </div>
+
+
+      <div class="channels-block">
+        <p class="channels-title">Where the assistant lives</p>
+        <p class="channels-intro">Placement matters more than model quality. An excellent assistant on a portal nobody visits deflects nothing; a competent one in the channel where people already complain deflects a great deal. The rule is to meet users where they already are &mdash; and for most organizations that is a chat tool, not a portal.</p>
+
+        <div class="channel-grid">
+
+          <div class="channel-card channel-strong">
+            <p class="channel-name">Slack</p>
+            <p class="channel-how">Slack app or bot with slash commands, plus Workflow Builder for structured intake. ServiceNow, Jira Service Management (formerly Halp) and Zendesk all ship Slack integrations that create and sync tickets in-thread.</p>
+            <p class="channel-note"><b>Why it works:</b> people already report problems in Slack, usually in a team channel, before they ever think about a ticket. Catching it there means catching it at the moment of frustration &mdash; and a threaded answer is visible to everyone else with the same problem, deflecting contacts that were never made.</p>
+          </div>
+
+          <div class="channel-card channel-strong">
+            <p class="channel-name">Microsoft Teams</p>
+            <p class="channel-how">Teams bot via Copilot Studio / Power Virtual Agents, ServiceNow Virtual Agent for Teams, or Jira Service Management's Teams app.</p>
+            <p class="channel-note"><b>Why it works:</b> the same logic as Slack, and usually the right answer in Microsoft-estate enterprises where Teams is where work already happens. Often the highest-adoption option with zero user training.</p>
+          </div>
+
+          <div class="channel-card channel-strong">
+            <p class="channel-name">In-product / in-app</p>
+            <p class="channel-how">Embedded widget inside the application itself &mdash; Intercom, Zendesk Web Widget, Freshchat, or a custom surface.</p>
+            <p class="channel-note"><b>Why it works:</b> the highest-value placement, because the assistant knows <em>context</em> &mdash; which screen, which account, which plan, which version. That context sharpens retrieval more than any prompt tuning will, and it catches users at the exact point of failure rather than after they've given up.</p>
+          </div>
+
+          <div class="channel-card">
+            <p class="channel-name">ITSM-native virtual agent</p>
+            <p class="channel-how">ServiceNow Virtual Agent, Zendesk AI agents, Freshservice Freddy, Atlassian Intelligence.</p>
+            <p class="channel-note"><b>Trade-off:</b> tightest ticket integration and least plumbing, since it already lives in the system of record. But it only reaches users who came to the portal &mdash; which is the population least in need of deflection, because they were already filing a ticket.</p>
+          </div>
+
+          <div class="channel-card">
+            <p class="channel-name">Self-service portal</p>
+            <p class="channel-how">Search-first portal experience, with the assistant fronting the knowledge base rather than a keyword search box.</p>
+            <p class="channel-note"><b>Trade-off:</b> the traditional home for deflection and still worth doing well, but it depends entirely on the user choosing to go there first. Treat it as a destination, not the strategy.</p>
+          </div>
+
+          <div class="channel-card">
+            <p class="channel-name">Voice / IVR deflect-to-SMS</p>
+            <p class="channel-how">Genesys, Five9 or Amazon Connect (with Lex) recognising intent in the queue and offering to text a link rather than hold.</p>
+            <p class="channel-note"><b>Trade-off:</b> genuinely valuable during a queue spike, when hold times are the real problem. But a caller who wanted a person and got a text link will judge it harshly unless the offer is optional and the path back to a human is obvious.</p>
+          </div>
+
+          <div class="channel-card">
+            <p class="channel-name">Email auto-response</p>
+            <p class="channel-how">Inbound support email triggers a suggested-articles reply before an agent picks it up.</p>
+            <p class="channel-note"><b>Trade-off:</b> the weakest form. It is one-shot, cannot ask a clarifying question, and reads as a brush-off if the match is poor. Set a high confidence bar or skip it.</p>
+          </div>
+
+          <div class="channel-card">
+            <p class="channel-name">SMS / WhatsApp</p>
+            <p class="channel-how">For deskless and field workers who have no laptop and will not open a portal.</p>
+            <p class="channel-note"><b>Trade-off:</b> narrow but sometimes the only channel a population will actually use. Worth it when the alternative is those users never reporting anything at all.</p>
+          </div>
+
+        </div>
+
+        <p class="channels-close">Whichever surfaces you pick, they should all call the same MCP tools against the same index &mdash; one assistant with several front doors, not several assistants with drifting answers. A Slack bot and a portal widget giving different answers to the same question is worse than having only one of them.</p>
+      </div>
+
+
+      <div class="principle-band" style="margin-top:26px">
+        <p class="principle-label">When the assistant is unavailable</p>
+        <p class="principle-body">Deflection is the layer users hit first, so it's the layer whose outage is most visible &mdash; and an AI-fronted help centre that returns errors is worse than one that was never there. The rule is the same as on the incident side: <b>the AI layer is never load-bearing.</b> If retrieval or the model is unavailable, the surface falls back to plain keyword search over the same knowledge base, and the &ldquo;contact us&rdquo; path stays permanently available rather than being something the assistant decides to offer. Never let a failed assistant become a dead end between the user and a person.</p>
+        <p class="principle-body">The full three-tier degradation model &mdash; AI-assisted, deterministic fallback, human-run &mdash; is set out on the <a href="incident-problem.html#degraded">incident &amp; problem page</a>.</p>
+      </div>
+
+      <ol class="pipeline" style="margin-top:28px">
+        <li class="pipe-step">
+          <span class="pipe-index">00</span>
+          <h3>Self-service knowledge assistant</h3>
+          <p>Governs the behaviour above &mdash; search before answering, judge relevance honestly, cite everything, never invent a step, and escalate with the conversation attached.</p>
+          <details class="skill-source">
+            <summary>Why this skill exists</summary>
+            <div class="skill-excerpt"><p class="excerpt-p">A support chatbot that answers from the model&#x27;s own memory is worse than no chatbot. It will produce confident, plausible, specific instructions that are wrong for this organization — a settings path that doesn&#x27;t exist, a workaround for a different product version, a policy invented from the general shape of policies. In support that isn&#x27;t a harmless hallucination; the user follows it, it fails or breaks something, and the ticket they eventually file is now harder to solve because of the steps they took first.</p><p class="excerpt-p">So the entire discipline here is: **answer only from what was actually retrieved**, cite it, and say plainly when the knowledge base doesn&#x27;t cover the question. A fast honest &quot;I don&#x27;t have an article on that, let me get you to someone who can help&quot; is a good outcome. A fabricated workaround is the worst outcome this system can produce.</p></div>
+            <div class="skill-locked" data-skill="self-service-knowledge-assistant"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
+          </details>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="pipeline" class="pipeline-section">
+    <div class="wrap">
+      <p class="section-label">The skills</p>
+      <h2>Seven skills, contact to closure.</h2>
+      <p class="section-sub">Each one's actual source is viewable below &mdash; not a description of what it does, the real instructions.</p>
+      <ol class="pipeline">
+        <li class="pipe-step">
+          <span class="pipe-index">01</span>
+          <h3>Intake &amp; classification</h3>
+          <p>Sorts incident from service request from information ask, pulls the missing facts out of a vague report, sets priority from impact and urgency, and routes it.</p>
+          <details class="skill-source">
+            <summary>Why this skill exists</summary>
+            <div class="skill-excerpt"><p class="excerpt-p">Users don&#x27;t report problems in the categories the process needs. They say &quot;it&#x27;s slow,&quot; &quot;I can&#x27;t get in,&quot; or &quot;the thing is broken.&quot; Getting that into the right lane matters more than it looks: misclassifying a service request as an incident inflates incident volume and distorts every metric downstream, and misjudging impact means a one-user annoyance gets the same response as a site-wide outage — or worse, the reverse. This skill does that first sort well and pulls the specific facts that make everything downstream possible.</p></div>
+            <div class="skill-locked" data-skill="service-desk-intake"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
+          </details>
+        </li>
+        <li class="pipe-step">
+          <span class="pipe-index">02</span>
+          <h3>First-touch resolution</h3>
+          <p>Checks the known error database before improvising, applies the relevant TSG, and makes an honest resolve-or-escalate call instead of grinding.</p>
+          <details class="skill-source">
+            <summary>Why this skill exists</summary>
+            <div class="skill-excerpt"><p class="excerpt-p">Every ticket escalated unnecessarily costs far more than one resolved at the desk — in cycle time for the user and in tier 2/3 capacity that should be going to genuinely hard problems. But the opposite failure is worse: a tier 1 agent grinding on something for forty minutes that was never solvable at their access level, while the user waits. This skill exists to make that call quickly and honestly, and to make sure the cheap wins — a documented known error, an existing TSG — get checked *before* anyone starts improvising.</p></div>
+            <div class="skill-locked" data-skill="first-touch-resolution"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
+          </details>
+        </li>
+        <li class="pipe-step">
+          <span class="pipe-index">03</span>
+          <h3>Service request fulfillment</h3>
+          <p>Entitlement, approval path, and a fulfillment sequence with honest timing — kept in its own lane so request volume never distorts incident metrics.</p>
+          <details class="skill-source">
+            <summary>Why this skill exists</summary>
+            <div class="skill-excerpt"><p class="excerpt-p">Requests and incidents are different work with different economics, and the discipline of keeping them separate is what makes both measurable. A request is planned, repeatable, and pre-approved — nothing is broken, so speed matters more than urgency, and the right answer is usually a standard workflow rather than judgment. When requests get handled as incidents, incident volume becomes meaningless as a signal and genuinely urgent work competes with laptop orders.</p></div>
+            <div class="skill-locked" data-skill="service-request-fulfillment"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
+          </details>
+        </li>
+        <li class="pipe-step">
+          <span class="pipe-index">04</span>
+          <h3>Escalation &amp; handoff</h3>
+          <p>Functional vs. hierarchical escalation, and a context package complete enough that tier 2 never re-interviews the user.</p>
+          <details class="skill-source">
+            <summary>Why this skill exists</summary>
+            <div class="skill-excerpt"><p class="excerpt-p">Most escalations lose information. The ticket arrives at tier 2 with the user&#x27;s original three-sentence complaint and no record of the twenty minutes tier 1 already spent, so the receiving engineer starts over — re-asking questions the user already answered, re-running checks already run. That&#x27;s the single biggest source of avoidable cycle time in a support organization, and it&#x27;s what makes users feel like nobody is listening. A good escalation is a complete handoff, not a forwarding.</p></div>
+            <div class="skill-locked" data-skill="service-desk-escalation"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
+          </details>
+        </li>
+        <li class="pipe-step">
+          <span class="pipe-index">05</span>
+          <h3>User communication</h3>
+          <p>One-to-one requester updates — acknowledgment, progress, expectation resets, and responding to a chasing user without defensiveness.</p>
+          <details class="skill-source">
+            <summary>Why this skill exists</summary>
+            <div class="skill-excerpt"><p class="excerpt-p">Users judge support far more on communication than on resolution speed. A ticket resolved in two days with three updates along the way is experienced better than one resolved in one day with silence — because silence reads as nobody working on it. Most poor satisfaction scores come from tickets where the work was fine and the communication wasn&#x27;t. This skill exists to make the updates specific, honest, and frequent enough that the user never has to chase.</p><p class="excerpt-p">Note the distinction from incident status updates: that skill broadcasts to many people about a service-wide event. This one is a conversation with one person about their ticket.</p></div>
+            <div class="skill-locked" data-skill="service-desk-user-communication"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
+          </details>
+        </li>
+        <li class="pipe-step">
+          <span class="pipe-index">06</span>
+          <h3>Closure &amp; satisfaction</h3>
+          <p>Confirms before closing, writes a resolution record the next agent can actually search, and decides what becomes an article, known error, or problem.</p>
+          <details class="skill-source">
+            <summary>Why this skill exists</summary>
+            <div class="skill-excerpt"><p class="excerpt-p">Closure is where most of the learning in a support organization gets thrown away. The ticket gets marked resolved with a note like &quot;fixed&quot; or &quot;user confirmed OK,&quot; and everything the agent figured out disappears — so the next person with the same symptom starts from nothing. Closure is also where satisfaction is won or lost: closing a ticket the user doesn&#x27;t consider resolved is one of the most reliable ways to generate both a reopen and a bad score.</p></div>
+            <div class="skill-locked" data-skill="ticket-closure-satisfaction"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
+          </details>
+        </li>
+        <li class="pipe-step">
+          <span class="pipe-index">07</span>
+          <h3>Performance review</h3>
+          <p>Reads the metrics against each other rather than singly, finds what's driving a movement, and turns it into an automate/document/investigate decision.</p>
+          <details class="skill-source">
+            <summary>Why this skill exists</summary>
+            <div class="skill-excerpt"><p class="excerpt-p">Service desk metrics are unusually easy to game and unusually easy to misread. First Contact Resolution goes up when agents close tickets prematurely. Average handle time goes down when agents rush users off the phone. CSAT looks fine when only satisfied users respond. A number moving is not the same as performance changing, and a dashboard full of green is not the same as a service working. This skill exists to read the numbers against each other rather than individually, and to get from &quot;this went up&quot; to &quot;here&#x27;s what to do.&quot;</p></div>
+            <div class="skill-locked" data-skill="service-desk-performance"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
+          </details>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="integration" class="integration-section">
+    <div class="wrap">
+      <p class="section-label">Tooling</p>
+      <h2>Where the desk actually runs.</h2>
+      <p class="section-sub">The tool inventory a service desk touches, and which systems go hot at each step of a contact. Switch between an internal IT desk and a customer-facing support organisation &mdash; the lifecycle is the same, the estate underneath it is not. Conceptual architecture &mdash; not a live integration on this page.</p>
+
+      <div class="tool-controls-sticky">
+      <div class="flow-controls flow-controls-flush">
+        <button class="run-btn run-btn-secondary" id="toolStepBtn">Step through</button>
+        <button class="run-btn" id="toolBtn">Run all</button>
+        <span class="flow-status" id="toolStatus">Idle</span>
+        <span class="mode-switch" role="group" aria-label="Desk type">
+          <button class="mode-btn is-selected" id="modeInternal" aria-pressed="true">Internal IT</button>
+          <button class="mode-btn" id="modeExternal" aria-pressed="false">Customer-facing</button>
+        </span>
+      </div>
+      </div>
+
+      <div class="rack-sticky">
+      <div class="rack" id="toolRack">
+        <div class="rack-group">
+          <p class="rack-label">Channels</p>
+          <span class="tool-chip" data-tool="cti" data-mode="internal">Genesys / Five9 / Amazon Connect</span>
+          <span class="tool-chip" data-tool="cti" data-mode="external" style="display:none">Talkdesk / Amazon Connect / NICE</span>
+          <span class="tool-chip" data-tool="chat" data-mode="internal">Slack / Teams bot</span>
+          <span class="tool-chip" data-tool="chat" data-mode="external" style="display:none">Intercom / web chat widget</span>
+          <span class="tool-chip" data-tool="portal" data-mode="internal">Employee self-service portal</span>
+          <span class="tool-chip" data-tool="portal" data-mode="external" style="display:none">Public help centre</span>
+          <span class="tool-chip" data-tool="email" data-mode="both">Email</span>
+        </div>
+        <div class="rack-group rack-core">
+          <p class="rack-label">System of record</p>
+          <span class="tool-chip" data-tool="itsm" data-mode="internal">ServiceNow ITSM</span>
+          <span class="tool-chip" data-tool="itsm" data-mode="external" style="display:none">Zendesk Support</span>
+          <span class="tool-chip" data-tool="jira" data-mode="internal">Jira Service Management</span>
+          <span class="tool-chip" data-tool="jira" data-mode="external" style="display:none">Salesforce Service Cloud</span>
+          <span class="tool-chip" data-tool="zendesk" data-mode="internal">Freshservice / ManageEngine</span>
+          <span class="tool-chip" data-tool="zendesk" data-mode="external" style="display:none">Freshdesk / Gorgias / HubSpot</span>
+        </div>
+        <div class="rack-group">
+          <p class="rack-label">Knowledge</p>
+          <span class="tool-chip" data-tool="kedb" data-mode="both">KEDB</span>
+          <span class="tool-chip" data-tool="kb" data-mode="internal">Confluence / SharePoint / Guru</span>
+          <span class="tool-chip" data-tool="kb" data-mode="external" style="display:none">Zendesk Guide / Salesforce Knowledge</span>
+        </div>
+        <div class="rack-group">
+          <p class="rack-label">Entitlement</p>
+          <span class="tool-chip" data-tool="idp" data-mode="internal">Okta / Entra ID / AD</span>
+          <span class="tool-chip" data-tool="idp" data-mode="external" style="display:none">Billing / CRM / plan &amp; contract</span>
+        </div>
+        <div class="rack-group">
+          <p class="rack-label">Alerting &amp; on-call</p>
+          <span class="tool-chip" data-tool="page" data-mode="both">PagerDuty / Opsgenie</span>
+        </div>
+        <div class="rack-group">
+          <p class="rack-label">Voice of customer</p>
+          <span class="tool-chip" data-tool="csat" data-mode="internal">Employee CSAT survey</span>
+          <span class="tool-chip" data-tool="csat" data-mode="external" style="display:none">Qualtrics / Medallia &middot; CSAT + NPS</span>
+        </div>
+        <div class="rack-group">
+          <p class="rack-label">Analytics</p>
+          <span class="tool-chip" data-tool="analytics" data-mode="both">Performance Analytics</span>
+          <span class="tool-chip" data-tool="bi" data-mode="both">Power BI / Tableau / Grafana</span>
+        </div>
+        <div class="rack-group rack-downstream">
+          <p class="rack-label">Escalates to</p>
+          <span class="tool-chip" data-tool="incident" data-mode="both">Incident management</span>
+          <span class="tool-chip" data-tool="problem" data-mode="both">Problem management</span>
+          <span class="tool-chip" data-tool="account" data-mode="external" style="display:none">Account manager / CSM</span>
+        </div>
+      </div>
+      </div>
+
+      <ol class="tool-steps" id="toolSteps">
+        <li class="tool-step" data-tools="cti,chat,portal,email,itsm,jira,zendesk">
+          <span class="pipe-index">01</span>
+          <div class="tool-step-body">
+            <h3>Intake &amp; classification</h3>
+            <p class="tool-line"><b>Reads:</b> the contact itself &mdash; call, chat, portal form, email</p>
+            <p class="tool-line"><b>Writes:</b> a classified, categorized, prioritized ticket</p>
+            <p class="tool-line"><b>Captures:</b> channel, contact type, category, priority</p>
+          </div>
+        </li>
+        <li class="tool-step" data-tools="kedb,kb,itsm">
+          <span class="pipe-index">02</span>
+          <div class="tool-step-body">
+            <h3>First-touch resolution</h3>
+            <p class="tool-line"><b>Reads:</b> known error database, troubleshooting guides</p>
+            <p class="tool-line"><b>Writes:</b> work notes, link to the matched known error</p>
+            <p class="tool-line"><b>Captures:</b> FCR, KEDB hit rate, TSG coverage</p>
+          </div>
+        </li>
+        <li class="tool-step" data-tools="itsm,idp,portal">
+          <span class="pipe-index">03</span>
+          <div class="tool-step-body">
+            <h3>Service request fulfillment</h3>
+            <p class="tool-line"><b>Reads:</b> service catalog, entitlement in the identity provider</p>
+            <p class="tool-line"><b>Writes:</b> approval workflow, provisioning request</p>
+            <p class="tool-line"><b>Captures:</b> time to fulfill, approval wait, deflection</p>
+          </div>
+        </li>
+        <li class="tool-step" data-tools="itsm,page,incident,account">
+          <span class="pipe-index">04</span>
+          <div class="tool-step-body">
+            <h3>Escalation &amp; handoff</h3>
+            <p class="tool-line"><b>Reads:</b> assignment groups, on-call rotation</p>
+            <p class="tool-line"><b>Writes:</b> tier 2 queue &mdash; or an incident record when scope grows</p>
+            <p class="tool-line"><b>Captures:</b> escalation rate + reason, incident conversion</p>
+          </div>
+        </li>
+        <li class="tool-step" data-tools="itsm,email,chat">
+          <span class="pipe-index">05</span>
+          <div class="tool-step-body">
+            <h3>User communication</h3>
+            <p class="tool-line"><b>Writes:</b> ticket correspondence, email, chat, SMS</p>
+            <p class="tool-line"><b>Captures:</b> time to first response, update cadence adherence</p>
+          </div>
+        </li>
+        <li class="tool-step" data-tools="itsm,kb,csat">
+          <span class="pipe-index">06</span>
+          <div class="tool-step-body">
+            <h3>Closure &amp; satisfaction</h3>
+            <p class="tool-line"><b>Writes:</b> resolution record, knowledge article draft, survey trigger</p>
+            <p class="tool-line"><b>Captures:</b> reopen rate, CSAT, MTTR, article creation</p>
+          </div>
+        </li>
+        <li class="tool-step" data-tools="analytics,bi,itsm,problem">
+          <span class="pipe-index">07</span>
+          <div class="tool-step-body">
+            <h3>Performance review</h3>
+            <p class="tool-line"><b>Reads:</b> the full ticket estate and its captured measures</p>
+            <p class="tool-line"><b>Writes:</b> service review pack; problem records where volume warrants</p>
+            <p class="tool-line"><b>Captures:</b> the trends that drive automation and knowledge investment</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="arch-feedback">
+        <div class="arch-feedback-dot" aria-hidden="true"></div>
+        <p class="arch-feedback-label">Notice how often the system of record is hot &mdash; it's touched at every step. That's what makes it the place metrics live, and why a desk running on spreadsheets alongside its ITSM tool can never report reliably.</p>
+      </div>
+
+      <div class="handoff-band">
+        <p class="handoff-label">Escalation path into incident management</p>
+        <p class="handoff-body">Most incidents don't start with an alert &mdash; they start with people calling. When the desk sees the same symptom from several users, or a single contact with enterprise-wide impact, the ticket stops being a ticket and becomes an incident. That trigger is a defined step in <b>04 &middot; Escalation &amp; handoff</b>, not a judgment call someone makes informally.</p>
+        <div class="handoff-chain">
+          <span class="handoff-node">Self-service chat</span>
+          <span class="handoff-arrow" aria-hidden="true">&rarr;</span>
+          <span class="handoff-node">Service desk intake</span>
+          <span class="handoff-arrow" aria-hidden="true">&rarr;</span>
+          <span class="handoff-node">First-touch resolution</span>
+          <span class="handoff-arrow" aria-hidden="true">&rarr;</span>
+          <span class="handoff-node handoff-trigger">Scope check</span>
+          <span class="handoff-arrow" aria-hidden="true">&rarr;</span>
+          <a class="handoff-node handoff-target" href="incident-problem.html">Incident triage &amp; classification</a>
+        </div>
+        <pre class="payload-sample">{ trigger: "multi_user_same_symptom", contact_count: 7,
+  window_minutes: 21, service: "expense", ke_matched: "KE-044",
+  business_impact: "month-end close blocked",
+  handoff_to: "incident-triage-classification" }</pre>
+        <p class="handoff-note">The desk hands over what it already knows &mdash; symptom, confirmed user count, known error match, business impact &mdash; so triage starts with a classified picture rather than re-interviewing the first caller.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="metrics" class="metrics-section">
+    <div class="wrap">
+      <p class="section-label">Key process indicators</p>
+      <h2>What gets measured, and where it gets captured.</h2>
+      <p class="section-sub">Metrics aren't a reporting afterthought bolted on at the end &mdash; each is captured at the step that produces it, because most of them can't be reconstructed later. Channel and contact type only exist at intake. Escalation reason only exists at the moment of escalation.</p>
+
+      <div class="metric-groups">
+
+        <div class="metric-group">
+          <h3>Demand</h3>
+          <ul>
+            <li><b>Contact volume by channel</b> <span>phone, chat, portal, email &mdash; captured at intake</span></li>
+            <li><b>Contact type split</b> <span>incident vs request vs information</span></li>
+            <li><b>Volume by category</b> <span>the automation and knowledge investment list</span></li>
+            <li><b>Self-service deflection rate</b> <span>resolved without an agent</span></li>
+          </ul>
+        </div>
+
+        <div class="metric-group">
+          <h3>Speed</h3>
+          <ul>
+            <li><b>Time to first response</b> <span>what users feel most acutely</span></li>
+            <li><b>Average speed of answer / abandonment</b> <span>staffing and forecasting signal</span></li>
+            <li><b>MTTR by priority</b> <span>aggregate MTTR hides both ends</span></li>
+            <li><b>Time in state</b> <span>working vs waiting on user vs waiting on another team</span></li>
+          </ul>
+        </div>
+
+        <div class="metric-group">
+          <h3>Quality</h3>
+          <ul>
+            <li><b>First Contact Resolution</b> <span>the headline efficiency measure</span></li>
+            <li><b>Reopen rate</b> <span>the counterweight &mdash; never read FCR without it</span></li>
+            <li><b>Escalation rate with reason</b> <span>the reason is what makes it actionable</span></li>
+            <li><b>Bounce-back rate from tier 2</b> <span>handoff quality</span></li>
+            <li><b>CSAT with response rate</b> <span>a score without its response rate is unreliable</span></li>
+            <li><b>SLA attainment by priority</b></li>
+          </ul>
+        </div>
+
+        <div class="metric-group">
+          <h3>Capacity</h3>
+          <ul>
+            <li><b>Backlog and aging by priority</b> <span>aging P1s and a low-priority pile are different problems</span></li>
+            <li><b>KEDB hit rate</b> <span>falling hits usually means stale knowledge, not harder problems</span></li>
+            <li><b>TSG coverage</b> <span>contacts where a guide existed vs didn't</span></li>
+            <li><b>Cost per contact</b></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="metric-pairs">
+        <h3>Read them in pairs, never singly</h3>
+        <p>Almost every service desk metric is misleading alone, and the most common management error is celebrating one number while its counterweight moves the wrong way.</p>
+        <ul>
+          <li><b>FCR &times; reopen rate</b> &mdash; FCR rising while reopens rise means tickets are being closed prematurely. A worse outcome disguised as a better number.</li>
+          <li><b>Handle time &times; FCR &times; CSAT</b> &mdash; falling handle time with falling FCR means agents are rushing and pushing work downstream.</li>
+          <li><b>CSAT &times; survey response rate</b> &mdash; a high score from a 4% response rate tells you about the 4%. Dissatisfied users often don't respond at all.</li>
+          <li><b>Volume &times; deflection</b> &mdash; volume falling is only good news if deflection is rising. Otherwise users may have stopped asking.</li>
+          <li><b>Escalation rate &times; KEDB hit rate</b> &mdash; escalations up while KEDB hits fall means the knowledge base went stale.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="unlock" class="unlock-section">
+    <div class="wrap">
+      <p class="section-label">Full skill sources</p>
+      <h2>The complete instructions are encrypted.</h2>
+      <p class="section-sub">The rationale for each skill is open above. The full operational detail &mdash; the matrices, thresholds, output formats and judgement rules &mdash; is AES-256 encrypted and decrypted in your browser only. The ciphertext is all that exists in the page source or the repository.</p>
+      <div class="unlock-form">
+        <input class="unlock-input" type="password" placeholder="Password" autocomplete="off" aria-label="Password to unlock skill sources">
+        <button class="unlock-btn run-btn" type="button">Unlock</button>
+        <span class="unlock-msg" role="status"></span>
+      </div>
+      <p class="unlock-note">Recruiters and hiring teams: get in touch and I'll share access.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="wrap contact-grid">
+      <div class="contact-card">
+        <h3>Hiring for TPM or incident management roles</h3>
+        <p>I'd like to talk about how this kind of work applies to your team.</p>
+        <a class="contact-link" href="mailto:ahlevin@hotmail.com">ahlevin@hotmail.com</a><br>
+        <a class="contact-link" href="https://linkedin.com/in/alanlevin/">linkedin.com/in/alanlevin</a>
+      </div>
+      <div class="contact-card">
+        <h3>Want this running for your team</h3>
+        <p>Interested in these skills &mdash; or something like them &mdash; supporting how your team actually operates. Let's talk about what that would take.</p>
+        <a class="contact-link" href="mailto:ahlevin@hotmail.com">ahlevin@hotmail.com</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="js/skills-locked.js"></script>
+<script src="js/skill-unlock.js"></script>
+
+
+<script src="js/sd-demo-data.js"></script>
+<script src="js/sd-main.js"></script>
+<script src="js/rag-flow.js"></script>
+<script src="js/tool-rack.js"></script>
+
+<footer class="footer">
+  <div class="wrap">
+    <p>Built with Claude skills, by Alan Levin.</p>
+  </div>
+</footer>
+</body>
+</html>

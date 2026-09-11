@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Change enablement &mdash; Alan Levin</title>
+<meta name="description" content="Seven tested Claude skills covering change enablement, and how change connects to service desk, incident and problem management.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="spectrum"><span class="s0"></span><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><span class="s5"></span></div>
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html">A. Levin &mdash; Case File</a>
+    <nav class="topnav">
+      <a href="index.html">Home</a>
+      <a href="service-desk.html">Service desk</a>
+      <a href="incident-problem.html">Incident &amp; problem</a>
+      <a href="change-enablement.html" class="is-active">Change</a>
+      <a href="resume.html">R&eacute;sum&eacute;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="case-header">
+    <span>Subject: <b>Change Enablement, request to review</b></span>
+    <span>Filed by: <b>Alan Levin</b></span>
+    <span>Practice: <b>7 tested Claude skills</b></span>
+  </div>
+</div>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="kicker">Practice area &middot; built</p>
+      <h1>Change is the cause most often found and least often modelled.</h1>
+      <p class="hero-sub">&ldquo;What changed recently?&rdquo; is the first useful question in any incident, and a deployment is the root cause in a large share of them. Yet change is usually the practice with the weakest data &mdash; risk levels picked from a dropdown, rollback plans that say &ldquo;redeploy the previous version,&rdquo; and a weekly board reviewing printer driver updates. These seven skills route by risk instead: automated gates and peer review carry the volume, and humans review what actually needs a human.</p>
+    </div>
+  </section>
+
+  <section id="demo" class="demo-section">
+    <div class="wrap">
+      <p class="section-label">See it run</p>
+      <h2>One change, intake to review.</h2>
+      <p class="section-sub">A database migration &mdash; the same one that causes the Sev1 on the incident page. Watch it move through assessment, authorization, scheduling and implementation, then come back through post-implementation review once it fails.</p>
+
+      <div class="console" id="console">
+        <div class="console-head">
+          <span class="console-title">change &middot; CHG-2291 db-migration</span>
+          <button class="run-btn run-btn-secondary" id="stepBtn">Step through</button>
+          <button class="run-btn" id="runBtn">Run all</button>
+        </div>
+        <div class="console-body" id="consoleBody">
+          <p class="console-hint">"Run all" streams the whole change lifecycle. "Step through" reveals one skill's output at a time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pipeline" class="pipeline-section">
+    <div class="wrap">
+      <p class="section-label">The skills</p>
+      <h2>Seven skills, request to review.</h2>
+      <p class="section-sub">Each one's actual source is viewable below &mdash; not a description of what it does, the real instructions.</p>
+      <ol class="pipeline">
+        <li class="pipe-step">
+          <span class="pipe-index">01</span>
+          <h3>Intake &amp; classification</h3>
+          <p>Standard, normal or emergency &mdash; and the discipline that an emergency is one where <em>waiting causes harm</em>, not one that's merely late.</p>
+          <details class="skill-source">
+            <summary>Why this skill exists</summary>
+            <div class="skill-excerpt"><p class="excerpt-p">The classification decision determines everything downstream: who authorizes, how long it takes, what evidence is required, and whether it can proceed today or waits a week. Get it wrong in the permissive direction and unassessed risk reaches production. Get it wrong in the restrictive direction and teams route around the process entirely, which is worse — an organization with a slow change process doesn&#x27;t get fewer changes, it gets undocumented ones.</p><p class="excerpt-p">The other half of the job is extracting what&#x27;s actually changing. &quot;Deploying the new release&quot; is not a change description. Assessment is impossible without specifics, and a change record that can&#x27;t be assessed will either be rubber-stamped or bounced, both of which waste everyone&#x27;s time.</p></div>
+            <div class="skill-locked" data-skill="change-intake-classification"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
+          </details>
+        </li>
+        <li class="pipe-step">
+          <span class="pipe-index">02</span>
+          <h3>Risk &amp; impact assessment</h3>
+          <p>Impact and likelihood derived from facts rather than picked from a dropdown, with reversibility weighed as its own axis and the point of no return named.</p>
+          <details class="skill-source">
+            <summary>Why this skill exists</summary>
+            <div class="skill-excerpt"><p class="excerpt-p">Most change risk assessment is theatre: a requester picks &quot;Low&quot; from a dropdown because Low moves faster, and nobody challenges it. The result is a process that consumes real time and produces no actual risk signal. A useful assessment has to be derivable from facts about the change rather than asserted by the person who wants it approved, and it has to distinguish the two things that get conflated constantly — how likely this is to go wrong, and how bad it is if it does.</p></div>
+            <div class="skill-locked" data-skill="change-risk-assessment"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
+          </details>
+        </li>
+        <li class="pipe-step">
+          <span class="pipe-index">03</span>
+          <h3>Authorization</h3>
+          <p>Routes to the lightest authority that gives real assurance &mdash; pipeline gates and peer review for most changes, human review only on a defined trigger like a freeze or an untested rollback.</p>
+          <details class="skill-source">
+            <summary>Why this skill exists</summary>
+            <div class="skill-excerpt"><p class="excerpt-p">The most common failure in change management is routing every change through a weekly board meeting regardless of risk. That practice is an ITIL v3 misapplication, not what the framework asks for — a CAB advises on risk and scheduling for major changes; it was never the approval authority. **Automated testing, policy checks and CI/CD pipeline gates are themselves valid Change Authorities** for low-risk changes, and treating them as such is what lets a change process scale.</p><p class="excerpt-p">The evidence on this is unusually clear. Research across the State of DevOps reports found that approval by a body external to the implementing team was negatively correlated with lead time, deployment frequency and restore time — and had *no correlation at all* with change failure rate. Organizations with formal external approval were substantially more likely to be low performers. The board does not catch the bad changes; it slows down the good ones, which pushes teams toward larger, less frequent batches that are themselves riskier.</p></div>
+            <div class="skill-locked" data-skill="change-authorization"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
+          </details>
+        </li>
+        <li class="pipe-step">
+          <span class="pipe-index">04</span>
+          <h3>Schedule &amp; conflict</h3>
+          <p>Freeze windows, collisions on shared dependencies, cumulative risk in a window, and whether anyone competent is on call when it lands.</p>
+          <details class="skill-source">
+            <summary>Why this skill exists</summary>
+            <div class="skill-excerpt"><p class="excerpt-p">Most change failures that look like technical failures are actually scheduling failures. Two changes touched the same dependency in the same window and nobody noticed. A migration ran during month-end close. A deployment went out on a Friday afternoon into a weekend with one person on call. The change itself was fine; the timing made recovery hard.</p><p class="excerpt-p">Scheduling is also where change enablement pays back the rest of the organization. A maintained forward schedule of change is what lets the service desk anticipate call volume, and what lets an incident responder answer &quot;what changed recently?&quot; in seconds rather than by asking around.</p></div>
+            <div class="skill-locked" data-skill="change-schedule-conflict"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
+          </details>
+        </li>
+        <li class="pipe-step">
+          <span class="pipe-index">05</span>
+          <h3>Implementation &amp; rollback</h3>
+          <p>Ordered steps with per-step verification, abort criteria pre-committed before the pressure starts, and a rollback plan that says whether it's ever been tested.</p>
+          <details class="skill-source">
+            <summary>Why this skill exists</summary>
+            <div class="skill-excerpt"><p class="excerpt-p">&quot;Rollback: redeploy the previous version&quot; is the most common rollback plan in existence and one of the least useful. It ignores database migrations that don&#x27;t reverse, caches holding the new shape of data, downstream consumers that already received new fields, and the fact that nobody has ever tested whether the previous version still starts against the current state of the world.</p><p class="excerpt-p">A real rollback plan answers a harder question: *given that we are partway through and something is wrong, what do we do?* That&#x27;s a different question from &quot;how do we undo this once it&#x27;s finished,&quot; and it&#x27;s the one that matters at 3am.</p></div>
+            <div class="skill-locked" data-skill="change-implementation-rollback"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
+          </details>
+        </li>
+        <li class="pipe-step">
+          <span class="pipe-index">06</span>
+          <h3>Emergency change</h3>
+          <p>The expedited path during an incident &mdash; compressed assessment, named authorization, announced on the bridge, documented after.</p>
+          <details class="skill-source">
+            <summary>Why this skill exists</summary>
+            <div class="skill-excerpt"><p class="excerpt-p">During a Sev1, the normal change process is an obstacle and everyone knows it. The risk is that &quot;emergency&quot; becomes the path of least resistance — a category that absorbs anything inconvenient to schedule, until the organization is running most of its changes with no assessment and no record of who approved what.</p><p class="excerpt-p">The purpose of this skill is to make the emergency path *fast enough to use properly*. If the legitimate emergency route is genuinely quick, people stop routing around it. If it&#x27;s slow, they push changes with no record at all, which is the outcome the process exists to prevent.</p></div>
+            <div class="skill-locked" data-skill="emergency-change"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
+          </details>
+        </li>
+        <li class="pipe-step">
+          <span class="pipe-index">07</span>
+          <h3>Post-implementation review</h3>
+          <p>Was it successful, did it cause anything, and was the risk assessment actually right &mdash; the calibration loop that makes the rest of it worth doing.</p>
+          <details class="skill-source">
+            <summary>Why this skill exists</summary>
+            <div class="skill-excerpt"><p class="excerpt-p">Without a review step, change management is an approval process with no feedback loop — risk assessments are never checked against outcomes, so they never get better, and the same categories of change fail repeatedly for the same reasons. The PIR is where change enablement earns the time it costs everyone, because it&#x27;s the only step that improves the process rather than just running it.</p><p class="excerpt-p">It&#x27;s also where the most useful metric in the whole practice comes from: whether changes assessed as low risk actually behave like low-risk changes.</p></div>
+            <div class="skill-locked" data-skill="post-implementation-review"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
+          </details>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="routing" class="routing-section">
+    <div class="wrap">
+      <p class="section-label">The core decision</p>
+      <h2>Who &mdash; or what &mdash; authorizes this change.</h2>
+      <p class="section-sub">The most common failure in change management is routing every change through a weekly board regardless of risk. That's an ITIL v3 misapplication, not what the framework asks for: a CAB advises on risk and scheduling for major changes; it was never the approval authority. <b>Automated testing, policy checks and CI/CD gates are themselves valid Change Authorities.</b></p>
+
+      <div class="evidence-band">
+        <p class="evidence-title">What the research found</p>
+        <p class="evidence-body">Across the State of DevOps reports, approval by a body external to the implementing team was negatively correlated with lead time, deployment frequency and restore time &mdash; and had <b>no correlation at all</b> with change failure rate. Organizations with formal external approval were substantially more likely to be low performers. The board doesn't catch the bad changes; it slows down the good ones, pushing teams toward larger, less frequent batches that carry more risk.</p>
+        <p class="evidence-body">Elite performers run change failure rates around <b>5%</b> while deploying far more frequently than low performers, who fail closer to <b>40%</b>. Speed and stability come from the same underlying practices &mdash; they don't trade off.</p>
+      </div>
+
+      <div class="counterpoint-band">
+        <p class="counterpoint-title">Lighter routing is not a lower bar</p>
+        <p class="evidence-body">It would be easy to read the research above as &ldquo;most changes should sail through.&rdquo; That's the wrong conclusion. The organizations that moved furthest from weekly boards have <b>stricter</b> change control than typical enterprises &mdash; it's enforced by policy and progressive exposure rather than by a meeting.</p>
+
+        <div class="hs-grid">
+          <div class="hs-item">
+            <p class="hs-name">Progressive exposure is mandatory</p>
+            <p class="hs-body">Large cloud platforms roll changes through a canary carrying no production traffic, then pilot regions, then progressively broader ones &mdash; with <b>mandatory bake times</b> between stages, commonly around 24 hours, deliberately sized to expose the change to a full spectrum of load including a peak period. Rollouts respect availability zones and region pairing, so a change reaches one zone before its neighbours.</p>
+          </div>
+          <div class="hs-item">
+            <p class="hs-name">Health signals are centrally defined</p>
+            <p class="hs-body">Not chosen by the implementing team. Deployment halts automatically on negative signal, and circuit breakers cut traffic to a degrading service without waiting for a human to notice. That is a harder gate to pass than a committee that meets on Tuesdays.</p>
+          </div>
+          <div class="hs-item">
+            <p class="hs-name">Significant changes still face a board</p>
+            <p class="hs-body">Production Readiness Reviews and Operational Readiness Reviews are exactly that &mdash; a cross-functional panel examining monitoring, scaling, dependencies, failure modes and rollback. At one major provider, passing one is a <b>prerequisite</b> for the reliability team accepting operational responsibility at all. The difference is the trigger: significance, not the calendar.</p>
+          </div>
+          <div class="hs-item">
+            <p class="hs-name">Emergencies accelerate gates, don't remove them</p>
+            <p class="hs-body">Published emergency protocols allow reducing bake time and accelerating promotion stages &mdash; but require defining in advance <b>who can authorize that acceleration</b> and <b>what criteria must be met</b>. The gates still run, out of band, as fast as possible.</p>
+          </div>
+        </div>
+
+        <p class="evidence-body"><b>So the distinction isn't controlled versus uncontrolled.</b> It's control that is automated, mandatory and applied to every change, versus control that is manual, scheduled and applied by people with no context on most of what they're reviewing. The first is more rigorous. An organization that removes the board without building the gates hasn't modernized its change process &mdash; it has abandoned it.</p>
+        <p class="evidence-body">The test before delegating any change class to the automated path: <b>would the gates actually catch this failure mode?</b> If the likely failure is slow-building resource exhaustion under production load, a green test suite and a fifteen-minute canary will not see it &mdash; and the honest answer is that the automated path doesn't yet provide assurance for that change.</p>
+      </div>
+
+      <div class="auth-ladder">
+        <div class="auth-row auth-auto">
+          <span class="auth-level">Standard</span>
+          <span class="auth-who">Automated &mdash; pipeline gates &amp; policy checks</span>
+          <span class="auth-form">No human approval. The procedure was approved.</span>
+        </div>
+        <div class="auth-row auth-auto">
+          <span class="auth-level">Low</span>
+          <span class="auth-who">Peer review + automated gates</span>
+          <span class="auth-form">Async, in the development platform. No meeting.</span>
+        </div>
+        <div class="auth-row auth-named">
+          <span class="auth-level">Medium</span>
+          <span class="auth-who">Named change authority &mdash; service owner or delegate</span>
+          <span class="auth-form">Async approval against the record. No meeting.</span>
+        </div>
+        <div class="auth-row auth-board">
+          <span class="auth-level">High</span>
+          <span class="auth-who">Board, advising the change manager</span>
+          <span class="auth-form">Genuinely major changes only.</span>
+        </div>
+        <div class="auth-row auth-emergency">
+          <span class="auth-level">Emergency</span>
+          <span class="auth-who">ECAB or standing on-call authority</span>
+          <span class="auth-form">Immediate, verbal, recorded after.</span>
+        </div>
+      </div>
+
+      <div class="trigger-block">
+        <h3>Human review fires on a trigger, not by default</h3>
+        <p class="trigger-intro">Escalation should be caused by a specific condition, not by seniority anxiety. Asking five senior engineers to review a driver update every Tuesday is how you train capable people to rubber-stamp things &mdash; which destroys the board's value for the changes that genuinely need it.</p>
+        <ul class="trigger-list">
+          <li><b>Freeze period</b> &mdash; financial close, peak trading, major customer event, stabilization freeze</li>
+          <li><b>Insufficient testing time</b> &mdash; the automated gates that normally provide assurance haven't meaningfully run</li>
+          <li><b>Untested rollback</b> on an irreversible change &mdash; automation can't assess a rollback nobody has tried</li>
+          <li><b>Security-impacting scope</b> &mdash; firewall rules, IAM permissions, network segmentation, encryption, security tooling. Needs a security reviewer specifically, not a general board.</li>
+          <li><b>High blast radius</b> on a shared or revenue-carrying service in business hours</li>
+          <li><b>Novel</b> &mdash; first time for this change, or for this team</li>
+          <li><b>Cross-team collision risk</b> &mdash; the genuine residual value of a board: risk the implementing team can't see from inside its own context</li>
+          <li><b>Regulatory requirement</b> for explicit human authorization on this class of change</li>
+        </ul>
+      </div>
+
+      <div class="compliance-band">
+        <p class="evidence-title">The compliance objection, answered</p>
+        <p class="evidence-body">&ldquo;We need a CAB for the auditors&rdquo; is the usual reason boards survive. It doesn't hold. Compliance requires evidence that changes were <b>authorized, tested and reversible</b> &mdash; not that a committee met. For SOC 2 CC8.1 and equivalents, each sampled change needs an approval record, a test result, and a rollback plan; a ticket carrying a mandatory peer review and a rollback note satisfies that. Peer review also satisfies segregation of duties, and satisfies it better, because the reviewer actually understands the change.</p>
+        <p class="evidence-body">The real audit risk is elsewhere: <b>scope</b>. A policy covering code deployments while silently excluding infrastructure, configuration and emergency fixes is the most common finding. Naming the automated gate as the authorizer is legitimate &mdash; leaving whole change classes out of the policy is not.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="interactions" class="interactions-section">
+    <div class="wrap">
+      <p class="section-label">Cross-practice</p>
+      <h2>How change touches everything else.</h2>
+      <p class="section-sub">Change enablement isn't a silo &mdash; it's the practice with the most connections to the others. Step through to see each hand-off, in both directions.</p>
+
+      <div class="flow-controls" id="ixControls">
+        <button class="run-btn run-btn-secondary" id="ixStepBtn">Step through</button>
+        <button class="run-btn" id="ixBtn">Run all</button>
+        <span class="flow-status" id="ixStatus">Idle</span>
+      </div>
+
+      <div class="ix" id="ixFlow">
+
+        <div class="ix-link" data-from="change" data-to="incident">
+          <div class="ix-head">
+            <span class="ix-practice ix-change">Change</span>
+            <span class="ix-arrow">&rarr;</span>
+            <span class="ix-practice ix-incident">Incident</span>
+            <span class="ix-name">the failed change</span>
+          </div>
+          <p class="ix-desc">A change goes wrong and causes an incident. <b>Change-caused incident rate</b> is the single most important measure of whether change enablement is working &mdash; and it only exists if the incident is linked back to the change record, which is easy to miss when an incident is investigated without anyone checking the schedule.</p>
+          <pre class="payload-sample">INC-4471.caused_by = CHG-2291
+{ change_window, implementer, rollback_available: true,
+  detection_lag: "16h after implementation" }</pre>
+        </div>
+
+        <div class="ix-link" data-from="incident" data-to="change">
+          <div class="ix-head">
+            <span class="ix-practice ix-incident">Incident</span>
+            <span class="ix-arrow">&rarr;</span>
+            <span class="ix-practice ix-change">Change</span>
+            <span class="ix-name">the emergency fix</span>
+          </div>
+          <p class="ix-desc">The diagnosis engine identifies a path to restoration &mdash; usually a rollback. That's a change, and it needs authorization even at speed. The emergency change skill exists to make the legitimate fast path genuinely fast, because if it isn't, people push fixes with no record at all.</p>
+          <pre class="payload-sample">{ from_incident: "INC-4471", sev: 1,
+  action: "rollback CHG-2291", reversible: true,
+  authorized_by: "IC + service owner", announced_on_bridge: true }</pre>
+        </div>
+
+        <div class="ix-link" data-from="change" data-to="diagnosis">
+          <div class="ix-head">
+            <span class="ix-practice ix-change">Change</span>
+            <span class="ix-arrow">&rarr;</span>
+            <span class="ix-practice ix-incident">Diagnosis</span>
+            <span class="ix-name">the schedule as evidence</span>
+          </div>
+          <p class="ix-desc">&ldquo;What changed recently?&rdquo; is the highest-value question during live troubleshooting, and the forward schedule of change is what answers it in seconds instead of by asking around. A maintained change schedule is an incident response asset, not just a governance artifact.</p>
+          <pre class="payload-sample">query: changes WHERE service IN (checkout, db)
+      AND window BETWEEN now-48h AND now
+&rarr; CHG-2291 (22:00, prior night) &mdash; ranked hypothesis #1</pre>
+        </div>
+
+        <div class="ix-link" data-from="problem" data-to="change">
+          <div class="ix-head">
+            <span class="ix-practice ix-problem">Problem</span>
+            <span class="ix-arrow">&rarr;</span>
+            <span class="ix-practice ix-change">Change</span>
+            <span class="ix-name">CAPA becomes real work</span>
+          </div>
+          <p class="ix-desc">Corrective and preventative actions from an RCA are not done when they're written &mdash; they're done when they ship. Each one becomes a change request, and the linkage is what lets you answer whether problem management actually produces fixes or just documentation.</p>
+          <pre class="payload-sample">CAPA[2] "require pool-impact review for migrations"
+&rarr; CHG-2310 (process change, low risk)
+CAPA[1] "pool-utilization alerting" &rarr; CHG-2308</pre>
+        </div>
+
+        <div class="ix-link" data-from="change" data-to="desk">
+          <div class="ix-head">
+            <span class="ix-practice ix-change">Change</span>
+            <span class="ix-arrow">&rarr;</span>
+            <span class="ix-practice ix-desk">Service desk</span>
+            <span class="ix-name">pre-notification</span>
+          </div>
+          <p class="ix-desc">The desk needs the forward schedule so a spike in contacts can be attributed immediately rather than investigated from scratch &mdash; and so agents aren't learning about a planned outage from the users affected by it. This is the cheapest cross-practice win available.</p>
+          <pre class="payload-sample">{ window, services_affected, user_visible_effect,
+  expected_contact_themes: ["login redirect", "slow reports"],
+  kb_article_drafted: true }</pre>
+        </div>
+
+        <div class="ix-link" data-from="desk" data-to="change">
+          <div class="ix-head">
+            <span class="ix-practice ix-desk">Service desk</span>
+            <span class="ix-arrow">&rarr;</span>
+            <span class="ix-practice ix-change">Change</span>
+            <span class="ix-name">the unreported symptom</span>
+          </div>
+          <p class="ix-desc">Contacts spiking after a change that caused no formal incident still degraded the experience &mdash; and the desk saw it when monitoring didn't. That signal belongs in the post-implementation review, where it's usually missing.</p>
+          <pre class="payload-sample">{ post_change_contact_spike: "+340% category=login",
+  window: "CHG-2291 +2h", incidents_raised: 0 }
+&rarr; PIR outcome: "successful with issues", not "successful"</pre>
+        </div>
+
+        <div class="ix-link" data-from="change" data-to="problem">
+          <div class="ix-head">
+            <span class="ix-practice ix-change">Change</span>
+            <span class="ix-arrow">&rarr;</span>
+            <span class="ix-practice ix-problem">Problem</span>
+            <span class="ix-name">the failure worth investigating</span>
+          </div>
+          <p class="ix-desc">A change that failed for a reason likely to recur becomes a problem record &mdash; not to assign blame for the change, but because the reason it wasn't caught is a systemic gap. Testing that didn't cover the case, a dependency nobody could see, a rollback nobody had tried.</p>
+          <pre class="payload-sample">{ from_change: "CHG-2291", outcome: "failed",
+  systemic_gap: "no pre-deploy pool-impact review existed",
+  &rarr; problem-record-priority }</pre>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="tooling" class="integration-section">
+    <div class="wrap">
+      <p class="section-label">Tooling</p>
+      <h2>Where change actually runs.</h2>
+      <p class="section-sub">Change is the practice with the widest tool spread, because it straddles two worlds &mdash; the ITSM system of record that auditors sample, and the engineering pipeline where the control actually happens. Step through to see which systems go hot at each stage. Conceptual architecture &mdash; not a live integration on this page.</p>
+
+      <div class="tool-controls-sticky">
+        <div class="flow-controls flow-controls-flush">
+          <button class="run-btn run-btn-secondary" id="chgToolStepBtn">Step through</button>
+          <button class="run-btn" id="chgToolBtn">Run all</button>
+          <span class="flow-status" id="chgToolStatus">Idle</span>
+        </div>
+      </div>
+
+      <div class="rack-sticky">
+      <div class="rack" id="chgToolRack">
+        <div class="rack-group rack-core">
+          <p class="rack-label">System of record</p>
+          <span class="tool-chip" data-tool="snow">ServiceNow Change</span>
+          <span class="tool-chip" data-tool="jsm">Jira Service Management</span>
+          <span class="tool-chip" data-tool="itsm-other">BMC Helix &middot; Freshservice</span>
+        </div>
+        <div class="rack-group">
+          <p class="rack-label">Source &amp; peer review</p>
+          <span class="tool-chip" data-tool="scm">GitHub &middot; GitLab &middot; Bitbucket</span>
+          <span class="tool-chip" data-tool="codeowners">CODEOWNERS &middot; branch protection</span>
+        </div>
+        <div class="rack-group">
+          <p class="rack-label">Pipeline &amp; delivery</p>
+          <span class="tool-chip" data-tool="ci">Actions &middot; GitLab CI &middot; Jenkins</span>
+          <span class="tool-chip" data-tool="cd">Argo CD &middot; Spinnaker &middot; Harness</span>
+          <span class="tool-chip" data-tool="iac">Terraform &middot; Pulumi &middot; Ansible</span>
+        </div>
+        <div class="rack-group">
+          <p class="rack-label">Automated gates</p>
+          <span class="tool-chip" data-tool="policy">OPA / Gatekeeper &middot; Sentinel</span>
+          <span class="tool-chip" data-tool="scan">Snyk &middot; Trivy &middot; Checkov &middot; SonarQube</span>
+          <span class="tool-chip" data-tool="secrets">GitGuardian &middot; secret scanning</span>
+        </div>
+        <div class="rack-group">
+          <p class="rack-label">Progressive delivery</p>
+          <span class="tool-chip" data-tool="flags">LaunchDarkly &middot; Unleash &middot; Split</span>
+          <span class="tool-chip" data-tool="rollout">Argo Rollouts &middot; Flagger &middot; canary analysis</span>
+        </div>
+        <div class="rack-group">
+          <p class="rack-label">Dependencies</p>
+          <span class="tool-chip" data-tool="cmdb">ServiceNow CMDB &middot; Device42</span>
+          <span class="tool-chip" data-tool="catalog">Backstage service catalog</span>
+        </div>
+        <div class="rack-group">
+          <p class="rack-label">Window &amp; coverage</p>
+          <span class="tool-chip" data-tool="cal">Change calendar &middot; freeze calendar</span>
+          <span class="tool-chip" data-tool="oncall">PagerDuty &middot; Opsgenie</span>
+        </div>
+        <div class="rack-group">
+          <p class="rack-label">Validation &amp; bake</p>
+          <span class="tool-chip" data-tool="obs">Prometheus &middot; Grafana &middot; Datadog</span>
+          <span class="tool-chip" data-tool="synth">Synthetic checks &middot; error budgets</span>
+        </div>
+        <div class="rack-group">
+          <p class="rack-label">Comms</p>
+          <span class="tool-chip" data-tool="comms">Slack / Teams &middot; Statuspage maintenance</span>
+        </div>
+        <div class="rack-group rack-downstream">
+          <p class="rack-label">Feeds</p>
+          <span class="tool-chip" data-tool="dora">DORA analytics &mdash; LinearB &middot; Sleuth</span>
+          <span class="tool-chip" data-tool="incident">Incident management</span>
+          <span class="tool-chip" data-tool="problem">Problem management</span>
+        </div>
+      </div>
+      </div>
+
+      <ol class="tool-steps" id="chgToolSteps">
+        <li class="tool-step" data-tools="snow,jsm,itsm-other,scm,catalog">
+          <span class="pipe-index">01</span>
+          <div class="tool-step-body">
+            <h3>Intake &amp; classification</h3>
+            <p class="tool-line"><b>Reads:</b> the pull request or work item, service catalog entry</p>
+            <p class="tool-line"><b>Writes:</b> change record in ServiceNow or Jira Service Management</p>
+            <p class="tool-line"><b>Captures:</b> change type, standard/normal/emergency ratio</p>
+          </div>
+        </li>
+        <li class="tool-step" data-tools="cmdb,catalog,ci,snow">
+          <span class="pipe-index">02</span>
+          <div class="tool-step-body">
+            <h3>Risk &amp; impact assessment</h3>
+            <p class="tool-line"><b>Reads:</b> CMDB or Backstage for dependencies and blast radius, CI test evidence, prior change history on the component</p>
+            <p class="tool-line"><b>Writes:</b> risk level and reasoning onto the change record</p>
+            <p class="tool-line"><b>Captures:</b> risk distribution, assessed-vs-actual calibration</p>
+          </div>
+        </li>
+        <li class="tool-step" data-tools="scm,codeowners,policy,scan,secrets,snow">
+          <span class="pipe-index">03</span>
+          <div class="tool-step-body">
+            <h3>Authorization</h3>
+            <p class="tool-line"><b>Reads:</b> gate results &mdash; tests, policy-as-code, dependency and IaC scanning, secrets detection</p>
+            <p class="tool-line"><b>Writes:</b> approval record &mdash; a required review in CODEOWNERS, a pipeline environment approval, or a board decision</p>
+            <p class="tool-line"><b>Captures:</b> authority-type mix, escalation triggers fired, time in approval</p>
+          </div>
+        </li>
+        <li class="tool-step" data-tools="cal,oncall,snow,comms">
+          <span class="pipe-index">04</span>
+          <div class="tool-step-body">
+            <h3>Schedule &amp; conflict</h3>
+            <p class="tool-line"><b>Reads:</b> change and freeze calendars, on-call rota for the window</p>
+            <p class="tool-line"><b>Writes:</b> forward schedule entry; pre-notification to the desk and Statuspage</p>
+            <p class="tool-line"><b>Captures:</b> schedule adherence, collisions, freeze exceptions</p>
+          </div>
+        </li>
+        <li class="tool-step" data-tools="ci,cd,iac,flags,rollout,obs,synth">
+          <span class="pipe-index">05</span>
+          <div class="tool-step-body">
+            <h3>Implementation &amp; rollback</h3>
+            <p class="tool-line"><b>Runs in:</b> the pipeline &mdash; Actions or Jenkins building, Argo CD or Spinnaker deploying, Terraform applying infrastructure</p>
+            <p class="tool-line"><b>Exposure controlled by:</b> feature flags and progressive rollout with automated canary analysis and abort</p>
+            <p class="tool-line"><b>Validated against:</b> Prometheus, Grafana or Datadog through the bake period; error budget checks</p>
+            <p class="tool-line"><b>Captures:</b> rollback rate, rollback success, actual vs planned duration</p>
+          </div>
+        </li>
+        <li class="tool-step" data-tools="oncall,comms,cd,snow,incident">
+          <span class="pipe-index">06</span>
+          <div class="tool-step-body">
+            <h3>Emergency change</h3>
+            <p class="tool-line"><b>Reads:</b> the incident record and bridge context</p>
+            <p class="tool-line"><b>Runs in:</b> the same pipeline with gates accelerated, not skipped</p>
+            <p class="tool-line"><b>Writes:</b> announcement to the bridge, timestamp into the incident timeline, retrospective change record</p>
+            <p class="tool-line"><b>Captures:</b> emergency rate, retrospective documentation completion</p>
+          </div>
+        </li>
+        <li class="tool-step" data-tools="snow,dora,incident,problem,obs">
+          <span class="pipe-index">07</span>
+          <div class="tool-step-body">
+            <h3>Post-implementation review</h3>
+            <p class="tool-line"><b>Reads:</b> incident records in the window, contact volume from the desk, delivery analytics</p>
+            <p class="tool-line"><b>Writes:</b> PIR outcome; problem record where the failure will recur; standard change catalog updates</p>
+            <p class="tool-line"><b>Captures:</b> change success rate, change-caused incident rate, DORA four keys</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="arch-feedback">
+        <div class="arch-feedback-dot" aria-hidden="true"></div>
+        <p class="arch-feedback-label">Notice the split: steps 01, 02, 04 and 07 live in the ITSM system of record, while 03 and 05 &mdash; where the actual assurance happens &mdash; live in the engineering pipeline. That gap is the integration problem in change management. When the record and the control are in different systems that don't talk, you get a change record that says &ldquo;approved&rdquo; with no link to the gates that actually ran.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="metrics" class="metrics-section">
+    <div class="wrap">
+      <p class="section-label">Key process indicators</p>
+      <h2>What gets measured, and the traps in it.</h2>
+      <p class="section-sub">Change metrics are unusually easy to make look good by making the process worse. A slow, restrictive process shows an excellent success rate because so little gets through it &mdash; which is why these have to be read against each other and against delivery speed.</p>
+
+      <div class="metric-groups">
+
+        <div class="metric-group">
+          <h3>Outcome</h3>
+          <ul>
+            <li><b>Change success rate</b> <span>achieved objective, no rollback, no incident</span></li>
+            <li><b>Change-caused incident rate</b> <span>the headline measure connecting change to incident management</span></li>
+            <li><b>Failed change rate</b> <span>and near misses &mdash; the "successful with issues" category</span></li>
+            <li><b>Rollback rate and rollback success rate</b> <span>a rollback that itself failed is its own category</span></li>
+            <li><b>Mean time to detect a change-caused failure</b> <span>long lags mean validation is too shallow</span></li>
+          </ul>
+        </div>
+
+        <div class="metric-group">
+          <h3>Composition</h3>
+          <ul>
+            <li><b>Standard / normal / emergency ratio</b> <span>rising emergency share is the clearest early warning</span></li>
+            <li><b>Unauthorized change rate</b> <span>found in production with no record</span></li>
+            <li><b>Risk level distribution</b> <span>if most changes self-assess as Low, the assessment isn't discriminating</span></li>
+            <li><b>Standard change catalog growth</b> <span>is the process getting faster or just accumulating ceremony</span></li>
+          </ul>
+        </div>
+
+        <div class="metric-group">
+          <h3>Speed</h3>
+          <ul>
+            <li><b>Lead time for change</b> <span>request to production</span></li>
+            <li><b>Time in approval</b> <span>usually the larger share, fixed by different means than implementation time</span></li>
+            <li><b>Proportion requiring CAB</b> <span>rising means delegation isn't working</span></li>
+            <li><b>Schedule adherence</b> <span>implemented in the authorized window</span></li>
+          </ul>
+        </div>
+
+        <div class="metric-group">
+          <h3>Assurance quality</h3>
+          <ul>
+            <li><b>Assessed risk vs. actual outcome</b> <span>the calibration measure &mdash; if Low-risk changes fail as often as High, the method is noise</span></li>
+            <li><b>Tested rollback proportion</b> <span>untested rollback is a hypothesis, not a plan</span></li>
+            <li><b>Collisions found after the fact</b> <span>the ones the process missed</span></li>
+            <li><b>Conditions compliance</b> <span>were CAB conditions actually met before implementation</span></li>
+            <li><b>PIR completion rate</b> <span>mandatory for failed and emergency changes at minimum</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="metric-pairs">
+        <h3>Read them in pairs, never singly</h3>
+        <p>Change is the practice where a single metric most easily produces the wrong behaviour, because the easiest way to raise the success rate is to let fewer changes through.</p>
+        <ul>
+          <li><b>Success rate &times; lead time &times; change volume</b> &mdash; a 99% success rate with a three-week lead time and falling volume is a process strangling delivery, not a safe one. The DORA framing is the useful corrective: speed and stability rise together in healthy organizations, they don't trade off.</li>
+          <li><b>Emergency rate &times; normal-path lead time</b> &mdash; people use the emergency path when the normal path is too slow. A rising emergency rate is usually a symptom of approval latency, not of recklessness.</li>
+          <li><b>Risk distribution &times; change-caused incident rate by risk level</b> &mdash; if incidents are evenly spread across assessed risk levels, the assessment carries no information and should be redesigned rather than enforced harder.</li>
+          <li><b>Rollback rate &times; change-caused incident rate</b> &mdash; low rollback with high change-caused incidents means teams are pushing through failures they should have reversed. Rolling back more is the improvement.</li>
+          <li><b>Unauthorized change rate &times; process satisfaction</b> &mdash; undocumented changes are the clearest evidence that the official path is unusable. The fix is upstream in the process, not downstream in enforcement.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="unlock" class="unlock-section">
+    <div class="wrap">
+      <p class="section-label">Full skill sources</p>
+      <h2>The complete instructions are encrypted.</h2>
+      <p class="section-sub">The rationale for each skill is open above. The full operational detail &mdash; the matrices, thresholds, output formats and judgement rules &mdash; is AES-256 encrypted and decrypted in your browser only. The ciphertext is all that exists in the page source or the repository.</p>
+      <div class="unlock-form">
+        <input class="unlock-input" type="password" placeholder="Password" autocomplete="off" aria-label="Password to unlock skill sources">
+        <button class="unlock-btn run-btn" type="button">Unlock</button>
+        <span class="unlock-msg" role="status"></span>
+      </div>
+      <p class="unlock-note">Recruiters and hiring teams: get in touch and I'll share access.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="wrap contact-grid">
+      <div class="contact-card">
+        <h3>Hiring for TPM or incident management roles</h3>
+        <p>I'd like to talk about how this kind of work applies to your team.</p>
+        <a class="contact-link" href="mailto:ahlevin@hotmail.com">ahlevin@hotmail.com</a><br>
+        <a class="contact-link" href="https://linkedin.com/in/alanlevin/">linkedin.com/in/alanlevin</a>
+      </div>
+      <div class="contact-card">
+        <h3>Want this running for your team</h3>
+        <p>Interested in these skills &mdash; or something like them &mdash; supporting how your team actually operates. Let's talk about what that would take.</p>
+        <a class="contact-link" href="mailto:ahlevin@hotmail.com">ahlevin@hotmail.com</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="js/skills-locked.js"></script>
+<script src="js/skill-unlock.js"></script>
+
+
+<script src="js/chg-demo-data.js"></script>
+<script src="js/chg-main.js"></script>
+<script src="js/ix-flow.js"></script>
+<script src="js/chg-tool-rack.js"></script>
+
+<footer class="footer">
+  <div class="wrap">
+    <p>Built with Claude skills, by Alan Levin.</p>
+  </div>
+</footer>
+</body>
+</html>
