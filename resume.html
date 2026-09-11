@@ -16,13 +16,18 @@
   <div class="spectrum"><span class="s0"></span><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><span class="s5"></span></div>
   <div class="wrap topbar-inner">
     <a class="brand" href="index.html">A. Levin — Case File</a>
-    <nav class="topnav">
+    <nav class="topnav" id="topnav">
       <a href="index.html">Home</a>
       <a href="service-desk.html">Service desk</a>
       <a href="incident-problem.html">Incident &amp; problem</a>
       <a href="change-enablement.html">Change</a>
       <a href="resume.html" class="is-active">R&eacute;sum&eacute;</a>
     </nav>
+    <button class="navtoggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="topnav">
+      <span class="navtoggle-bar"></span>
+      <span class="navtoggle-bar"></span>
+      <span class="navtoggle-bar"></span>
+    </button>
   </div>
 </header>
 
@@ -191,5 +196,6 @@
     <p>Built with Claude skills, by Alan Levin.</p>
   </div>
 </footer>
+<script src="js/nav.js"></script>
 </body>
 </html>
