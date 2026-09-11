@@ -49,6 +49,88 @@
     </div>
   </section>
 
+  <section id="overview" class="overview-section">
+    <div class="wrap">
+      <p class="section-label">At a glance</p>
+      <h2>The shape of the workflow.</h2>
+      <p class="section-sub">The normal path is deliberately cool and unhurried, because that is where assurance comes from. The emergency path is hot and short, and exists so the legitimate fast route is quick enough that nobody routes around it.</p>
+
+      <div class="wf">
+        <svg viewBox="0 0 920 390" role="img" aria-labelledby="chgTitle chgDesc" class="wf-svg">
+          <title id="chgTitle">Change enablement workflow</title>
+          <desc id="chgDesc">Intake classifies a change, risk assessment sets the authority, authorization routes to gates or a board, then scheduling and implementation. An emergency path from a live incident bypasses to implementation with gates accelerated. Post-implementation review loops back to the standard catalog and hands failures to problem management.</desc>
+          <defs>
+            <marker id="cgAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M1 1 L9 5 L1 9" fill="none" stroke="#565A50" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+            <marker id="cgHot" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M1 1 L9 5 L1 9" fill="none" stroke="#C81E2C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+            <marker id="cgMar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M1 1 L9 5 L1 9" fill="none" stroke="#6B1220" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+            <marker id="cgLoop" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M1 1 L9 5 L1 9" fill="none" stroke="#2E4EBF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+
+          <text x="24" y="26" class="wf-band">EMERGENCY PATH &#183; short, so nobody routes around it</text>
+          <rect x="14" y="36" width="580" height="56" fill="#C81E2C" opacity="0.06"/>
+
+          <g><rect x="26" y="48" width="132" height="34" fill="none" stroke="#C81E2C" stroke-width="1.4"/>
+             <text x="92" y="70" class="wf-t wf-t-warm">Live incident</text></g>
+          <g><rect x="178" y="48" width="150" height="34" fill="#C81E2C"/>
+             <text x="253" y="70" class="wf-t wf-t-on">06 &#183; Emergency</text></g>
+          <line x1="160" y1="65" x2="174" y2="65" stroke="#C81E2C" stroke-width="1.4" marker-end="url(#cgHot)"/>
+          <path d="M330 65 L586 65 L586 148" fill="none" stroke="#C81E2C" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#cgHot)"/>
+          <text x="452" y="106" class="wf-s wf-s-warm">gates accelerated, never skipped</text>
+
+          <text x="24" y="138" class="wf-band wf-band-cool">NORMAL PATH &#183; deliberate, because this is where assurance comes from</text>
+          <rect x="14" y="148" width="892" height="76" fill="#131C42" opacity="0.05"/>
+
+          <g><rect x="26" y="158" width="112" height="56" fill="#131C42"/>
+             <text x="82" y="176" class="wf-n wf-n-on">01</text>
+             <text x="82" y="193" class="wf-t wf-t-on">Intake</text>
+             <text x="82" y="207" class="wf-s wf-s-on">classify</text></g>
+          <g><rect x="154" y="158" width="112" height="56" fill="#131C42"/>
+             <text x="210" y="176" class="wf-n wf-n-on">02</text>
+             <text x="210" y="193" class="wf-t wf-t-on">Assess risk</text>
+             <text x="210" y="207" class="wf-s wf-s-on">blast radius</text></g>
+          <g><rect x="282" y="158" width="112" height="56" fill="#2E4EBF"/>
+             <text x="338" y="176" class="wf-n wf-n-on">03</text>
+             <text x="338" y="193" class="wf-t wf-t-on">Authorize</text>
+             <text x="338" y="207" class="wf-s wf-s-on">gates or board</text></g>
+          <g><rect x="410" y="158" width="112" height="56" fill="#2E4EBF"/>
+             <text x="466" y="176" class="wf-n wf-n-on">04</text>
+             <text x="466" y="193" class="wf-t wf-t-on">Schedule</text>
+             <text x="466" y="207" class="wf-s wf-s-on">window, clashes</text></g>
+          <g><rect x="538" y="158" width="126" height="56" fill="#ACA6E6"/>
+             <text x="601" y="176" class="wf-n wf-n-dark">05</text>
+             <text x="601" y="193" class="wf-t">Implement</text>
+             <text x="601" y="207" class="wf-s wf-s-dark">bake, or roll back</text></g>
+          <g><rect x="680" y="158" width="112" height="56" fill="#E0A39A"/>
+             <text x="736" y="176" class="wf-n wf-n-dark">07</text>
+             <text x="736" y="193" class="wf-t">Review</text>
+             <text x="736" y="207" class="wf-s wf-s-dark">did it work</text></g>
+
+          <line x1="140" y1="186" x2="150" y2="186" stroke="#565A50" stroke-width="1.4" marker-end="url(#cgAr)"/>
+          <line x1="268" y1="186" x2="278" y2="186" stroke="#565A50" stroke-width="1.4" marker-end="url(#cgAr)"/>
+          <line x1="396" y1="186" x2="406" y2="186" stroke="#565A50" stroke-width="1.4" marker-end="url(#cgAr)"/>
+          <line x1="524" y1="186" x2="534" y2="186" stroke="#565A50" stroke-width="1.4" marker-end="url(#cgAr)"/>
+          <line x1="666" y1="186" x2="676" y2="186" stroke="#565A50" stroke-width="1.4" marker-end="url(#cgAr)"/>
+
+          <g><rect x="680" y="266" width="132" height="34" fill="none" stroke="#6B1220" stroke-width="1.4"/>
+             <text x="746" y="288" class="wf-t wf-t-maroon">Problem mgmt</text></g>
+          <line x1="736" y1="218" x2="736" y2="262" stroke="#6B1220" stroke-width="1.4" marker-end="url(#cgMar)"/>
+          <text x="746" y="316" class="wf-s wf-s-dark">when it failed for a reason that will recur</text>
+
+          <path d="M601 218 L601 356 L82 356 L82 222" fill="none" stroke="#2E4EBF" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#cgLoop)"/>
+          <text x="350" y="348" class="wf-loop">a change that worked repeatedly becomes standard, so the process gets faster instead of heavier</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
   <section id="demo" class="demo-section">
     <div class="wrap">
       <p class="section-label">See it run</p>

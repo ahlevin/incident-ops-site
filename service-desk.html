@@ -49,6 +49,94 @@
     </div>
   </section>
 
+  <section id="overview" class="overview-section">
+    <div class="wrap">
+      <p class="section-label">At a glance</p>
+      <h2>The shape of the workflow.</h2>
+      <p class="section-sub">Every contact arrives the same way and then splits. Something is broken, or something is wanted. Keeping those two lanes separate is what makes both of them measurable, and it is where most service desks quietly go wrong.</p>
+
+      <div class="wf">
+        <svg viewBox="0 0 920 400" role="img" aria-labelledby="sdTitle sdDesc" class="wf-svg">
+          <title id="sdTitle">Service desk workflow</title>
+          <desc id="sdDesc">A contact arrives, self-service deflects what it can, intake classifies it as incident or request. Incidents go to first-touch resolution then escalation, requests go to fulfilment. Both end in closure. User communication runs alongside and performance review feeds back.</desc>
+          <defs>
+            <marker id="sdAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M1 1 L9 5 L1 9" fill="none" stroke="#565A50" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+            <marker id="sdLoop" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M1 1 L9 5 L1 9" fill="none" stroke="#2E4EBF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+            <marker id="sdOut" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M1 1 L9 5 L1 9" fill="none" stroke="#6B1220" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+
+          <text x="24" y="150" class="wf-band wf-band-cool">FRONT DOOR</text>
+          <text x="404" y="48" class="wf-band">SOMETHING IS BROKEN &#183; incident lane</text>
+          <text x="404" y="252" class="wf-band wf-band-cool">SOMETHING IS WANTED &#183; request lane</text>
+
+          <rect x="14" y="158" width="360" height="72" fill="#ACA6E6" opacity="0.10"/>
+          <rect x="398" y="56" width="404" height="72" fill="#C81E2C" opacity="0.06"/>
+          <rect x="398" y="260" width="282" height="72" fill="#131C42" opacity="0.06"/>
+
+          <g><rect x="24" y="168" width="104" height="52" fill="#565A50"/>
+             <text x="76" y="192" class="wf-t wf-t-on">Contact</text>
+             <text x="76" y="208" class="wf-s wf-s-on">call, chat, portal</text></g>
+
+          <g><rect x="144" y="168" width="104" height="52" fill="#ACA6E6"/>
+             <text x="196" y="184" class="wf-n wf-n-dark">00</text>
+             <text x="196" y="200" class="wf-t">Self-service</text>
+             <text x="196" y="214" class="wf-s wf-s-dark">deflect</text></g>
+
+          <g><rect x="264" y="168" width="104" height="52" fill="#C81E2C"/>
+             <text x="316" y="184" class="wf-n wf-n-on">01</text>
+             <text x="316" y="200" class="wf-t wf-t-on">Intake</text>
+             <text x="316" y="214" class="wf-s wf-s-on">classify</text></g>
+
+          <g><rect x="410" y="66" width="112" height="52" fill="#C81E2C"/>
+             <text x="466" y="84" class="wf-n wf-n-on">02</text>
+             <text x="466" y="102" class="wf-t wf-t-on">First touch</text></g>
+
+          <g><rect x="540" y="66" width="112" height="52" fill="#6B1220"/>
+             <text x="596" y="84" class="wf-n wf-n-on">04</text>
+             <text x="596" y="102" class="wf-t wf-t-on">Escalate</text></g>
+
+          <g><rect x="670" y="66" width="124" height="52" fill="none" stroke="#6B1220" stroke-width="1.4"/>
+             <text x="732" y="88" class="wf-t wf-t-maroon">Incident mgmt</text>
+             <text x="732" y="104" class="wf-s wf-s-dark">when scope grows</text></g>
+
+          <g><rect x="410" y="270" width="112" height="52" fill="#131C42"/>
+             <text x="466" y="288" class="wf-n wf-n-on">03</text>
+             <text x="466" y="306" class="wf-t wf-t-on">Fulfil</text></g>
+
+          <g><rect x="540" y="270" width="112" height="52" fill="#E0A39A"/>
+             <text x="596" y="288" class="wf-n wf-n-dark">06</text>
+             <text x="596" y="306" class="wf-t">Close</text></g>
+
+          <line x1="130" y1="194" x2="140" y2="194" stroke="#565A50" stroke-width="1.4" marker-end="url(#sdAr)"/>
+          <line x1="250" y1="194" x2="260" y2="194" stroke="#565A50" stroke-width="1.4" marker-end="url(#sdAr)"/>
+          <path d="M368 186 L388 186 L388 92 L406 92" fill="none" stroke="#565A50" stroke-width="1.4" marker-end="url(#sdAr)"/>
+          <path d="M368 202 L388 202 L388 296 L406 296" fill="none" stroke="#565A50" stroke-width="1.4" marker-end="url(#sdAr)"/>
+          <line x1="524" y1="92" x2="536" y2="92" stroke="#565A50" stroke-width="1.4" marker-end="url(#sdAr)"/>
+          <line x1="654" y1="92" x2="666" y2="92" stroke="#6B1220" stroke-width="1.4" marker-end="url(#sdOut)"/>
+          <line x1="524" y1="296" x2="536" y2="296" stroke="#565A50" stroke-width="1.4" marker-end="url(#sdAr)"/>
+          <path d="M466 118 L466 140 L830 140 L830 296 L656 296" fill="none" stroke="#565A50" stroke-width="1.4" marker-end="url(#sdAr)"/>
+          <text x="836" y="200" class="wf-s wf-s-dark" text-anchor="start">resolved</text>
+          <text x="836" y="212" class="wf-s wf-s-dark" text-anchor="start">at the desk</text>
+
+          <rect x="144" y="344" width="420" height="42" fill="none" stroke="#C81E2C" stroke-width="1.4" stroke-dasharray="4 3"/>
+          <text x="354" y="362" class="wf-t wf-t-warm">05 &#183; User communication</text>
+          <text x="354" y="378" class="wf-s">one-to-one with the person who raised it, throughout</text>
+          <line x1="316" y1="224" x2="316" y2="340" stroke="#C81E2C" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#sdAr)"/>
+
+          <path d="M596 326 L596 396 L76 396 L76 228" fill="none" stroke="#2E4EBF" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#sdLoop)"/>
+          <text x="690" y="356" class="wf-loop" text-anchor="start">07 &#183; performance review</text>
+          <text x="690" y="370" class="wf-loop" text-anchor="start">turns volume into action</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
   <section id="demo" class="demo-section">
     <div class="wrap">
       <p class="section-label">See it run</p>

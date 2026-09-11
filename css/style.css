@@ -1063,13 +1063,13 @@ section { padding: 56px 0; border-top: 1px dashed var(--line-soft); }
 }
 
 .tool-step.is-live {
-  border-left-color: var(--sev1);
+  border-left-color: var(--sev0);
   background: var(--paper-card);
 }
 
 .tool-step.is-live .pipe-index {
-  background: var(--sev1);
-  border-color: var(--sev1);
+  background: var(--sev0);
+  border-color: var(--sev0);
   color: var(--paper);
 }
 
@@ -1399,7 +1399,7 @@ section { padding: 56px 0; border-top: 1px dashed var(--line-soft); }
   transition: border-color .25s, background .25s;
 }
 
-.ix-link.is-live { border-left-color: var(--sev1); border-color: var(--ink); }
+.ix-link.is-live { border-left-color: var(--sev0); border-color: var(--ink); }
 .ix-link.is-done { border-left-color: var(--sev4); }
 
 .ix-head {
@@ -1704,6 +1704,7 @@ section { padding: 56px 0; border-top: 1px dashed var(--line-soft); }
 .wf-s-warm { fill: var(--ink-soft); }
 .wf-s-dark { fill: #3A2326; }
 .wf-n-dark { fill: #6B1220; }
+.wf-t-maroon { fill: var(--sev0); }
 
 .wf-loop {
   font-family: var(--font-body);
