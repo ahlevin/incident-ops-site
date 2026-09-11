@@ -1698,8 +1698,11 @@ section { padding: 56px 0; border-top: 1px dashed var(--line-soft); }
     display: none;
     position: absolute;
     top: 100%;
-    left: -24px;
-    right: -24px;
+    /* 0, not -24px: absolute offsets resolve against .wrap's PADDING box,
+       which already spans the full viewport. Negative values push the panel
+       off-screen and cancel out the links' own padding. */
+    left: 0;
+    right: 0;
     background: var(--paper);
     border-top: 1px dashed var(--line-soft);
     border-bottom: 2px solid var(--ink);
@@ -1716,7 +1719,11 @@ section { padding: 56px 0; border-top: 1px dashed var(--line-soft); }
   .topnav a {
     margin-left: 0;
     display: block;
-    padding: 14px calc(24px + env(safe-area-inset-left, 0px));
+    /* Plain values first so every browser gets padding; the env() lines
+       below override only where supported (notched iPhones). A browser
+       that doesn't know env() discards those lines and keeps the 24px. */
+    padding: 14px 24px;
+    padding-left: calc(24px + env(safe-area-inset-left, 0px));
     padding-right: calc(24px + env(safe-area-inset-right, 0px));
     font-size: 15px;
     border-bottom: 1px dashed var(--line-soft);
@@ -1727,6 +1734,7 @@ section { padding: 56px 0; border-top: 1px dashed var(--line-soft); }
   .topnav a.is-active {
     color: var(--sev1);
     border-left: 3px solid var(--sev1);
+    padding-left: 21px;
     padding-left: calc(21px + env(safe-area-inset-left, 0px));
   }
 }
