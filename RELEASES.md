@@ -56,6 +56,7 @@ Keep this list current. It is the human-readable version of `git tag -l`.
 |---|---|---|
 | v1.0-known-good | Em-dash removal across site copy | 2026-09-11 |
 | v1.1-known-good | Workflow diagrams on all three practice pages, maroon active-step accent | |
+| v1.2-known-good | Link preview cards (Open Graph) for LinkedIn, Slack, iMessage | |
 
 ## Why not just use branch history
 
