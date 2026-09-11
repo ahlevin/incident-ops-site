@@ -7,7 +7,7 @@ Static site. No backend, no build step for the pages themselves, no API costs.
 The full SKILL.md instructions are **never committed to this repository in
 plaintext**. Three layers enforce that:
 
-1. **Encryption at build time.** `build/encrypt_skills.py` reads the SKILL.md
+1. **Encryption at build time.** `build/encrypt-skills.js` reads the SKILL.md
    files from *outside* this repo and emits `js/skills-locked.js` containing
    only AES-256-GCM ciphertext. Key derivation is PBKDF2-HMAC-SHA256 at
    310,000 iterations. Salt and IV are random per skill (neither is secret).
@@ -33,13 +33,19 @@ text. Only server-side gating would, and that requires a backend.
 
 ## Before publishing
 
+**See `START-HERE.md` for plain-language steps.** In short:
+
 ```
-python3 build/encrypt_skills.py "your-real-passphrase"
+node build/encrypt-skills.js "your-real-passphrase"
 git add js/skills-locked.js && git commit -m "Rotate skill encryption"
 ```
 
+The script reads skill sources from `../skills-source` (a folder **next to**
+this repo, never inside it). Override with `SKILLS_DIR=/some/path`.
+No npm install needed — Node's built-in crypto does the work.
+
 The repository currently ships with a **placeholder passphrase**
-(`change-me-before-publishing`). Rotate it before going live.
+password. Rotate it before going live.
 
 **This repo has intentionally clean history** — a single initial commit. Do not
 restore or merge any earlier history, which contained plaintext skill sources.
