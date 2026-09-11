@@ -4,7 +4,7 @@ const DEMO_ENTRIES = [
     phase: "phase-active",
     meta: "14:16 UTC · incident-triage-classification",
     body:
-`Severity: Sev1 — checkout errors affecting ~30% of attempts across
+`Severity: Sev1: checkout errors affecting ~30% of attempts across
 all customers; broad enough to risk real business loss.
 
 Engagement:
@@ -23,15 +23,15 @@ Notifications:
     phase: "phase-active",
     meta: "14:32 UTC · incident-status-updates",
     body:
-`[Status page — Investigating]
+`[Status page: Investigating]
 We're aware that some customers are experiencing errors when
 completing checkout. We're actively investigating and will share
 an update by 15:00 UTC.
 
 [Eng Slack]
-SEV1 — Checkout — INVESTIGATING. Elevated errors since ~14:15 UTC,
+SEV1: Checkout: INVESTIGATING. Elevated errors since ~14:15 UTC,
 ~30% of attempts. DB pool exhaustion suspected, possibly last
-night's migration — not confirmed. Next update 15:00 UTC.`
+night's migration: not confirmed. Next update 15:00 UTC.`
   },
   {
     tag: "03 · DIAGNOSIS ENGINE",
@@ -39,13 +39,13 @@ night's migration — not confirmed. Next update 15:00 UTC.`
     meta: "14:34 UTC · incident-diagnosis-engine",
     body:
 `Working hypotheses (ranked):
-1. DB migration deployed 22:00 UTC prior night — strong timing fit
-   with gradual pool exhaustion — check: pool metrics vs. deploy time
-2. Traffic spike unrelated to migration — weak, no supporting
-   evidence yet — check: request-rate graph for the last hour
+1. DB migration deployed 22:00 UTC prior night: strong timing fit
+   with gradual pool exhaustion: check: pool metrics vs. deploy time
+2. Traffic spike unrelated to migration: weak, no supporting
+   evidence yet: check: request-rate graph for the last hour
 
 Recommended now:
-Roll back the migration in parallel with confirming pool metrics —
+Roll back the migration in parallel with confirming pool metrics: 
 timing correlation is strong and rollback is low-risk here.`
   },
   {
@@ -62,7 +62,7 @@ Reason For Outage (Initial Assessment): points to the database
 migration deployed the prior night. Full root cause and corrective
 actions to be established via the postmortem.
 
-Immediate repair: rollback of the migration — durable, since it
+Immediate repair: rollback of the migration: durable, since it
 reverts the change that caused the issue.`
   },
   {
@@ -71,7 +71,7 @@ reverts the change that caused the issue.`
     meta: "16:15 UTC · problem-record-priority",
     body:
 `Related incident: Checkout Sev1 (14:15–16:02 UTC)
-Description: carried from RFO — migration-related connection pool
+Description: carried from RFO: migration-related connection pool
 exhaustion, not yet fully validated.
 
 Sev: 1 (from incident)
@@ -88,20 +88,20 @@ Postmortem: Mandatory`
 review step existed for migrations).
 
 Root Cause: the migration deployed the prior night altered
-connection handling, causing gradual pool exhaustion — confirmed by
+connection handling, causing gradual pool exhaustion: confirmed by
 pool metrics and full recovery on rollback.
 
 CAPA:
-- Preventative — pool-utilization alerting at a lower threshold
-- Preventative — require pool-impact review for migrations
-- Preventative — review the 17-min gap before first customer update`
+- Preventative: pool-utilization alerting at a lower threshold
+- Preventative: require pool-impact review for migrations
+- Preventative: review the 17-min gap before first customer update`
   },
   {
     tag: "07 · KNOWN ERROR RECORD",
     phase: "phase-settled",
     meta: "KE-001 · known-error-record",
     body:
-`Status: Active — workaround needed
+`Status: Active: workaround needed
 Symptoms: checkout errors climbing with connection pool
 utilization, typically hours after a DB migration deploy.
 
@@ -110,6 +110,6 @@ Workaround:
 2. Restart checkout service pods
 3. Confirm pool metrics and error rate return to baseline
 
-Permanent fix: TBD — pool alerting and migration review proposed.`
+Permanent fix: TBD: pool alerting and migration review proposed.`
   }
 ];

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Incident &amp; problem management — Alan Levin</title>
+<title>Incident &amp; problem management | Alan Levin</title>
 <meta name="description" content="Seven tested Claude skills covering triage, diagnosis, status updates, resolution, problem records, root cause analysis and known errors.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
 <header class="topbar">
   <div class="spectrum"><span class="s0"></span><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><span class="s5"></span></div>
   <div class="wrap topbar-inner">
-    <a class="brand" href="index.html">A. Levin — Case File</a>
+    <a class="brand" href="index.html">A. Levin &middot; Case File</a>
     <nav class="topnav" id="topnav">
       <a href="index.html">Home</a>
       <a href="service-desk.html">Service desk</a>
@@ -45,14 +45,14 @@
     <div class="wrap">
       <p class="kicker">Practice area · built</p>
       <h1>Optimizing and automating the incident &amp; problem management workflow with seven tested AI skills.</h1>
-      <p class="hero-sub">A working severity matrix, escalation rules, status-update templates, and a root-cause process built from years running on-call programs and high-severity response — encoded so Claude can run the workflow the way a real ops team would.</p>
+      <p class="hero-sub">A working severity matrix, escalation rules, status-update templates, and a root-cause process built from years running on-call programs and high-severity response: encoded so Claude can run the workflow the way a real ops team would.</p>
     </div>
   </section>
   <section id="demo" class="demo-section">
     <div class="wrap">
       <p class="section-label">See it run</p>
       <h2>One incident, seven skills, start to finish.</h2>
-      <p class="section-sub">Every step applies the actual tested skill logic — the severity matrix, escalation rules, and templates built and iterated earlier in this project — walked through end to end on one incident. Press play to watch it move through the workflow.</p>
+      <p class="section-sub">Every step applies the actual tested skill logic: the severity matrix, escalation rules, and templates built and iterated earlier in this project: walked through end to end on one incident. Press play to watch it move through the workflow.</p>
 
       <div class="console" id="console">
         <div class="console-head">
@@ -70,7 +70,7 @@
     <div class="wrap">
       <p class="section-label">The skills</p>
       <h2>Seven skills. One workflow. Each one hands off to the next.</h2>
-      <p class="section-sub">Built and tested individually, in the order a real incident actually moves through them. Each one's actual source is viewable below — not a description of what it does, the real instructions.</p>
+      <p class="section-sub">Built and tested individually, in the order a real incident actually moves through them. Each one's actual source is viewable below. Not a description of what it does, the real instructions.</p>
 
       <ol class="pipeline">
         <li class="pipe-step">
@@ -79,7 +79,7 @@
           <p>Classifies severity (Sev0–5) from a real CEN escalation matrix, and says exactly who gets paged, how fast, and whether a bridge opens.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">Severity is the first decision in an incident, and it&#x27;s a load-bearing one — it determines who gets paged, how fast, whether a bridge opens, and how often people hear updates. Getting it wrong in either direction has real cost: over-classify and you wake up executives for something minor; under-classify and a real crisis sits unescalated while an SLA penalty clock runs. This skill exists to make that first call consistently, using a fixed framework rather than a fresh judgment call each time.</p></div>
+            <div class="skill-excerpt"><p class="excerpt-p">Severity is the first decision in an incident, and it&#x27;s a load-bearing one: it determines who gets paged, how fast, whether a bridge opens, and how often people hear updates. Getting it wrong in either direction has real cost: over-classify and you wake up executives for something minor; under-classify and a real crisis sits unescalated while an SLA penalty clock runs. This skill exists to make that first call consistently, using a fixed framework rather than a fresh judgment call each time.</p></div>
             <div class="skill-locked" data-skill="incident-triage-classification"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         
@@ -87,10 +87,10 @@
         <li class="pipe-step">
           <span class="pipe-index">02</span>
           <h3>Status updates</h3>
-          <p>Drafts consistent updates for four audiences at once — status page, exec email, support briefing, eng Slack — from one set of facts.</p>
+          <p>Drafts consistent updates for four audiences at once: status page, exec email, support briefing, eng Slack: from one set of facts.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">During an incident, the same facts need to reach very different audiences, and it&#x27;s easy for the versions to drift apart — a Slack message says one thing, the status page says another, and support ends up telling a customer something leadership never confirmed. This skill exists to produce all the needed updates from one consistent set of facts, each shaped for its audience, so nothing contradicts across channels.</p></div>
+            <div class="skill-excerpt"><p class="excerpt-p">During an incident, the same facts need to reach very different audiences, and it&#x27;s easy for the versions to drift apart: a Slack message says one thing, the status page says another, and support ends up telling a customer something leadership never confirmed. This skill exists to produce all the needed updates from one consistent set of facts, each shaped for its audience, so nothing contradicts across channels.</p></div>
             <div class="skill-locked" data-skill="incident-status-updates"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         
@@ -98,22 +98,22 @@
                 <li class="pipe-step">
           <span class="pipe-index">03</span>
           <h3>Diagnosis engine</h3>
-          <p>Live troubleshooting during an active incident — ranks hypotheses by recent-change correlation and cost to check, and isn't afraid to recommend a rollback before the cause is fully confirmed.</p>
+          <p>Live troubleshooting during an active incident: ranks hypotheses by recent-change correlation and cost to check, and isn't afraid to recommend a rollback before the cause is fully confirmed.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">RCA is slow and rigorous because it has to survive scrutiny months later. This is the opposite situation: someone is mid-incident, impact is ongoing, and every minute spent being thorough is a minute of continued customer pain. The job here isn&#x27;t to be right and defensible — it&#x27;s to be fast and useful. A ranked guess that leads to a good next check beats a comprehensive analysis that arrives after the incident would have self-resolved.</p><p class="excerpt-p">Two consequences of that:
+            <div class="skill-excerpt"><p class="excerpt-p">RCA is slow and rigorous because it has to survive scrutiny months later. This is the opposite situation: someone is mid-incident, impact is ongoing, and every minute spent being thorough is a minute of continued customer pain. The job here isn&#x27;t to be right and defensible: it&#x27;s to be fast and useful. A ranked guess that leads to a good next check beats a comprehensive analysis that arrives after the incident would have self-resolved.</p><p class="excerpt-p">Two consequences of that:
 - **Bias toward action over certainty.** If a fast, low-risk mitigation exists (rollback, restart, failover, scale up, disable a feature flag) that plausibly helps, recommend it even before the cause is confirmed. Restoring service doesn&#x27;t require knowing why it broke.
-- **Don&#x27;t demand the evidentiary rigor RCA demands.** Working hypotheses, hunches ranked by plausibility, and &quot;let&#x27;s check the cheap thing first&quot; are the right tools here — save the evidence ledger and alternative-hypothesis rigor for the RCA that happens after this is over.</p></div>
+- **Don&#x27;t demand the evidentiary rigor RCA demands.** Working hypotheses, hunches ranked by plausibility, and &quot;let&#x27;s check the cheap thing first&quot; are the right tools here: save the evidence ledger and alternative-hypothesis rigor for the RCA that happens after this is over.</p></div>
             <div class="skill-locked" data-skill="incident-diagnosis-engine"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         </li>
         <li class="pipe-step">
           <span class="pipe-index">04</span>
           <h3>Resolution &amp; RFO</h3>
-          <p>Confirms a fix actually held before calling it resolved, then produces the Reason For Outage handoff — an initial assessment, not a finished investigation.</p>
+          <p>Confirms a fix actually held before calling it resolved, then produces the Reason For Outage handoff: an initial assessment, not a finished investigation.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">&quot;It looks fixed&quot; and &quot;it&#x27;s actually resolved&quot; are different claims, and collapsing them is how incidents reopen — a metric dips back to normal for five minutes and everyone declares victory, then it regresses an hour later with no one watching anymore. This skill separates **verifying** the fix actually held from **documenting** it, and produces the RFO that hands a real root-cause investigation off to the postmortem rather than leaving it to fade once the pressure&#x27;s off.</p></div>
+            <div class="skill-excerpt"><p class="excerpt-p">&quot;It looks fixed&quot; and &quot;it&#x27;s actually resolved&quot; are different claims, and collapsing them is how incidents reopen: a metric dips back to normal for five minutes and everyone declares victory, then it regresses an hour later with no one watching anymore. This skill separates **verifying** the fix actually held from **documenting** it, and produces the RFO that hands a real root-cause investigation off to the postmortem rather than leaving it to fade once the pressure&#x27;s off.</p></div>
             <div class="skill-locked" data-skill="incident-resolution-closure"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         
@@ -121,10 +121,10 @@
         <li class="pipe-step">
           <span class="pipe-index">05</span>
           <h3>Problem record &amp; priority</h3>
-          <p>Logs the underlying problem and sets investigation priority — inheriting real severity when an incident caused it, estimating carefully when it didn't.</p>
+          <p>Logs the underlying problem and sets investigation priority: inheriting real severity when an incident caused it, estimating carefully when it didn't.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">Not every open question from an incident&#x27;s RFO deserves the same urgency. A rare bug with minor impact and a recurring failure mode that could eventually make the news are both &quot;unresolved,&quot; but they don&#x27;t belong in the same queue position. This skill logs the problem clearly and gives it a priority that reflects both how bad it would be if it recurs and how likely that actually is — so investigation effort goes where it matters most, rather than to whatever was logged most recently.</p></div>
+            <div class="skill-excerpt"><p class="excerpt-p">Not every open question from an incident&#x27;s RFO deserves the same urgency. A rare bug with minor impact and a recurring failure mode that could eventually make the news are both &quot;unresolved,&quot; but they don&#x27;t belong in the same queue position. This skill logs the problem clearly and gives it a priority that reflects both how bad it would be if it recurs and how likely that actually is, so investigation effort goes where it matters most, rather than to whatever was logged most recently.</p></div>
             <div class="skill-locked" data-skill="problem-record-priority"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         
@@ -132,10 +132,10 @@
         <li class="pipe-step">
           <span class="pipe-index">06</span>
           <h3>Root cause analysis</h3>
-          <p>Five Whys and Ishikawa analysis converging on a stated root cause, plus typed corrective and preventative actions — not just a guess with a rollback attached.</p>
+          <p>Five Whys and Ishikawa analysis converging on a stated root cause, plus typed corrective and preventative actions: not just a guess with a rollback attached.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">An RFO is a fast, initial assessment made under pressure — useful for handoff, not meant to be the final word. This skill does the slower, evidence-backed version: testing that initial assessment against actual logs, timestamps, and alternative explanations rather than assuming it holds up, and turning &quot;we think it was the migration&quot; into either a validated conclusion or a revised one. The output needs to survive scrutiny from people who weren&#x27;t in the incident and hold up months later when someone asks &quot;why did we conclude that.&quot;</p><p class="excerpt-p">If this incident already has an RFO or a Problem Record, use them as the starting point — carry over the incident summary, timeline basics, and initial assessment rather than re-asking for what&#x27;s already been established. Treat the RFO&#x27;s assessment as a hypothesis to confirm or revise, not a settled fact.</p></div>
+            <div class="skill-excerpt"><p class="excerpt-p">An RFO is a fast, initial assessment made under pressure: useful for handoff, not meant to be the final word. This skill does the slower, evidence-backed version: testing that initial assessment against actual logs, timestamps, and alternative explanations rather than assuming it holds up, and turning &quot;we think it was the migration&quot; into either a validated conclusion or a revised one. The output needs to survive scrutiny from people who weren&#x27;t in the incident and hold up months later when someone asks &quot;why did we conclude that.&quot;</p><p class="excerpt-p">If this incident already has an RFO or a Problem Record, use them as the starting point: carry over the incident summary, timeline basics, and initial assessment rather than re-asking for what&#x27;s already been established. Treat the RFO&#x27;s assessment as a hypothesis to confirm or revise, not a settled fact.</p></div>
             <div class="skill-locked" data-skill="incident-root-cause-analysis"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         
@@ -143,10 +143,10 @@
         <li class="pipe-step">
           <span class="pipe-index">07</span>
           <h3>Known error record</h3>
-          <p>Turns a confirmed cause and workaround into something searchable next time — so the same failure isn't reinvestigated from scratch.</p>
+          <p>Turns a confirmed cause and workaround into something searchable next time, so the same failure isn't reinvestigated from scratch.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">An RCA answers &quot;why did this happen.&quot; A Known Error Record answers a different, more urgent question mid-incident: &quot;have we seen this before, and what do we do about it right now?&quot; Without one, the same failure mode can hit again and get treated as brand new — reinvestigated from scratch — even though someone already found the cause and a working stopgap. This skill turns a completed (or in-progress) RCA into something searchable and immediately actionable, and keeps it alive until the permanent fix actually ships.</p><p class="excerpt-p">If a Root Cause and CAPA already exist from incident-root-cause-analysis, pull from them directly rather than re-deriving anything — this record&#x27;s job is to make that knowledge findable and usable, not to redo the investigation.</p></div>
+            <div class="skill-excerpt"><p class="excerpt-p">An RCA answers &quot;why did this happen.&quot; A Known Error Record answers a different, more urgent question mid-incident: &quot;have we seen this before, and what do we do about it right now?&quot; Without one, the same failure mode can hit again and get treated as brand new: reinvestigated from scratch: even though someone already found the cause and a working stopgap. This skill turns a completed (or in-progress) RCA into something searchable and immediately actionable, and keeps it alive until the permanent fix actually ships.</p><p class="excerpt-p">If a Root Cause and CAPA already exist from incident-root-cause-analysis, pull from them directly rather than re-deriving anything: this record&#x27;s job is to make that knowledge findable and usable, not to redo the investigation.</p></div>
             <div class="skill-locked" data-skill="known-error-record"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         
@@ -158,7 +158,7 @@
     <div class="wrap">
       <p class="section-label">Beyond this demo</p>
       <h2>Where these skills sit in a real incident stack.</h2>
-      <p class="section-sub">Signals become alerts, alerts get correlated into one incident, someone gets paged, and the work gets recorded in a system of record. The skills slot into that existing flow rather than replacing it. Conceptual architecture — not a live integration on this page.</p>
+      <p class="section-sub">Signals become alerts, alerts get correlated into one incident, someone gets paged, and the work gets recorded in a system of record. The skills slot into that existing flow rather than replacing it. Conceptual architecture: not a live integration on this page.</p>
 
       <div class="flow-controls">
         <button class="run-btn run-btn-secondary" id="flowStepBtn">Step through</button>
@@ -174,7 +174,7 @@
             <span class="flow-band-tools">Prometheus · Grafana · Datadog · ELK/Kibana · CloudWatch</span>
           </div>
           <div class="flow-band-body">
-            <p class="flow-band-desc">Metrics, logs and synthetic checks fire raw alerts. High volume, high noise — one bad deploy can throw hundreds.</p>
+            <p class="flow-band-desc">Metrics, logs and synthetic checks fire raw alerts. High volume, high noise: one bad deploy can throw hundreds.</p>
             <span class="autonomy auto">Automated</span>
           </div>
         </div>
@@ -192,7 +192,7 @@
             <span class="flow-band-tools">BigPanda · Moogsoft · ServiceNow Event Mgmt · PagerDuty Event Intelligence</span>
           </div>
           <div class="flow-band-body">
-            <p class="flow-band-desc">Hundreds of alerts collapse into one incident with a probable blast radius. This is the layer that makes the signal usable — by a human or a model.</p>
+            <p class="flow-band-desc">Hundreds of alerts collapse into one incident with a probable blast radius. This is the layer that makes the signal usable: by a human or a model.</p>
             <span class="autonomy auto">Automated</span>
           </div>
         </div>
@@ -315,7 +315,7 @@
         <div class="flow-band flow-band-skill" data-stage="known">
           <div class="flow-band-head">
             <span class="flow-band-name"><b>07</b> Known error record</span>
-            <span class="flow-band-tools">writes to ServiceNow KEDB / Jira / Confluence — and is read back at stage 01</span>
+            <span class="flow-band-tools">writes to ServiceNow KEDB / Jira / Confluence, and is read back at stage 01</span>
           </div>
           <div class="flow-band-body">
             <p class="flow-band-desc">Symptoms and workaround made searchable, so the next occurrence is recognised instead of reinvestigated.</p>
@@ -333,7 +333,7 @@
 
       <div class="autonomy-legend">
         <p class="autonomy-legend-title">On what runs itself and what doesn't</p>
-        <p class="autonomy-legend-body">The rule I'd apply: automate anything reversible and observable, gate anything that reaches a customer, spends money, or asserts a conclusion. Alert correlation and record-keeping are safe to automate — they're reversible and auditable. Publishing to a status page, executing a rollback, and declaring a root cause are not, because a confident wrong answer there costs more than the time saved. That line will sit differently at every company; the point is to draw it deliberately rather than let it default either way.</p>
+        <p class="autonomy-legend-body">The rule I'd apply: automate anything reversible and observable, gate anything that reaches a customer, spends money, or asserts a conclusion. Alert correlation and record-keeping are safe to automate: they're reversible and auditable. Publishing to a status page, executing a rollback, and declaring a root cause are not, because a confident wrong answer there costs more than the time saved. That line will sit differently at every company; the point is to draw it deliberately rather than let it default either way.</p>
         <ul class="autonomy-key">
           <li><span class="autonomy auto">Automated</span> runs without a human in the path</li>
           <li><span class="autonomy gate">Gated</span> AI produces, a human approves before it lands</li>
@@ -346,12 +346,12 @@
     <div class="wrap">
       <p class="section-label">Failure mode</p>
       <h2>What happens when the AI is the thing that's down.</h2>
-      <p class="section-sub">An AI-assisted incident process is most likely to be unavailable precisely when it's needed, because incidents are when infrastructure is degraded. Any serious design has to answer this before it answers anything else &mdash; and the answer is not &ldquo;add a backup model.&rdquo;</p>
+      <p class="section-sub">An AI-assisted incident process is most likely to be unavailable precisely when it's needed, because incidents are when infrastructure is degraded. Any serious design has to answer this before it answers anything else, and the answer is not &ldquo;add a backup model.&rdquo;</p>
 
       <div class="principle-band">
         <p class="principle-label">The governing rule</p>
-        <p class="principle-body"><b>The AI layer is never load-bearing.</b> The process artifacts exist independently of it &mdash; the severity matrix is a table, the status updates are templates, the RFO is a form, the escalation path is a documented rota. The model accelerates filling them in. It does not own them. If the runbook assumes AI, the runbook fails.</p>
-        <p class="principle-body"><b>Nothing time-bound sits in the model's control path.</b> Paging fires from PagerDuty's own escalation rules. Alert correlation runs in BigPanda. Ticket creation is a workflow. If the model were the thing deciding to page, an AI outage during a Sev0 would mean nobody gets paged &mdash; the worst possible coupling. AI proposes and drafts; deterministic systems act.</p>
+        <p class="principle-body"><b>The AI layer is never load-bearing.</b> The process artifacts exist independently of it: the severity matrix is a table, the status updates are templates, the RFO is a form, the escalation path is a documented rota. The model accelerates filling them in. It does not own them. If the runbook assumes AI, the runbook fails.</p>
+        <p class="principle-body"><b>Nothing time-bound sits in the model's control path.</b> Paging fires from PagerDuty's own escalation rules. Alert correlation runs in BigPanda. Ticket creation is a workflow. If the model were the thing deciding to page, an AI outage during a Sev0 would mean nobody gets paged: the worst possible coupling. AI proposes and drafts; deterministic systems act.</p>
       </div>
 
       <div class="tiers">
@@ -366,7 +366,7 @@
         <div class="tier tier-2">
           <p class="tier-state">Degraded</p>
           <h3>Deterministic fallback</h3>
-          <p class="tier-desc">No model in the path. The severity matrix becomes a static lookup table, status updates become fill-in templates, the RFO and RCA become structured forms, and the known error database is searched with plain keyword search. Slower, no drafting, no ranked hypotheses &mdash; but every decision the process needs is still makeable.</p>
+          <p class="tier-desc">No model in the path. The severity matrix becomes a static lookup table, status updates become fill-in templates, the RFO and RCA become structured forms, and the known error database is searched with plain keyword search. Slower, no drafting, no ranked hypotheses, but every decision the process needs is still makeable.</p>
           <p class="tier-works"><b>Requires:</b> ITSM tool and published documents only</p>
         </div>
 
@@ -382,12 +382,12 @@
       <div class="degraded-notes">
         <h3>What makes this actually work</h3>
         <ul>
-          <li><b>Assume correlated failure.</b> The MCP server, retrieval index, and knowledge base are usually your own infrastructure &mdash; the same infrastructure having the incident. Host the fallback path somewhere the outage can't reach it, and keep an offline copy of the severity matrix and escalation rota. A knowledge base that lives inside the failed region is not a fallback.</li>
-          <li><b>Degradation must be automatic and obvious.</b> Health-check the AI path and fail over without waiting for someone to notice. Signal the current tier plainly in the interface &mdash; a responder should never have to wonder whether what they're reading was drafted or is just slow to arrive.</li>
+          <li><b>Assume correlated failure.</b> The MCP server, retrieval index, and knowledge base are usually your own infrastructure: the same infrastructure having the incident. Host the fallback path somewhere the outage can't reach it, and keep an offline copy of the severity matrix and escalation rota. A knowledge base that lives inside the failed region is not a fallback.</li>
+          <li><b>Degradation must be automatic and obvious.</b> Health-check the AI path and fail over without waiting for someone to notice. Signal the current tier plainly in the interface: a responder should never have to wonder whether what they're reading was drafted or is just slow to arrive.</li>
           <li><b>Slow is worse than down.</b> A model taking forty seconds during a Sev0 is more damaging than one that's cleanly unavailable, because people wait on it. Set an aggressive timeout and fail to the deterministic tier rather than degrading gracefully into a stall.</li>
-          <li><b>A local model is optional, not the answer.</b> It can cover a provider outage where your own environment is healthy. But it's weaker at exactly the judgment work you'd want it for &mdash; and a confidently wrong severity classification is worse than none, because someone acts on it. If you run one, restrict it to drafting and summarizing, never to classification or diagnosis.</li>
-          <li><b>The manual override exists at all times, not just during outages.</b> A responder must always be able to overrule a severity call, a hypothesis, or a draft. The lever isn't a disaster switch &mdash; it's the normal state of a system where humans are accountable.</li>
-          <li><b>Practise the fallback.</b> A degraded mode discovered during a Sev1 is not a degraded mode. Run it deliberately &mdash; a scheduled game day where the AI path is switched off and the desk works a real ticket without it &mdash; the same way you'd test a DR plan.</li>
+          <li><b>A local model is optional, not the answer.</b> It can cover a provider outage where your own environment is healthy. But it's weaker at exactly the judgment work you'd want it for, and a confidently wrong severity classification is worse than none, because someone acts on it. If you run one, restrict it to drafting and summarizing, never to classification or diagnosis.</li>
+          <li><b>The manual override exists at all times, not just during outages.</b> A responder must always be able to overrule a severity call, a hypothesis, or a draft. The lever isn't a disaster switch: it's the normal state of a system where humans are accountable.</li>
+          <li><b>Practise the fallback.</b> A degraded mode discovered during a Sev1 is not a degraded mode. Run it deliberately: a scheduled game day where the AI path is switched off and the desk works a real ticket without it: the same way you'd test a DR plan.</li>
         </ul>
       </div>
     </div>
@@ -397,7 +397,7 @@
     <div class="wrap">
       <p class="section-label">Key process indicators</p>
       <h2>What gets measured across the incident lifecycle.</h2>
-      <p class="section-sub">Incident metrics are mostly <em>intervals along a single timeline</em>, not independent numbers. Each one measures the gap between two events, and each gap has a different owner and a different fix &mdash; which is why an aggregate &ldquo;MTTR&rdquo; is close to useless for deciding what to improve. Break the clock apart and the bottleneck becomes obvious.</p>
+      <p class="section-sub">Incident metrics are mostly <em>intervals along a single timeline</em>, not independent numbers. Each one measures the gap between two events, and each gap has a different owner and a different fix, which is why an aggregate &ldquo;MTTR&rdquo; is close to useless for deciding what to improve. Break the clock apart and the bottleneck becomes obvious.</p>
 
       <div class="tl">
         <div class="tl-track">
@@ -428,7 +428,7 @@
           <h3>Detection</h3>
           <ul>
             <li><b>Time to detect (TTD)</b> <span>fault occurring to alert firing</span></li>
-            <li><b>Detection source split</b> <span>monitoring vs. user-reported vs. customer-reported &mdash; the single most revealing incident metric you can track</span></li>
+            <li><b>Detection source split</b> <span>monitoring vs. user-reported vs. customer-reported: the single most revealing incident metric you can track</span></li>
             <li><b>False positive / alert noise rate</b> <span>alerts that needed no action</span></li>
             <li><b>Correlation ratio</b> <span>raw alerts collapsed per incident</span></li>
           </ul>
@@ -439,8 +439,8 @@
           <ul>
             <li><b>Time to acknowledge (TTA)</b> <span>alert firing to a human owning it</span></li>
             <li><b>Time to escalate (TTE)</b> <span>against the CEN engagement SLA for the severity</span></li>
-            <li><b>Engagement SLA attainment</b> <span>by severity &mdash; 15 min at Sev0/1, 30 min at Sev2</span></li>
-            <li><b>Time to action (TTAct)</b> <span>engagement to first corrective action &mdash; where diagnosis time lives</span></li>
+            <li><b>Engagement SLA attainment</b> <span>by severity: 15 min at Sev0/1, 30 min at Sev2</span></li>
+            <li><b>Time to action (TTAct)</b> <span>engagement to first corrective action, where diagnosis time lives</span></li>
             <li><b>Bridge time</b> <span>TCB / MCB duration</span></li>
           </ul>
         </div>
@@ -458,7 +458,7 @@
         <div class="metric-group">
           <h3>Restoration</h3>
           <ul>
-            <li><b>Time to mitigate (TTM)</b> <span>impact beginning to impact stopping &mdash; the number customers actually feel</span></li>
+            <li><b>Time to mitigate (TTM)</b> <span>impact beginning to impact stopping: the number customers actually feel</span></li>
             <li><b>Time to restore (TTR)</b> <span>through verified, sustained recovery</span></li>
             <li><b>Restoration goal attainment</b> <span>against the CEN target for the severity</span></li>
             <li><b>Reopen / regression rate</b> <span>incidents that came back after being called resolved</span></li>
@@ -473,7 +473,7 @@
         <div class="metric-group">
           <h3>Problem management</h3>
           <ul>
-            <li><b>Incident-to-problem linkage rate</b> <span>share of incidents tied to a problem record &mdash; low linkage means causes aren't being pursued</span></li>
+            <li><b>Incident-to-problem linkage rate</b> <span>share of incidents tied to a problem record: low linkage means causes aren't being pursued</span></li>
             <li><b>Time from incident closure to problem record</b> <span>the handoff either happens while it's fresh or not at all</span></li>
             <li><b>Postmortem completion rate for Sev0&ndash;1</b> <span>where it's mandatory, this should be 100%</span></li>
             <li><b>Time to RCA completion</b> <span>by problem priority</span></li>
@@ -484,7 +484,7 @@
         <div class="metric-group">
           <h3>Prevention &amp; outcome</h3>
           <ul>
-            <li><b>Repeat incident rate</b> <span>the real outcome measure &mdash; problem management exists to move this</span></li>
+            <li><b>Repeat incident rate</b> <span>the real outcome measure: problem management exists to move this</span></li>
             <li><b>CAPA completion rate</b> <span>and overdue actions past target date</span></li>
             <li><b>Corrective vs preventative split</b> <span>all-corrective means symptoms are being fixed, not causes</span></li>
             <li><b>Known error coverage</b> <span>KEDB entries with a valid workaround</span></li>
@@ -497,14 +497,14 @@
 
       <div class="metric-pairs">
         <h3>Read them in pairs, never singly</h3>
-        <p>As on the service desk, most of these mislead alone &mdash; and the failure mode here is more expensive, because incident metrics get reported to executives who make staffing and investment decisions from them.</p>
+        <p>As on the service desk, most of these mislead alone, and the failure mode here is more expensive, because incident metrics get reported to executives who make staffing and investment decisions from them.</p>
         <ul>
-          <li><b>TTM &times; detection source</b> &mdash; a falling TTM looks like the response got faster. If user-reported detection is rising at the same time, monitoring is degrading and you're just getting quicker at handling incidents customers found for you.</li>
-          <li><b>TTD &times; alert noise rate</b> &mdash; detection time improves quickly if you lower thresholds, at the cost of alert fatigue that eventually raises TTA. The two move against each other.</li>
-          <li><b>TTM &times; reopen rate</b> &mdash; mitigating faster while reopens rise means incidents are being called resolved before the fix held.</li>
-          <li><b>TTN &times; notification accuracy</b> &mdash; notifying faster is only better if the updates don't have to be corrected later. A retracted status update costs more trust than a slower accurate one.</li>
-          <li><b>Repeat incident rate &times; CAPA completion</b> &mdash; the honest test of whether problem management is working. RCAs produced without actions completed is documentation, not prevention.</li>
-          <li><b>Severity distribution &times; reclassification rate</b> &mdash; a drop in Sev1 volume looks like stability, unless severities are simply being called lower than they should be.</li>
+          <li><b>TTM &times; detection source</b>: a falling TTM looks like the response got faster. If user-reported detection is rising at the same time, monitoring is degrading and you're just getting quicker at handling incidents customers found for you.</li>
+          <li><b>TTD &times; alert noise rate</b>: detection time improves quickly if you lower thresholds, at the cost of alert fatigue that eventually raises TTA. The two move against each other.</li>
+          <li><b>TTM &times; reopen rate</b>: mitigating faster while reopens rise means incidents are being called resolved before the fix held.</li>
+          <li><b>TTN &times; notification accuracy</b>: notifying faster is only better if the updates don't have to be corrected later. A retracted status update costs more trust than a slower accurate one.</li>
+          <li><b>Repeat incident rate &times; CAPA completion</b>: the honest test of whether problem management is working. RCAs produced without actions completed is documentation, not prevention.</li>
+          <li><b>Severity distribution &times; reclassification rate</b>: a drop in Sev1 volume looks like stability, unless severities are simply being called lower than they should be.</li>
         </ul>
       </div>
     </div>
@@ -515,7 +515,7 @@
     <div class="wrap">
       <p class="section-label">Full skill sources</p>
       <h2>The complete instructions are encrypted.</h2>
-      <p class="section-sub">The rationale for each skill is open above. The full operational detail &mdash; the matrices, thresholds, output formats and judgement rules &mdash; is AES-256 encrypted and decrypted in your browser only. The ciphertext is all that exists in the page source or the repository.</p>
+      <p class="section-sub">The rationale for each skill is open above. The full operational detail: the matrices, thresholds, output formats and judgement rules: is AES-256 encrypted and decrypted in your browser only. The ciphertext is all that exists in the page source or the repository.</p>
       <div class="unlock-form">
         <input class="unlock-input" type="password" placeholder="Password" autocomplete="off" aria-label="Password to unlock skill sources">
         <button class="unlock-btn run-btn" type="button">Unlock</button>
@@ -535,7 +535,7 @@
       </div>
       <div class="contact-card">
         <h3>Want this running for your team</h3>
-        <p>Interested in these skills — or something like them — supporting how your team actually operates. Let's talk about what that would take.</p>
+        <p>Interested in these skills, or something like them, supporting how your team actually operates. Let's talk about what that would take.</p>
         <a class="contact-link" href="mailto:ahlevin@hotmail.com">ahlevin@hotmail.com</a><br>
         <a class="contact-link" href="https://linkedin.com/in/alanlevin/">linkedin.com/in/alanlevin</a>
       </div>

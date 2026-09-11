@@ -7,10 +7,10 @@ const SD_DEMO_ENTRIES = [
 `User contact (phone): "I can't get into the expense system,
 it just spins. Couple people on my team too I think."
 
-Contact type: Incident — a service that should work, doesn't.
+Contact type: Incident: a service that should work, doesn't.
 Category: Finance Apps > Expense > Access
-Impact: Medium — a team, not enterprise-wide (pending confirmation)
-Urgency: High — month-end close, submissions due today
+Impact: Medium: a team, not enterprise-wide (pending confirmation)
+Urgency: High: month-end close, submissions due today
 Priority: P2
 Route to: Tier 1, with a watch on scope
 
@@ -23,7 +23,7 @@ Missing information needed:
     phase: "phase-active",
     meta: "09:19 · first-touch-resolution",
     body:
-`KEDB check: matched KE-044 — "Expense login hangs after SSO
+`KEDB check: matched KE-044: "Expense login hangs after SSO
 token refresh," workaround documented.
 TSG applied: TSG-Finance-07
 
@@ -34,7 +34,7 @@ Steps taken:
 
 Outcome: Resolved at first touch
 Reason: Documented known error workaround applied successfully.
-Note: 3rd occurrence of KE-044 this week — flagging recurrence.`
+Note: 3rd occurrence of KE-044 this week: flagging recurrence.`
   },
   {
     tag: "04 · ESCALATION & HANDOFF",
@@ -44,7 +44,7 @@ Note: 3rd occurrence of KE-044 this week — flagging recurrence.`
 `Scope check: 6 more contacts, same symptom, same 20 min window.
 
 Escalation type: Converting to incident
-Trigger: Growing impact — this is no longer one ticket.
+Trigger: Growing impact: this is no longer one ticket.
 Routing to incident-triage-classification for severity
 classification and engagement.
 
@@ -81,14 +81,14 @@ Reference: INC-4471 / SD-88213"`
     phase: "phase-settled",
     meta: "11:40 · ticket-closure-satisfaction",
     body:
-`Confirmed with user: Yes — user re-tested and submitted expenses.
+`Confirmed with user: Yes: user re-tested and submitted expenses.
 
 Resolution summary: Expense system login hung at spinner after
 SSO redirect for finance users. Caused by stale token refresh
 after overnight IdP config change. Per-user workaround: clear
 SSO session and re-auth. Permanent fix applied by identity team.
 
-Feeds into: Known error record — KE-044 updated with 3rd
+Feeds into: Known error record: KE-044 updated with 3rd
 recurrence this week and the confirmed IdP cause.
 Satisfaction: survey sent.`
   },
@@ -97,7 +97,7 @@ Satisfaction: survey sent.`
     phase: "phase-settled",
     meta: "weekly · service-desk-performance",
     body:
-`Headline: FCR up 4 pts, but reopen rate up 3 pts alongside it —
+`Headline: FCR up 4 pts, but reopen rate up 3 pts alongside it: 
 read together, that's premature closure, not improvement.
 
 Concentrated where: Finance Apps > Expense > Access, which is
@@ -105,7 +105,7 @@ now 18% of all contacts, up from 6% four weeks ago. KE-044
 recurrence count: 11 this month.
 
 Recommended actions:
-| Investigate | KE-044 volume warrants a problem record — hand
+| Investigate | KE-044 volume warrants a problem record: hand
   to problem-record-priority | Priority: high |
 | Document | No TSG existed for 2 of the top 5 categories |
 | Automate | Password reset = 22% of requests, fully standard |`

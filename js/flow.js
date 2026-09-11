@@ -60,7 +60,7 @@
       const gate = gateLabel(band);
       if (gate) {
         band.classList.add("is-waiting");
-        statusEl.textContent = bandLabel(band) + " — " + gate;
+        statusEl.textContent = bandLabel(band) + ": " + gate;
         await wait(GATE_MS);
         band.classList.remove("is-waiting");
       }
@@ -79,7 +79,7 @@
 
     if (loop) {
       loop.classList.add("is-live");
-      statusEl.textContent = "known error filed — fed back to triage";
+      statusEl.textContent = "known error filed: fed back to triage";
       await wait(BAND_MS);
     }
 
@@ -117,7 +117,7 @@
     const gate = gateLabel(band);
     if (gate) {
       band.classList.add("is-waiting");
-      statusEl.textContent = bandLabel(band) + " — " + gate;
+      statusEl.textContent = bandLabel(band) + ": " + gate;
     } else {
       statusEl.textContent = bandLabel(band);
     }

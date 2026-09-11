@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Service desk &mdash; Alan Levin</title>
+<title>Service desk | Alan Levin</title>
 <meta name="description" content="Seven tested Claude skills covering the service desk lifecycle, with the metrics tracked at each step.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
 <header class="topbar">
   <div class="spectrum"><span class="s0"></span><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><span class="s5"></span></div>
   <div class="wrap topbar-inner">
-    <a class="brand" href="index.html">A. Levin &mdash; Case File</a>
+    <a class="brand" href="index.html">A. Levin &middot; Case File</a>
     <nav class="topnav" id="topnav">
       <a href="index.html">Home</a>
       <a href="service-desk.html" class="is-active">Service desk</a>
@@ -44,8 +44,8 @@
   <section class="hero">
     <div class="wrap">
       <p class="kicker">Practice area &middot; built</p>
-      <h1>The front door to everything else &mdash; seven skills for the service desk lifecycle.</h1>
-      <p class="hero-sub">Most incidents don't start with an alert. They start with someone calling to say something is broken. The service desk is where that contact gets classified, resolved or escalated, and either fed into incident management or closed properly &mdash; and it's where the metrics that tell you whether any of it is working actually get captured.</p>
+      <h1>The front door to everything else: seven skills for the service desk lifecycle.</h1>
+      <p class="hero-sub">Most incidents don't start with an alert. They start with someone calling to say something is broken. The service desk is where that contact gets classified, resolved or escalated, and either fed into incident management or closed properly, and it's where the metrics that tell you whether any of it is working actually get captured.</p>
     </div>
   </section>
 
@@ -73,7 +73,7 @@
     <div class="wrap">
       <p class="section-label">Deflection layer</p>
       <h2>Self-service chat, grounded in the public knowledge base.</h2>
-      <p class="section-sub">A chat assistant that answers from the model's own memory is worse than none at all &mdash; it invents confident, specific, wrong instructions, and the user follows them. This one can only answer from articles it actually retrieved. Below is exactly how that works, call by call.</p>
+      <p class="section-sub">A chat assistant that answers from the model's own memory is worse than none at all: it invents confident, specific, wrong instructions, and the user follows them. This one can only answer from articles it actually retrieved. Below is exactly how that works, call by call.</p>
 
       <div class="flow-controls">
         <button class="run-btn run-btn-secondary" id="ragStepBtn">Step through</button>
@@ -86,7 +86,7 @@
         <div class="flow-band" data-stage="ask">
           <div class="flow-band-head">
             <span class="flow-band-name">User asks</span>
-            <span class="flow-band-tools">Slack &middot; Teams &middot; in-product widget &middot; portal &middot; IVR deflect-to-SMS &mdash; see channel options below</span>
+            <span class="flow-band-tools">Slack &middot; Teams &middot; in-product widget &middot; portal &middot; IVR deflect-to-SMS: see channel options below</span>
           </div>
           <div class="flow-band-body">
             <p class="flow-band-desc">"I can't get into the expense system, it just spins after I log in."</p>
@@ -107,14 +107,14 @@
             <span class="flow-band-tools">Claude + self-service-knowledge-assistant skill</span>
           </div>
           <div class="flow-band-body">
-            <p class="flow-band-desc">The skill forbids answering support questions from memory, so the model emits a tool call rather than a reply. It searches on the user's symptom wording, not its guess at the cause &mdash; articles are written to be found by people describing what they see.</p>
+            <p class="flow-band-desc">The skill forbids answering support questions from memory, so the model emits a tool call rather than a reply. It searches on the user's symptom wording, not its guess at the cause: articles are written to be found by people describing what they see.</p>
             <span class="autonomy auto">Automated</span>
           </div>
         </div>
 
         <div class="flow-arrow">
           <span class="flow-pip" aria-hidden="true"></span>
-          <span class="payload-label">MCP tool call &mdash; JSON-RPC over the MCP transport</span>
+          <span class="payload-label">MCP tool call: JSON-RPC over the MCP transport</span>
           <pre class="payload-sample">{ "method": "tools/call",
   "params": { "name": "search_knowledge_base",
     "arguments": { "query": "expense system spins after login",
@@ -127,7 +127,7 @@
             <span class="flow-band-tools">self-hosted inside the org network &middot; holds the credentials, the model never does</span>
           </div>
           <div class="flow-band-body">
-            <p class="flow-band-desc">MCP is the <em>interface</em>, not the retrieval. It exposes two tools &mdash; search and create-ticket &mdash; and is where authentication, rate limiting, and audit logging live. The model can only do what the server exposes.</p>
+            <p class="flow-band-desc">MCP is the <em>interface</em>, not the retrieval. It exposes two tools: search and create-ticket, and is where authentication, rate limiting, and audit logging live. The model can only do what the server exposes.</p>
             <span class="autonomy auto">Automated</span>
           </div>
         </div>
@@ -146,7 +146,7 @@ FILTER: visibility = "public" AND status = "published"</pre>
             <span class="flow-band-tools">Elasticsearch / OpenSearch kNN &middot; pgvector &middot; Pinecone &middot; Weaviate &middot; ServiceNow AI Search</span>
           </div>
           <div class="flow-band-body">
-            <p class="flow-band-desc">Hybrid retrieval &mdash; keyword catches exact error strings, vector catches paraphrases &mdash; then a reranker orders by actual relevance. <b>The public-only filter is applied here, in the query, not by asking the model to behave.</b> Internal runbooks aren't in the candidate set at all, so no prompt can talk the assistant into revealing them.</p>
+            <p class="flow-band-desc">Hybrid retrieval: keyword catches exact error strings, vector catches paraphrases, then a reranker orders by actual relevance. <b>The public-only filter is applied here, in the query, not by asking the model to behave.</b> Internal runbooks aren't in the candidate set at all, so no prompt can talk the assistant into revealing them.</p>
             <span class="autonomy auto">Automated &middot; access enforced server-side</span>
           </div>
         </div>
@@ -156,9 +156,9 @@ FILTER: visibility = "public" AND status = "published"</pre>
           <span class="payload-label">tool result &rarr; model</span>
           <pre class="payload-sample">{ results: [
     { article_id: "KB-1187", title: "Expense login hangs after SSO",
-      chunk: "...clear the SSO session and re-authenticate...",
+      chunk: "..clear the SSO session and re-authenticate..",
       url, last_updated: "2026-04-02", score: 0.91,
-      linked_known_error: "KE-044" }, ... ] }</pre>
+      linked_known_error: "KE-044" }, .. ] }</pre>
         </div>
 
         <div class="flow-band flow-band-skill" data-stage="ground">
@@ -167,7 +167,7 @@ FILTER: visibility = "public" AND status = "published"</pre>
             <span class="flow-band-tools">answer synthesized only from retrieved chunks</span>
           </div>
           <div class="flow-band-body">
-            <p class="flow-band-desc">Direct match &rarr; answer and cite. Partial match &rarr; say what was found and name the gap. No real match &rarr; say so and escalate. Similarity search <em>always</em> returns something, so judging relevance is a separate step from retrieving &mdash; the failure mode is treating a near-miss as an answer because it sounds confident.</p>
+            <p class="flow-band-desc">Direct match &rarr; answer and cite. Partial match &rarr; say what was found and name the gap. No real match &rarr; say so and escalate. Similarity search <em>always</em> returns something, so judging relevance is a separate step from retrieving: the failure mode is treating a near-miss as an answer because it sounds confident.</p>
             <span class="autonomy gate">Never invents steps &middot; cites every source</span>
           </div>
         </div>
@@ -175,14 +175,14 @@ FILTER: visibility = "public" AND status = "published"</pre>
         <div class="flow-arrow">
           <span class="flow-pip" aria-hidden="true"></span>
           <span class="payload-label">answer + confirmation prompt</span>
-          <pre class="payload-sample">"That's a known issue &mdash; clearing your SSO session and signing
+          <pre class="payload-sample">"That's a known issue: clearing your SSO session and signing
  in again should get you through. [KB-1187]  Did that fix it?"
 { cited: ["KB-1187"], known_error: "KE-044", awaiting_confirmation }</pre>
         </div>
 
         <div class="flow-band" data-stage="confirm">
           <div class="flow-band-head">
-            <span class="flow-band-name">Confirm &mdash; did it actually work?</span>
+            <span class="flow-band-name">Confirm: did it actually work?</span>
             <span class="flow-band-tools">deflection is only measurable if you ask</span>
           </div>
           <div class="flow-band-body">
@@ -193,10 +193,10 @@ FILTER: visibility = "public" AND status = "published"</pre>
 
         <div class="flow-arrow">
           <span class="flow-pip" aria-hidden="true"></span>
-          <span class="payload-label">second MCP tool call &mdash; only when the answer wasn't there</span>
+          <span class="payload-label">second MCP tool call: only when the answer wasn't there</span>
           <pre class="payload-sample">{ "name": "create_ticket", "arguments": {
     "short_description": "Expense login hangs after SSO",
-    "transcript": [...], "articles_tried": ["KB-1187"],
+    "transcript": [..], "articles_tried": ["KB-1187"],
     "outcome": "workaround did not resolve",
     "channel": "self-service-chat" } }</pre>
         </div>
@@ -207,7 +207,7 @@ FILTER: visibility = "public" AND status = "published"</pre>
             <span class="flow-band-tools">ServiceNow / Jira Service Management / Zendesk &rarr; service-desk-intake</span>
           </div>
           <div class="flow-band-body">
-            <p class="flow-band-desc">The whole point is that the user doesn't repeat themselves. The ticket carries their own words, which articles were tried, and what didn't work &mdash; so the deflection attempt becomes a head start for the agent instead of wasted time. Classification then runs as normal.</p>
+            <p class="flow-band-desc">The whole point is that the user doesn't repeat themselves. The ticket carries their own words, which articles were tried, and what didn't work, so the deflection attempt becomes a head start for the agent instead of wasted time. Classification then runs as normal.</p>
             <span class="autonomy gate">Ticket created &middot; human picks it up</span>
           </div>
         </div>
@@ -222,8 +222,8 @@ should exist. This is the most valuable output of the system.</pre>
 
       <div class="autonomy-legend">
         <p class="autonomy-legend-title">Two things people conflate</p>
-        <p class="autonomy-legend-body"><b>MCP is the interface; RAG is the strategy.</b> MCP is how the model is given tools it can call &mdash; a server that exposes <code>search_knowledge_base</code> and <code>create_ticket</code>, holds the credentials, and logs every call. RAG is what happens behind that tool: embed the query, search a hybrid index, filter by visibility, rerank, return chunks. You can do RAG without MCP and MCP without RAG. Here they're stacked, and the split matters because it's the seam where security lives.</p>
-        <p class="autonomy-legend-body"><b>Access control belongs in the query, not the prompt.</b> The single most common mistake in these builds is instructing the model not to reveal internal content. That's not a control &mdash; it's a request. The public-visibility filter runs in the retrieval query, so restricted articles are never in the candidate set and there is nothing for a clever prompt to extract.</p>
+        <p class="autonomy-legend-body"><b>MCP is the interface; RAG is the strategy.</b> MCP is how the model is given tools it can call: a server that exposes <code>search_knowledge_base</code> and <code>create_ticket</code>, holds the credentials, and logs every call. RAG is what happens behind that tool: embed the query, search a hybrid index, filter by visibility, rerank, return chunks. You can do RAG without MCP and MCP without RAG. Here they're stacked, and the split matters because it's the seam where security lives.</p>
+        <p class="autonomy-legend-body"><b>Access control belongs in the query, not the prompt.</b> The single most common mistake in these builds is instructing the model not to reveal internal content. That's not a control: it's a request. The public-visibility filter runs in the retrieval query, so restricted articles are never in the candidate set and there is nothing for a clever prompt to extract.</p>
         <ul class="autonomy-key">
           <li><span class="autonomy auto">Automated</span> search, retrieval, filtering, ticket creation</li>
           <li><span class="autonomy gate">Constrained</span> answers only from retrieved sources, always cited</li>
@@ -234,14 +234,14 @@ should exist. This is the most valuable output of the system.</pre>
 
       <div class="channels-block">
         <p class="channels-title">Where the assistant lives</p>
-        <p class="channels-intro">Placement matters more than model quality. An excellent assistant on a portal nobody visits deflects nothing; a competent one in the channel where people already complain deflects a great deal. The rule is to meet users where they already are &mdash; and for most organizations that is a chat tool, not a portal.</p>
+        <p class="channels-intro">Placement matters more than model quality. An excellent assistant on a portal nobody visits deflects nothing; a competent one in the channel where people already complain deflects a great deal. The rule is to meet users where they already are, and for most organizations that is a chat tool, not a portal.</p>
 
         <div class="channel-grid">
 
           <div class="channel-card channel-strong">
             <p class="channel-name">Slack</p>
             <p class="channel-how">Slack app or bot with slash commands, plus Workflow Builder for structured intake. ServiceNow, Jira Service Management (formerly Halp) and Zendesk all ship Slack integrations that create and sync tickets in-thread.</p>
-            <p class="channel-note"><b>Why it works:</b> people already report problems in Slack, usually in a team channel, before they ever think about a ticket. Catching it there means catching it at the moment of frustration &mdash; and a threaded answer is visible to everyone else with the same problem, deflecting contacts that were never made.</p>
+            <p class="channel-note"><b>Why it works:</b> people already report problems in Slack, usually in a team channel, before they ever think about a ticket. Catching it there means catching it at the moment of frustration, and a threaded answer is visible to everyone else with the same problem, deflecting contacts that were never made.</p>
           </div>
 
           <div class="channel-card channel-strong">
@@ -252,14 +252,14 @@ should exist. This is the most valuable output of the system.</pre>
 
           <div class="channel-card channel-strong">
             <p class="channel-name">In-product / in-app</p>
-            <p class="channel-how">Embedded widget inside the application itself &mdash; Intercom, Zendesk Web Widget, Freshchat, or a custom surface.</p>
-            <p class="channel-note"><b>Why it works:</b> the highest-value placement, because the assistant knows <em>context</em> &mdash; which screen, which account, which plan, which version. That context sharpens retrieval more than any prompt tuning will, and it catches users at the exact point of failure rather than after they've given up.</p>
+            <p class="channel-how">Embedded widget inside the application itself: Intercom, Zendesk Web Widget, Freshchat, or a custom surface.</p>
+            <p class="channel-note"><b>Why it works:</b> the highest-value placement, because the assistant knows <em>context</em>, which screen, which account, which plan, which version. That context sharpens retrieval more than any prompt tuning will, and it catches users at the exact point of failure rather than after they've given up.</p>
           </div>
 
           <div class="channel-card">
             <p class="channel-name">ITSM-native virtual agent</p>
             <p class="channel-how">ServiceNow Virtual Agent, Zendesk AI agents, Freshservice Freddy, Atlassian Intelligence.</p>
-            <p class="channel-note"><b>Trade-off:</b> tightest ticket integration and least plumbing, since it already lives in the system of record. But it only reaches users who came to the portal &mdash; which is the population least in need of deflection, because they were already filing a ticket.</p>
+            <p class="channel-note"><b>Trade-off:</b> tightest ticket integration and least plumbing, since it already lives in the system of record. But it only reaches users who came to the portal, which is the population least in need of deflection, because they were already filing a ticket.</p>
           </div>
 
           <div class="channel-card">
@@ -288,24 +288,24 @@ should exist. This is the most valuable output of the system.</pre>
 
         </div>
 
-        <p class="channels-close">Whichever surfaces you pick, they should all call the same MCP tools against the same index &mdash; one assistant with several front doors, not several assistants with drifting answers. A Slack bot and a portal widget giving different answers to the same question is worse than having only one of them.</p>
+        <p class="channels-close">Whichever surfaces you pick, they should all call the same MCP tools against the same index: one assistant with several front doors, not several assistants with drifting answers. A Slack bot and a portal widget giving different answers to the same question is worse than having only one of them.</p>
       </div>
 
 
       <div class="principle-band" style="margin-top:26px">
         <p class="principle-label">When the assistant is unavailable</p>
-        <p class="principle-body">Deflection is the layer users hit first, so it's the layer whose outage is most visible &mdash; and an AI-fronted help centre that returns errors is worse than one that was never there. The rule is the same as on the incident side: <b>the AI layer is never load-bearing.</b> If retrieval or the model is unavailable, the surface falls back to plain keyword search over the same knowledge base, and the &ldquo;contact us&rdquo; path stays permanently available rather than being something the assistant decides to offer. Never let a failed assistant become a dead end between the user and a person.</p>
-        <p class="principle-body">The full three-tier degradation model &mdash; AI-assisted, deterministic fallback, human-run &mdash; is set out on the <a href="incident-problem.html#degraded">incident &amp; problem page</a>.</p>
+        <p class="principle-body">Deflection is the layer users hit first, so it's the layer whose outage is most visible, and an AI-fronted help centre that returns errors is worse than one that was never there. The rule is the same as on the incident side: <b>the AI layer is never load-bearing.</b> If retrieval or the model is unavailable, the surface falls back to plain keyword search over the same knowledge base, and the &ldquo;contact us&rdquo; path stays permanently available rather than being something the assistant decides to offer. Never let a failed assistant become a dead end between the user and a person.</p>
+        <p class="principle-body">The full three-tier degradation model: AI-assisted, deterministic fallback, human-run: is set out on the <a href="incident-problem.html#degraded">incident &amp; problem page</a>.</p>
       </div>
 
       <ol class="pipeline" style="margin-top:28px">
         <li class="pipe-step">
           <span class="pipe-index">00</span>
           <h3>Self-service knowledge assistant</h3>
-          <p>Governs the behaviour above &mdash; search before answering, judge relevance honestly, cite everything, never invent a step, and escalate with the conversation attached.</p>
+          <p>Governs the behaviour above: search before answering, judge relevance honestly, cite everything, never invent a step, and escalate with the conversation attached.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">A support chatbot that answers from the model&#x27;s own memory is worse than no chatbot. It will produce confident, plausible, specific instructions that are wrong for this organization — a settings path that doesn&#x27;t exist, a workaround for a different product version, a policy invented from the general shape of policies. In support that isn&#x27;t a harmless hallucination; the user follows it, it fails or breaks something, and the ticket they eventually file is now harder to solve because of the steps they took first.</p><p class="excerpt-p">So the entire discipline here is: **answer only from what was actually retrieved**, cite it, and say plainly when the knowledge base doesn&#x27;t cover the question. A fast honest &quot;I don&#x27;t have an article on that, let me get you to someone who can help&quot; is a good outcome. A fabricated workaround is the worst outcome this system can produce.</p></div>
+            <div class="skill-excerpt"><p class="excerpt-p">A support chatbot that answers from the model&#x27;s own memory is worse than no chatbot. It will produce confident, plausible, specific instructions that are wrong for this organization: a settings path that doesn&#x27;t exist, a workaround for a different product version, a policy invented from the general shape of policies. In support that isn&#x27;t a harmless hallucination; the user follows it, it fails or breaks something, and the ticket they eventually file is now harder to solve because of the steps they took first.</p><p class="excerpt-p">So the entire discipline here is: **answer only from what was actually retrieved**, cite it, and say plainly when the knowledge base doesn&#x27;t cover the question. A fast honest &quot;I don&#x27;t have an article on that, let me get you to someone who can help&quot; is a good outcome. A fabricated workaround is the worst outcome this system can produce.</p></div>
             <div class="skill-locked" data-skill="self-service-knowledge-assistant"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         </li>
@@ -317,7 +317,7 @@ should exist. This is the most valuable output of the system.</pre>
     <div class="wrap">
       <p class="section-label">The skills</p>
       <h2>Seven skills, contact to closure.</h2>
-      <p class="section-sub">Each one's actual source is viewable below &mdash; not a description of what it does, the real instructions.</p>
+      <p class="section-sub">Each one's actual source is viewable below. Not a description of what it does, the real instructions.</p>
       <ol class="pipeline">
         <li class="pipe-step">
           <span class="pipe-index">01</span>
@@ -325,7 +325,7 @@ should exist. This is the most valuable output of the system.</pre>
           <p>Sorts incident from service request from information ask, pulls the missing facts out of a vague report, sets priority from impact and urgency, and routes it.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">Users don&#x27;t report problems in the categories the process needs. They say &quot;it&#x27;s slow,&quot; &quot;I can&#x27;t get in,&quot; or &quot;the thing is broken.&quot; Getting that into the right lane matters more than it looks: misclassifying a service request as an incident inflates incident volume and distorts every metric downstream, and misjudging impact means a one-user annoyance gets the same response as a site-wide outage — or worse, the reverse. This skill does that first sort well and pulls the specific facts that make everything downstream possible.</p></div>
+            <div class="skill-excerpt"><p class="excerpt-p">Users don&#x27;t report problems in the categories the process needs. They say &quot;it&#x27;s slow,&quot; &quot;I can&#x27;t get in,&quot; or &quot;the thing is broken.&quot; Getting that into the right lane matters more than it looks: misclassifying a service request as an incident inflates incident volume and distorts every metric downstream, and misjudging impact means a one-user annoyance gets the same response as a site-wide outage, or worse, the reverse. This skill does that first sort well and pulls the specific facts that make everything downstream possible.</p></div>
             <div class="skill-locked" data-skill="service-desk-intake"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         </li>
@@ -335,17 +335,17 @@ should exist. This is the most valuable output of the system.</pre>
           <p>Checks the known error database before improvising, applies the relevant TSG, and makes an honest resolve-or-escalate call instead of grinding.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">Every ticket escalated unnecessarily costs far more than one resolved at the desk — in cycle time for the user and in tier 2/3 capacity that should be going to genuinely hard problems. But the opposite failure is worse: a tier 1 agent grinding on something for forty minutes that was never solvable at their access level, while the user waits. This skill exists to make that call quickly and honestly, and to make sure the cheap wins — a documented known error, an existing TSG — get checked *before* anyone starts improvising.</p></div>
+            <div class="skill-excerpt"><p class="excerpt-p">Every ticket escalated unnecessarily costs far more than one resolved at the desk: in cycle time for the user and in tier 2/3 capacity that should be going to genuinely hard problems. But the opposite failure is worse: a tier 1 agent grinding on something for forty minutes that was never solvable at their access level, while the user waits. This skill exists to make that call quickly and honestly, and to make sure the cheap wins: a documented known error, an existing TSG: get checked *before* anyone starts improvising.</p></div>
             <div class="skill-locked" data-skill="first-touch-resolution"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         </li>
         <li class="pipe-step">
           <span class="pipe-index">03</span>
           <h3>Service request fulfillment</h3>
-          <p>Entitlement, approval path, and a fulfillment sequence with honest timing — kept in its own lane so request volume never distorts incident metrics.</p>
+          <p>Entitlement, approval path, and a fulfillment sequence with honest timing: kept in its own lane so request volume never distorts incident metrics.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">Requests and incidents are different work with different economics, and the discipline of keeping them separate is what makes both measurable. A request is planned, repeatable, and pre-approved — nothing is broken, so speed matters more than urgency, and the right answer is usually a standard workflow rather than judgment. When requests get handled as incidents, incident volume becomes meaningless as a signal and genuinely urgent work competes with laptop orders.</p></div>
+            <div class="skill-excerpt"><p class="excerpt-p">Requests and incidents are different work with different economics, and the discipline of keeping them separate is what makes both measurable. A request is planned, repeatable, and pre-approved: nothing is broken, so speed matters more than urgency, and the right answer is usually a standard workflow rather than judgment. When requests get handled as incidents, incident volume becomes meaningless as a signal and genuinely urgent work competes with laptop orders.</p></div>
             <div class="skill-locked" data-skill="service-request-fulfillment"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         </li>
@@ -355,17 +355,17 @@ should exist. This is the most valuable output of the system.</pre>
           <p>Functional vs. hierarchical escalation, and a context package complete enough that tier 2 never re-interviews the user.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">Most escalations lose information. The ticket arrives at tier 2 with the user&#x27;s original three-sentence complaint and no record of the twenty minutes tier 1 already spent, so the receiving engineer starts over — re-asking questions the user already answered, re-running checks already run. That&#x27;s the single biggest source of avoidable cycle time in a support organization, and it&#x27;s what makes users feel like nobody is listening. A good escalation is a complete handoff, not a forwarding.</p></div>
+            <div class="skill-excerpt"><p class="excerpt-p">Most escalations lose information. The ticket arrives at tier 2 with the user&#x27;s original three-sentence complaint and no record of the twenty minutes tier 1 already spent, so the receiving engineer starts over: re-asking questions the user already answered, re-running checks already run. That&#x27;s the single biggest source of avoidable cycle time in a support organization, and it&#x27;s what makes users feel like nobody is listening. A good escalation is a complete handoff, not a forwarding.</p></div>
             <div class="skill-locked" data-skill="service-desk-escalation"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         </li>
         <li class="pipe-step">
           <span class="pipe-index">05</span>
           <h3>User communication</h3>
-          <p>One-to-one requester updates — acknowledgment, progress, expectation resets, and responding to a chasing user without defensiveness.</p>
+          <p>One-to-one requester updates: acknowledgment, progress, expectation resets, and responding to a chasing user without defensiveness.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">Users judge support far more on communication than on resolution speed. A ticket resolved in two days with three updates along the way is experienced better than one resolved in one day with silence — because silence reads as nobody working on it. Most poor satisfaction scores come from tickets where the work was fine and the communication wasn&#x27;t. This skill exists to make the updates specific, honest, and frequent enough that the user never has to chase.</p><p class="excerpt-p">Note the distinction from incident status updates: that skill broadcasts to many people about a service-wide event. This one is a conversation with one person about their ticket.</p></div>
+            <div class="skill-excerpt"><p class="excerpt-p">Users judge support far more on communication than on resolution speed. A ticket resolved in two days with three updates along the way is experienced better than one resolved in one day with silence, because silence reads as nobody working on it. Most poor satisfaction scores come from tickets where the work was fine and the communication wasn&#x27;t. This skill exists to make the updates specific, honest, and frequent enough that the user never has to chase.</p><p class="excerpt-p">Note the distinction from incident status updates: that skill broadcasts to many people about a service-wide event. This one is a conversation with one person about their ticket.</p></div>
             <div class="skill-locked" data-skill="service-desk-user-communication"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         </li>
@@ -375,7 +375,7 @@ should exist. This is the most valuable output of the system.</pre>
           <p>Confirms before closing, writes a resolution record the next agent can actually search, and decides what becomes an article, known error, or problem.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">Closure is where most of the learning in a support organization gets thrown away. The ticket gets marked resolved with a note like &quot;fixed&quot; or &quot;user confirmed OK,&quot; and everything the agent figured out disappears — so the next person with the same symptom starts from nothing. Closure is also where satisfaction is won or lost: closing a ticket the user doesn&#x27;t consider resolved is one of the most reliable ways to generate both a reopen and a bad score.</p></div>
+            <div class="skill-excerpt"><p class="excerpt-p">Closure is where most of the learning in a support organization gets thrown away. The ticket gets marked resolved with a note like &quot;fixed&quot; or &quot;user confirmed OK,&quot; and everything the agent figured out disappears, so the next person with the same symptom starts from nothing. Closure is also where satisfaction is won or lost: closing a ticket the user doesn&#x27;t consider resolved is one of the most reliable ways to generate both a reopen and a bad score.</p></div>
             <div class="skill-locked" data-skill="ticket-closure-satisfaction"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         </li>
@@ -397,7 +397,7 @@ should exist. This is the most valuable output of the system.</pre>
     <div class="wrap">
       <p class="section-label">Tooling</p>
       <h2>Where the desk actually runs.</h2>
-      <p class="section-sub">The tool inventory a service desk touches, and which systems go hot at each step of a contact. Switch between an internal IT desk and a customer-facing support organisation &mdash; the lifecycle is the same, the estate underneath it is not. Conceptual architecture &mdash; not a live integration on this page.</p>
+      <p class="section-sub">The tool inventory a service desk touches, and which systems go hot at each step of a contact. Switch between an internal IT desk and a customer-facing support organisation: the lifecycle is the same, the estate underneath it is not. Conceptual architecture: not a live integration on this page.</p>
 
       <div class="tool-controls-sticky">
       <div class="flow-controls flow-controls-flush">
@@ -471,7 +471,7 @@ should exist. This is the most valuable output of the system.</pre>
           <span class="pipe-index">01</span>
           <div class="tool-step-body">
             <h3>Intake &amp; classification</h3>
-            <p class="tool-line"><b>Reads:</b> the contact itself &mdash; call, chat, portal form, email</p>
+            <p class="tool-line"><b>Reads:</b> the contact itself: call, chat, portal form, email</p>
             <p class="tool-line"><b>Writes:</b> a classified, categorized, prioritized ticket</p>
             <p class="tool-line"><b>Captures:</b> channel, contact type, category, priority</p>
           </div>
@@ -499,7 +499,7 @@ should exist. This is the most valuable output of the system.</pre>
           <div class="tool-step-body">
             <h3>Escalation &amp; handoff</h3>
             <p class="tool-line"><b>Reads:</b> assignment groups, on-call rotation</p>
-            <p class="tool-line"><b>Writes:</b> tier 2 queue &mdash; or an incident record when scope grows</p>
+            <p class="tool-line"><b>Writes:</b> tier 2 queue, or an incident record when scope grows</p>
             <p class="tool-line"><b>Captures:</b> escalation rate + reason, incident conversion</p>
           </div>
         </li>
@@ -532,12 +532,12 @@ should exist. This is the most valuable output of the system.</pre>
 
       <div class="arch-feedback">
         <div class="arch-feedback-dot" aria-hidden="true"></div>
-        <p class="arch-feedback-label">Notice how often the system of record is hot &mdash; it's touched at every step. That's what makes it the place metrics live, and why a desk running on spreadsheets alongside its ITSM tool can never report reliably.</p>
+        <p class="arch-feedback-label">Notice how often the system of record is hot: it's touched at every step. That's what makes it the place metrics live, and why a desk running on spreadsheets alongside its ITSM tool can never report reliably.</p>
       </div>
 
       <div class="handoff-band">
         <p class="handoff-label">Escalation path into incident management</p>
-        <p class="handoff-body">Most incidents don't start with an alert &mdash; they start with people calling. When the desk sees the same symptom from several users, or a single contact with enterprise-wide impact, the ticket stops being a ticket and becomes an incident. That trigger is a defined step in <b>04 &middot; Escalation &amp; handoff</b>, not a judgment call someone makes informally.</p>
+        <p class="handoff-body">Most incidents don't start with an alert: they start with people calling. When the desk sees the same symptom from several users, or a single contact with enterprise-wide impact, the ticket stops being a ticket and becomes an incident. That trigger is a defined step in <b>04 &middot; Escalation &amp; handoff</b>, not a judgment call someone makes informally.</p>
         <div class="handoff-chain">
           <span class="handoff-node">Self-service chat</span>
           <span class="handoff-arrow" aria-hidden="true">&rarr;</span>
@@ -553,7 +553,7 @@ should exist. This is the most valuable output of the system.</pre>
   window_minutes: 21, service: "expense", ke_matched: "KE-044",
   business_impact: "month-end close blocked",
   handoff_to: "incident-triage-classification" }</pre>
-        <p class="handoff-note">The desk hands over what it already knows &mdash; symptom, confirmed user count, known error match, business impact &mdash; so triage starts with a classified picture rather than re-interviewing the first caller.</p>
+        <p class="handoff-note">The desk hands over what it already knows: symptom, confirmed user count, known error match, business impact, so triage starts with a classified picture rather than re-interviewing the first caller.</p>
       </div>
     </div>
   </section>
@@ -562,14 +562,14 @@ should exist. This is the most valuable output of the system.</pre>
     <div class="wrap">
       <p class="section-label">Key process indicators</p>
       <h2>What gets measured, and where it gets captured.</h2>
-      <p class="section-sub">Metrics aren't a reporting afterthought bolted on at the end &mdash; each is captured at the step that produces it, because most of them can't be reconstructed later. Channel and contact type only exist at intake. Escalation reason only exists at the moment of escalation.</p>
+      <p class="section-sub">Metrics aren't a reporting afterthought bolted on at the end: each is captured at the step that produces it, because most of them can't be reconstructed later. Channel and contact type only exist at intake. Escalation reason only exists at the moment of escalation.</p>
 
       <div class="metric-groups">
 
         <div class="metric-group">
           <h3>Demand</h3>
           <ul>
-            <li><b>Contact volume by channel</b> <span>phone, chat, portal, email &mdash; captured at intake</span></li>
+            <li><b>Contact volume by channel</b> <span>phone, chat, portal, email: captured at intake</span></li>
             <li><b>Contact type split</b> <span>incident vs request vs information</span></li>
             <li><b>Volume by category</b> <span>the automation and knowledge investment list</span></li>
             <li><b>Self-service deflection rate</b> <span>resolved without an agent</span></li>
@@ -590,7 +590,7 @@ should exist. This is the most valuable output of the system.</pre>
           <h3>Quality</h3>
           <ul>
             <li><b>First Contact Resolution</b> <span>the headline efficiency measure</span></li>
-            <li><b>Reopen rate</b> <span>the counterweight &mdash; never read FCR without it</span></li>
+            <li><b>Reopen rate</b> <span>the counterweight: never read FCR without it</span></li>
             <li><b>Escalation rate with reason</b> <span>the reason is what makes it actionable</span></li>
             <li><b>Bounce-back rate from tier 2</b> <span>handoff quality</span></li>
             <li><b>CSAT with response rate</b> <span>a score without its response rate is unreliable</span></li>
@@ -614,11 +614,11 @@ should exist. This is the most valuable output of the system.</pre>
         <h3>Read them in pairs, never singly</h3>
         <p>Almost every service desk metric is misleading alone, and the most common management error is celebrating one number while its counterweight moves the wrong way.</p>
         <ul>
-          <li><b>FCR &times; reopen rate</b> &mdash; FCR rising while reopens rise means tickets are being closed prematurely. A worse outcome disguised as a better number.</li>
-          <li><b>Handle time &times; FCR &times; CSAT</b> &mdash; falling handle time with falling FCR means agents are rushing and pushing work downstream.</li>
-          <li><b>CSAT &times; survey response rate</b> &mdash; a high score from a 4% response rate tells you about the 4%. Dissatisfied users often don't respond at all.</li>
-          <li><b>Volume &times; deflection</b> &mdash; volume falling is only good news if deflection is rising. Otherwise users may have stopped asking.</li>
-          <li><b>Escalation rate &times; KEDB hit rate</b> &mdash; escalations up while KEDB hits fall means the knowledge base went stale.</li>
+          <li><b>FCR &times; reopen rate</b>: FCR rising while reopens rise means tickets are being closed prematurely. A worse outcome disguised as a better number.</li>
+          <li><b>Handle time &times; FCR &times; CSAT</b>: falling handle time with falling FCR means agents are rushing and pushing work downstream.</li>
+          <li><b>CSAT &times; survey response rate</b>: a high score from a 4% response rate tells you about the 4%. Dissatisfied users often don't respond at all.</li>
+          <li><b>Volume &times; deflection</b>: volume falling is only good news if deflection is rising. Otherwise users may have stopped asking.</li>
+          <li><b>Escalation rate &times; KEDB hit rate</b>: escalations up while KEDB hits fall means the knowledge base went stale.</li>
         </ul>
       </div>
     </div>
@@ -629,7 +629,7 @@ should exist. This is the most valuable output of the system.</pre>
     <div class="wrap">
       <p class="section-label">Full skill sources</p>
       <h2>The complete instructions are encrypted.</h2>
-      <p class="section-sub">The rationale for each skill is open above. The full operational detail &mdash; the matrices, thresholds, output formats and judgement rules &mdash; is AES-256 encrypted and decrypted in your browser only. The ciphertext is all that exists in the page source or the repository.</p>
+      <p class="section-sub">The rationale for each skill is open above. The full operational detail: the matrices, thresholds, output formats and judgement rules: is AES-256 encrypted and decrypted in your browser only. The ciphertext is all that exists in the page source or the repository.</p>
       <div class="unlock-form">
         <input class="unlock-input" type="password" placeholder="Password" autocomplete="off" aria-label="Password to unlock skill sources">
         <button class="unlock-btn run-btn" type="button">Unlock</button>
@@ -649,7 +649,7 @@ should exist. This is the most valuable output of the system.</pre>
       </div>
       <div class="contact-card">
         <h3>Want this running for your team</h3>
-        <p>Interested in these skills &mdash; or something like them &mdash; supporting how your team actually operates. Let's talk about what that would take.</p>
+        <p>Interested in these skills, or something like them, supporting how your team actually operates. Let's talk about what that would take.</p>
         <a class="contact-link" href="mailto:ahlevin@hotmail.com">ahlevin@hotmail.com</a>
       </div>
     </div>

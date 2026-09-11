@@ -671,7 +671,7 @@ section { padding: 56px 0; border-top: 1px dashed var(--line-soft); }
 }
 
 .resume-bullets li::before {
-  content: "\2014";
+  content: "\00b7";
   position: absolute;
   left: 0;
   color: var(--line-soft);
@@ -879,7 +879,7 @@ section { padding: 56px 0; border-top: 1px dashed var(--line-soft); }
 }
 
 .metric-pairs li::before {
-  content: "\2014";
+  content: "\00b7";
   position: absolute;
   left: 0;
   color: var(--line-soft);
@@ -1377,7 +1377,7 @@ section { padding: 56px 0; border-top: 1px dashed var(--line-soft); }
 }
 
 .degraded-notes li::before {
-  content: "\2014";
+  content: "\00b7";
   position: absolute;
   left: 0;
   color: var(--line-soft);
@@ -1524,7 +1524,7 @@ section { padding: 56px 0; border-top: 1px dashed var(--line-soft); }
 }
 
 .trigger-list li::before {
-  content: "\2014";
+  content: "\00b7";
   position: absolute;
   left: 0;
   color: var(--sev1);
