@@ -7,6 +7,20 @@ optional.** If you skip it, your real password stops working.
 
 ---
 
+## Step 0 — Tag what's live now (do this FIRST)
+
+In your **current** folder, before replacing anything:
+
+```
+git tag -a v1.0-known-good -m "Em-dash removal. Deployed and verified."
+git push origin v1.0-known-good
+```
+
+This is your rollback point. Tags survive force-pushes; branch history does
+not. See RELEASES.md.
+
+---
+
 ## Step 1 — Replace your folder
 
 Delete (or rename) your old `incident-ops-site` folder, unzip this one in
@@ -76,6 +90,17 @@ Wait about a minute, then:
    hamburger. Links should line up under your name, not against the edge.
 3. **Unlock check** — scroll to "Full skill sources" on any practice page
    and confirm your real password works.
+
+---
+
+## Step 8 — Tag the new version, once verified
+
+Only after Step 7 passes:
+
+```
+git tag -a v1.1-known-good -m "Workflow diagrams, maroon active-step accent"
+git push origin v1.1-known-good
+```
 
 ---
 
