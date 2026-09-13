@@ -1988,6 +1988,49 @@ section { padding: 56px 0; border-top: 1px dashed var(--line-soft); }
   .bullseye-detail { flex-basis: 100%; margin-left: 0; margin-top: 14px; }
 }
 
+
+/* Case files index */
+
+.casefile-list { list-style: none; margin: 0 0 28px; padding: 0; }
+
+.casefile {
+  border-top: 1px dashed var(--line-soft);
+  padding: 26px 0;
+}
+
+.casefile-meta { display: flex; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+.casefile-role { font-size: 12.5px; color: var(--ink-soft); margin-left: 14px; }
+
+.casefile h2 {
+  font-size: clamp(19px, 2.4vw, 24px);
+  max-width: 32ch;
+  margin-bottom: 12px;
+}
+.casefile h2 a { color: var(--ink); text-decoration: none; }
+.casefile h2 a:hover { color: var(--sev1); text-decoration: underline; }
+
+.casefile-sum {
+  font-size: 15px;
+  color: var(--ink-soft);
+  max-width: 76ch;
+  margin-bottom: 16px;
+}
+
+.casefile-figs { display: flex; flex-wrap: wrap; margin-bottom: 14px; }
+.casefile-figs span {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0 24px 8px 0;
+}
+.casefile-figs b { font-weight: 400; color: var(--sev1); font-size: 15px; }
+
+.casefile-more {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  border-top: 1px dashed var(--line-soft);
+  padding-top: 18px;
+}
+
 /* Mobile navigation */
 
 .navtoggle {
