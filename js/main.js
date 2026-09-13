@@ -1,15 +1,10 @@
 (function () {
-  const runBtn = document.getElementById("runBtn");
   const stepBtn = document.getElementById("stepBtn");
   const body = document.getElementById("consoleBody");
-
-  if (!runBtn || !stepBtn || !body) return;
+  if (!stepBtn || !body) return;
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const STEP_DELAY = reduceMotion ? 0 : 850;
-
-  let busy = false;      // true while "Run all" is animating
-  let stepIndex = 0;      // how many entries have been revealed in step mode
+  let stepIndex = 0;
 
   function renderEntry(entry) {
     const el = document.createElement("div");
@@ -31,55 +26,22 @@
     body.scrollTop = body.scrollHeight;
   }
 
-  function resetConsole() {
+  function reset() {
     body.innerHTML = "";
     stepIndex = 0;
     stepBtn.textContent = "Step through";
   }
 
-  async function runAll() {
-    if (busy) return;
-    busy = true;
-    runBtn.disabled = true;
-    stepBtn.disabled = true;
-    runBtn.textContent = "Running…";
-    resetConsole();
-
-    for (let i = 0; i < DEMO_ENTRIES.length; i++) {
-      renderEntry(DEMO_ENTRIES[i]);
-      if (i < DEMO_ENTRIES.length - 1) {
-        await new Promise((r) => setTimeout(r, STEP_DELAY));
-      }
-    }
-
-    runBtn.disabled = false;
-    stepBtn.disabled = false;
-    runBtn.textContent = "Run it again";
-    stepBtn.textContent = "Step through";
-    stepIndex = DEMO_ENTRIES.length;
-    busy = false;
-  }
-
   function stepOnce() {
-    if (busy) return;
-
-    // If we just finished a full run, or reached the end of stepping, start over.
-    if (stepIndex >= DEMO_ENTRIES.length) {
-      resetConsole();
-      runBtn.textContent = "Run all";
-      return;
-    }
+    if (stepIndex >= DEMO_ENTRIES.length) { reset(); return; }
 
     renderEntry(DEMO_ENTRIES[stepIndex]);
     stepIndex++;
 
-    if (stepIndex >= DEMO_ENTRIES.length) {
-      stepBtn.textContent = "Start over";
-    } else {
-      stepBtn.textContent = "Next step (" + (stepIndex + 1) + " of " + DEMO_ENTRIES.length + ")";
-    }
+    stepBtn.textContent = stepIndex >= DEMO_ENTRIES.length
+      ? "Start over"
+      : "Next (" + (stepIndex + 1) + " of " + DEMO_ENTRIES.length + ")";
   }
 
-  runBtn.addEventListener("click", runAll);
   stepBtn.addEventListener("click", stepOnce);
 })();

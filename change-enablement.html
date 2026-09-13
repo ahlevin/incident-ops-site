@@ -156,11 +156,10 @@
       <div class="console" id="console">
         <div class="console-head">
           <span class="console-title">change &middot; CHG-2291 db-migration</span>
-          <button class="run-btn run-btn-secondary" id="stepBtn">Step through</button>
-          <button class="run-btn" id="runBtn">Run all</button>
+          <button class="run-btn" id="stepBtn">Step through</button>
         </div>
         <div class="console-body" id="consoleBody">
-          <p class="console-hint">"Run all" streams the whole change lifecycle. "Step through" reveals one skill's output at a time.</p>
+          <p class="console-hint">Step through the change lifecycle one skill at a time.</p>
         </div>
       </div>
     </div>
@@ -198,7 +197,7 @@
           <p>Routes to the lightest authority that gives real assurance, using pipeline gates and peer review for most changes, human review only on a defined trigger like a freeze or an untested rollback.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">The most common failure in change management is routing every change through a weekly board meeting regardless of risk. That practice is an ITIL v3 misapplication, not what the framework asks for. A CAB advises on risk and scheduling for major changes; it was never the approval authority. **Automated testing, policy checks and CI/CD pipeline gates are themselves valid Change Authorities** for low-risk changes, and treating them as such is what lets a change process scale.</p><p class="excerpt-p">The evidence on this is unusually clear. Research across the State of DevOps reports found that approval by a body external to the implementing team was negatively correlated with lead time, deployment frequency and restore time, and had *no correlation at all* with change failure rate. Organizations with formal external approval were substantially more likely to be low performers. The board does not catch the bad changes; it slows down the good ones, which pushes teams toward larger, less frequent batches that are themselves riskier.</p></div>
+            <div class="skill-excerpt"><p class="excerpt-p">The most common failure in change management is routing every change through a weekly board meeting regardless of risk. That practice is an ITIL v3 misapplication, not what the framework asks for. A Change Advisory Board (CAB) advises on risk and scheduling for major changes; it was never the approval authority. **Automated testing, policy checks and continuous integration and delivery (CI/CD) pipeline gates are themselves valid Change Authorities** for low-risk changes, and treating them as such is what lets a change process scale.</p><p class="excerpt-p">The evidence on this is unusually clear. Research across the State of DevOps reports found that approval by a body external to the implementing team was negatively correlated with lead time, deployment frequency and restore time, and had *no correlation at all* with change failure rate. Organizations with formal external approval were substantially more likely to be low performers. The board does not catch the bad changes; it slows down the good ones, which pushes teams toward larger, less frequent batches that are themselves riskier.</p></div>
             <div class="skill-locked" data-skill="change-authorization"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         </li>
@@ -238,7 +237,7 @@
           <p>Was it successful, did it cause anything, and was the risk assessment actually right. This is the calibration loop that makes the rest of it worth doing.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">Without a review step, change management is an approval process with no feedback loop: risk assessments are never checked against outcomes, so they never get better, and the same categories of change fail repeatedly for the same reasons. The PIR is where change enablement earns the time it costs everyone, because it&#x27;s the only step that improves the process rather than just running it.</p><p class="excerpt-p">It&#x27;s also where the most useful metric in the whole practice comes from: whether changes assessed as low risk actually behave like low-risk changes.</p></div>
+            <div class="skill-excerpt"><p class="excerpt-p">Without a review step, change management is an approval process with no feedback loop: risk assessments are never checked against outcomes, so they never get better, and the same categories of change fail repeatedly for the same reasons. The post-implementation review (PIR) is where change enablement earns the time it costs everyone, because it&#x27;s the only step that improves the process rather than just running it.</p><p class="excerpt-p">It&#x27;s also where the most useful metric in the whole practice comes from: whether changes assessed as low risk actually behave like low-risk changes.</p></div>
             <div class="skill-locked" data-skill="post-implementation-review"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         </li>
@@ -308,7 +307,7 @@
         </div>
         <div class="auth-row auth-emergency">
           <span class="auth-level">Emergency</span>
-          <span class="auth-who">ECAB or standing on-call authority</span>
+          <span class="auth-who">Emergency CAB (ECAB) or standing on-call authority</span>
           <span class="auth-form">Immediate, verbal, recorded after.</span>
         </div>
       </div>
@@ -320,7 +319,7 @@
           <li><b>Freeze period</b>: financial close, peak trading, major customer event, stabilization freeze</li>
           <li><b>Insufficient testing time</b>: the automated gates that normally provide assurance haven't meaningfully run</li>
           <li><b>Untested rollback</b> on an irreversible change: automation can't assess a rollback nobody has tried</li>
-          <li><b>Security-impacting scope</b>: firewall rules, IAM permissions, network segmentation, encryption, security tooling. Needs a security reviewer specifically, not a general board.</li>
+          <li><b>Security-impacting scope</b>: firewall rules, identity and access management (IAM) permissions, network segmentation, encryption, security tooling. Needs a security reviewer specifically, not a general board.</li>
           <li><b>High blast radius</b> on a shared or revenue-carrying service in business hours</li>
           <li><b>Novel</b>: first time for this change, or for this team</li>
           <li><b>Cross-team collision risk</b>: the genuine residual value of a board: risk the implementing team can't see from inside its own context</li>
@@ -343,8 +342,7 @@
       <p class="section-sub">Change enablement isn't a silo: it's the practice with the most connections to the others. Step through to see each hand-off, in both directions.</p>
 
       <div class="flow-controls" id="ixControls">
-        <button class="run-btn run-btn-secondary" id="ixStepBtn">Step through</button>
-        <button class="run-btn" id="ixBtn">Run all</button>
+        <button class="run-btn" id="ixStepBtn">Step through</button>
         <span class="flow-status" id="ixStatus">Idle</span>
       </div>
 
@@ -396,7 +394,7 @@
             <span class="ix-practice ix-change">Change</span>
             <span class="ix-name">CAPA becomes real work</span>
           </div>
-          <p class="ix-desc">Corrective and preventative actions from an RCA are not done when they're written: they're done when they ship. Each one becomes a change request, and the linkage is what lets you answer whether problem management actually produces fixes or just documentation.</p>
+          <p class="ix-desc">Corrective and preventative actions (CAPA) from a root cause analysis (RCA) are not done when they're written: they're done when they ship. Each one becomes a change request, and the linkage is what lets you answer whether problem management actually produces fixes or just documentation.</p>
           <pre class="payload-sample">CAPA[2] "require pool-impact review for migrations"
 &rarr; CHG-2310 (process change, low risk)
 CAPA[1] "pool-utilization alerting" &rarr; CHG-2308</pre>
@@ -449,12 +447,11 @@ CAPA[1] "pool-utilization alerting" &rarr; CHG-2308</pre>
     <div class="wrap">
       <p class="section-label">Tooling</p>
       <h2>Where change actually runs.</h2>
-      <p class="section-sub">Change is the practice with the widest tool spread, because it straddles two worlds: the ITSM system of record that auditors sample, and the engineering pipeline where the control actually happens. Step through to see which systems go hot at each stage. Conceptual architecture: not a live integration on this page.</p>
+      <p class="section-sub">Change is the practice with the widest tool spread, because it straddles two worlds: the IT service management (ITSM) system of record that auditors sample, and the engineering pipeline where the control actually happens. Step through to see which systems go hot at each stage. Conceptual architecture: not a live integration on this page.</p>
 
       <div class="tool-controls-sticky">
         <div class="flow-controls flow-controls-flush">
-          <button class="run-btn run-btn-secondary" id="chgToolStepBtn">Step through</button>
-          <button class="run-btn" id="chgToolBtn">Run all</button>
+          <button class="run-btn" id="chgToolStepBtn">Step through</button>
           <span class="flow-status" id="chgToolStatus">Idle</span>
         </div>
       </div>
@@ -491,7 +488,7 @@ CAPA[1] "pool-utilization alerting" &rarr; CHG-2308</pre>
         </div>
         <div class="rack-group">
           <p class="rack-label">Dependencies</p>
-          <span class="tool-chip" data-tool="cmdb">ServiceNow CMDB &middot; Device42</span>
+          <span class="tool-chip" data-tool="cmdb">ServiceNow configuration management database (CMDB) &middot; Device42</span>
           <span class="tool-chip" data-tool="catalog">Backstage service catalog</span>
         </div>
         <div class="rack-group">
@@ -510,7 +507,7 @@ CAPA[1] "pool-utilization alerting" &rarr; CHG-2308</pre>
         </div>
         <div class="rack-group rack-downstream">
           <p class="rack-label">Feeds</p>
-          <span class="tool-chip" data-tool="dora">DORA analytics: LinearB &middot; Sleuth</span>
+          <span class="tool-chip" data-tool="dora">DevOps Research and Assessment (DORA) analytics: LinearB &middot; Sleuth</span>
           <span class="tool-chip" data-tool="incident">Incident management</span>
           <span class="tool-chip" data-tool="problem">Problem management</span>
         </div>
@@ -540,7 +537,7 @@ CAPA[1] "pool-utilization alerting" &rarr; CHG-2308</pre>
           <span class="pipe-index">03</span>
           <div class="tool-step-body">
             <h3>Authorization</h3>
-            <p class="tool-line"><b>Reads:</b> gate results: tests, policy-as-code, dependency and IaC scanning, secrets detection</p>
+            <p class="tool-line"><b>Reads:</b> gate results: tests, policy-as-code, dependency and infrastructure-as-code (IaC) scanning, secrets detection</p>
             <p class="tool-line"><b>Writes:</b> approval record: a required review in CODEOWNERS, a pipeline environment approval, or a board decision</p>
             <p class="tool-line"><b>Captures:</b> authority-type mix, escalation triggers fired, time in approval</p>
           </div>
@@ -594,7 +591,7 @@ CAPA[1] "pool-utilization alerting" &rarr; CHG-2308</pre>
 
   <section id="metrics" class="metrics-section">
     <div class="wrap">
-      <p class="section-label">Key process indicators</p>
+      <p class="section-label">Key performance indicators</p>
       <h2>What gets measured, and the traps in it.</h2>
       <p class="section-sub">Change metrics are unusually easy to make look good by making the process worse. A slow, restrictive process shows an excellent success rate because so little gets through it, which is why these have to be read against each other and against delivery speed.</p>
 
@@ -626,7 +623,7 @@ CAPA[1] "pool-utilization alerting" &rarr; CHG-2308</pre>
           <ul>
             <li><b>Lead time for change</b> <span>request to production</span></li>
             <li><b>Time in approval</b> <span>usually the larger share, fixed by different means than implementation time</span></li>
-            <li><b>Proportion requiring CAB</b> <span>rising means delegation isn't working</span></li>
+            <li><b>Proportion requiring a Change Advisory Board (CAB)</b> <span>rising means delegation isn't working</span></li>
             <li><b>Schedule adherence</b> <span>implemented in the authorized window</span></li>
           </ul>
         </div>
@@ -637,8 +634,8 @@ CAPA[1] "pool-utilization alerting" &rarr; CHG-2308</pre>
             <li><b>Assessed risk vs. actual outcome</b> <span>the calibration measure: if Low-risk changes fail as often as High, the method is noise</span></li>
             <li><b>Tested rollback proportion</b> <span>untested rollback is a hypothesis, not a plan</span></li>
             <li><b>Collisions found after the fact</b> <span>the ones the process missed</span></li>
-            <li><b>Conditions compliance</b> <span>were CAB conditions actually met before implementation</span></li>
-            <li><b>PIR completion rate</b> <span>mandatory for failed and emergency changes at minimum</span></li>
+            <li><b>Conditions compliance</b> <span>were board conditions actually met before implementation</span></li>
+            <li><b>Post-implementation review (PIR) completion rate</b> <span>mandatory for failed and emergency changes at minimum</span></li>
           </ul>
         </div>
 

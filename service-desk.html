@@ -162,11 +162,10 @@
       <div class="console" id="console">
         <div class="console-head">
           <span class="console-title">service-desk &middot; expense-login</span>
-          <button class="run-btn run-btn-secondary" id="stepBtn">Step through</button>
-          <button class="run-btn" id="runBtn">Run all</button>
+          <button class="run-btn" id="stepBtn">Step through</button>
         </div>
         <div class="console-body" id="consoleBody">
-          <p class="console-hint">"Run all" streams the whole contact lifecycle. "Step through" reveals one skill's output at a time.</p>
+          <p class="console-hint">Step through the contact lifecycle one skill at a time.</p>
         </div>
       </div>
     </div>
@@ -180,8 +179,7 @@
       <p class="section-sub">A chat assistant that answers from the model's own memory is worse than none at all: it invents confident, specific, wrong instructions, and the user follows them. This one can only answer from articles it actually retrieved. Below is exactly how that works, call by call.</p>
 
       <div class="flow-controls">
-        <button class="run-btn run-btn-secondary" id="ragStepBtn">Step through</button>
-        <button class="run-btn" id="ragBtn">Run all</button>
+        <button class="run-btn" id="ragStepBtn">Step through</button>
         <span class="flow-status" id="ragStatus">Idle</span>
       </div>
 
@@ -190,7 +188,7 @@
         <div class="flow-band" data-stage="ask">
           <div class="flow-band-head">
             <span class="flow-band-name">User asks</span>
-            <span class="flow-band-tools">Slack &middot; Teams &middot; in-product widget &middot; portal &middot; IVR deflect-to-SMS: see channel options below</span>
+            <span class="flow-band-tools">Slack &middot; Teams &middot; in-product widget &middot; portal &middot; phone-queue (IVR) deflect-to-SMS: see channel options below</span>
           </div>
           <div class="flow-band-body">
             <p class="flow-band-desc">"I can't get into the expense system, it just spins after I log in."</p>
@@ -201,7 +199,7 @@
         <div class="flow-arrow">
           <span class="flow-pip" aria-hidden="true"></span>
           <span class="payload-label">user turn &rarr; model, with the skill loaded as system context</span>
-          <pre class="payload-sample">{ message, session_id, user_context{ locale, product_tier },
+          <pre class="payload-sample">{ message, session_id, user_identity, user_context{ tier },
   tools_available: [search_knowledge_base, create_ticket] }</pre>
         </div>
 
@@ -218,7 +216,7 @@
 
         <div class="flow-arrow">
           <span class="flow-pip" aria-hidden="true"></span>
-          <span class="payload-label">MCP tool call: JSON-RPC over the MCP transport</span>
+          <span class="payload-label">Model Context Protocol (MCP) tool call: JSON-RPC over the MCP transport</span>
           <pre class="payload-sample">{ "method": "tools/call",
   "params": { "name": "search_knowledge_base",
     "arguments": { "query": "expense system spins after login",
@@ -241,17 +239,36 @@
           <span class="payload-label">query &rarr; retrieval backend</span>
           <pre class="payload-sample">embed(query) &rarr; vector[1536]
 hybrid search: BM25 keyword + kNN vector similarity
-FILTER: visibility = "public" AND status = "published"</pre>
+FILTER: entitlement(user_identity) AND status = "published"</pre>
         </div>
 
         <div class="flow-band flow-band-skill" data-stage="retrieve">
           <div class="flow-band-head">
-            <span class="flow-band-name">Retrieval &amp; access control</span>
+            <span class="flow-band-name">Retrieval: this is the RAG step</span>
             <span class="flow-band-tools">Elasticsearch / OpenSearch kNN &middot; pgvector &middot; Pinecone &middot; Weaviate &middot; ServiceNow AI Search</span>
           </div>
           <div class="flow-band-body">
-            <p class="flow-band-desc">Hybrid retrieval: keyword catches exact error strings, vector catches paraphrases, then a reranker orders by actual relevance. <b>The public-only filter is applied here, in the query, not by asking the model to behave.</b> Internal runbooks aren't in the candidate set at all, so no prompt can talk the assistant into revealing them.</p>
-            <span class="autonomy auto">Automated &middot; access enforced server-side</span>
+            <p class="flow-band-desc"><b>Retrieval-augmented generation (RAG) happens here, inside the tool call</b>, not as something layered on afterwards. The query is embedded, searched against a hybrid index where keyword matching catches exact error strings and vector similarity catches paraphrases, then reranked by actual relevance. The model never sees the corpus; it only ever sees the handful of chunks this step hands back.</p>
+            <span class="autonomy auto">Automated</span>
+          </div>
+        </div>
+
+        <div class="flow-arrow">
+          <span class="flow-pip" aria-hidden="true"></span>
+          <span class="payload-label">entitlement resolved for this specific user</span>
+          <pre class="payload-sample">identity from the tool call &rarr; backend resolves what THIS user
+may read: role, group, contract, tier, region
+&rarr; candidate set = exactly what they would get querying directly</pre>
+        </div>
+
+        <div class="flow-band flow-band-skill" data-stage="authz">
+          <div class="flow-band-head">
+            <span class="flow-band-name">Access control, evaluated per user</span>
+            <span class="flow-band-tools">identity propagated in the call &middot; entitlement resolved server-side</span>
+          </div>
+          <div class="flow-band-body">
+            <p class="flow-band-desc">The user's identity travels with the tool call as a parameter, and the backend evaluates what that person is entitled to see <b>exactly as if they had queried the knowledge base directly</b>. Not a blunt public-only filter, and emphatically not the model deciding what to withhold. An employee gets their role's articles, a customer gets their tier's, and neither can be talked into more by a clever prompt, because the material was never in the candidate set to begin with.</p>
+            <span class="autonomy auto">Enforced by the backend, not the model</span>
           </div>
         </div>
 
@@ -260,7 +277,7 @@ FILTER: visibility = "public" AND status = "published"</pre>
           <span class="payload-label">tool result &rarr; model</span>
           <pre class="payload-sample">{ results: [
     { article_id: "KB-1187", title: "Expense login hangs after SSO",
-      chunk: "..clear the SSO session and re-authenticate..",
+      chunk: "..clear the single sign-on session and re-authenticate..",
       url, last_updated: "2026-04-02", score: 0.91,
       linked_known_error: "KE-044" }, .. ] }</pre>
         </div>
@@ -326,8 +343,8 @@ should exist. This is the most valuable output of the system.</pre>
 
       <div class="autonomy-legend">
         <p class="autonomy-legend-title">Two things people conflate</p>
-        <p class="autonomy-legend-body"><b>MCP is the interface; RAG is the strategy.</b> MCP is how the model is given tools it can call: a server that exposes <code>search_knowledge_base</code> and <code>create_ticket</code>, holds the credentials, and logs every call. RAG is what happens behind that tool: embed the query, search a hybrid index, filter by visibility, rerank, return chunks. You can do RAG without MCP and MCP without RAG. Here they're stacked, and the split matters because it's the seam where security lives.</p>
-        <p class="autonomy-legend-body"><b>Access control belongs in the query, not the prompt.</b> The single most common mistake in these builds is instructing the model not to reveal internal content. That's not a control: it's a request. The public-visibility filter runs in the retrieval query, so restricted articles are never in the candidate set and there is nothing for a clever prompt to extract.</p>
+        <p class="autonomy-legend-body"><b>MCP is the interface; RAG is the strategy.</b> The Model Context Protocol is how the model is given tools it can call: a server that exposes <code>search_knowledge_base</code> and <code>create_ticket</code>, holds the credentials, and logs every call. Retrieval-augmented generation is what happens behind that tool, shown as its own step in the flow above: embed the query, search a hybrid index, resolve entitlement, rerank, return chunks. You can do RAG without MCP and MCP without RAG. Here they're stacked, and the split matters because it's the seam where security lives.</p>
+        <p class="autonomy-legend-body"><b>Access control belongs with the user's identity, not the prompt.</b> The single most common mistake in these builds is instructing the model not to reveal internal content. That's not a control: it's a request. Instead the caller's identity is passed as a parameter of the tool call, and the backend resolves entitlement for that person the same way it would if they queried the knowledge base directly. Restricted material is never in the candidate set, so there is nothing for a clever prompt to extract, and one assistant can serve employees and customers side by side because each person's entitlement is evaluated independently.</p>
         <ul class="autonomy-key">
           <li><span class="autonomy auto">Automated</span> search, retrieval, filtering, ticket creation</li>
           <li><span class="autonomy gate">Constrained</span> answers only from retrieved sources, always cited</li>
@@ -361,7 +378,7 @@ should exist. This is the most valuable output of the system.</pre>
           </div>
 
           <div class="channel-card">
-            <p class="channel-name">ITSM-native virtual agent</p>
+            <p class="channel-name">Virtual agent native to the IT service management (ITSM) tool</p>
             <p class="channel-how">ServiceNow Virtual Agent, Zendesk AI agents, Freshservice Freddy, Atlassian Intelligence.</p>
             <p class="channel-note"><b>Trade-off:</b> tightest ticket integration and least plumbing, since it already lives in the system of record. But it only reaches users who came to the portal, which is the population least in need of deflection, because they were already filing a ticket.</p>
           </div>
@@ -409,7 +426,7 @@ should exist. This is the most valuable output of the system.</pre>
           <p>Governs the behaviour above: search before answering, judge relevance honestly, cite everything, never invent a step, and escalate with the conversation attached.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">A support chatbot that answers from the model&#x27;s own memory is worse than no chatbot. It will produce confident, plausible, specific instructions that are wrong for this organization: a settings path that doesn&#x27;t exist, a workaround for a different product version, a policy invented from the general shape of policies. In support that isn&#x27;t a harmless hallucination; the user follows it, it fails or breaks something, and the ticket they eventually file is now harder to solve because of the steps they took first.</p><p class="excerpt-p">So the entire discipline here is: **answer only from what was actually retrieved**, cite it, and say plainly when the knowledge base doesn&#x27;t cover the question. A fast honest &quot;I don&#x27;t have an article on that, let me get you to someone who can help&quot; is a good outcome. A fabricated workaround is the worst outcome this system can produce.</p></div>
+            <div class="skill-excerpt"><p class="excerpt-p">A support chatbot that answers from the model&#x27;s own memory is worse than no chatbot. It will produce confident, plausible, specific instructions that are wrong for this organization — a settings path that doesn&#x27;t exist, a workaround for a different product version, a policy invented from the general shape of policies. In support that isn&#x27;t a harmless hallucination; the user follows it, it fails or breaks something, and the ticket they eventually file is now harder to solve because of the steps they took first.</p><p class="excerpt-p">So the entire discipline here is: **answer only from what was actually retrieved**, cite it, and say plainly when the knowledge base doesn&#x27;t cover the question. A fast honest &quot;I don&#x27;t have an article on that, let me get you to someone who can help&quot; is a good outcome. A fabricated workaround is the worst outcome this system can produce.</p></div>
             <div class="skill-locked" data-skill="self-service-knowledge-assistant"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         </li>
@@ -436,7 +453,7 @@ should exist. This is the most valuable output of the system.</pre>
         <li class="pipe-step">
           <span class="pipe-index">02</span>
           <h3>First-touch resolution</h3>
-          <p>Checks the known error database before improvising, applies the relevant TSG, and makes an honest resolve-or-escalate call instead of grinding.</p>
+          <p>Checks the Known Error Database (KEDB) before improvising, applies the relevant troubleshooting guide (TSG), and makes an honest resolve-or-escalate call instead of grinding.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
             <div class="skill-excerpt"><p class="excerpt-p">Every ticket escalated unnecessarily costs far more than one resolved at the desk: in cycle time for the user and in tier 2/3 capacity that should be going to genuinely hard problems. But the opposite failure is worse: a tier 1 agent grinding on something for forty minutes that was never solvable at their access level, while the user waits. This skill exists to make that call quickly and honestly, and to make sure the cheap wins: a documented known error, an existing TSG: get checked *before* anyone starts improvising.</p></div>
@@ -489,7 +506,7 @@ should exist. This is the most valuable output of the system.</pre>
           <p>Reads the metrics against each other rather than singly, finds what's driving a movement, and turns it into an automate/document/investigate decision.</p>
           <details class="skill-source">
             <summary>Why this skill exists</summary>
-            <div class="skill-excerpt"><p class="excerpt-p">Service desk metrics are unusually easy to game and unusually easy to misread. First Contact Resolution goes up when agents close tickets prematurely. Average handle time goes down when agents rush users off the phone. CSAT looks fine when only satisfied users respond. A number moving is not the same as performance changing, and a dashboard full of green is not the same as a service working. This skill exists to read the numbers against each other rather than individually, and to get from &quot;this went up&quot; to &quot;here&#x27;s what to do.&quot;</p></div>
+            <div class="skill-excerpt"><p class="excerpt-p">Service desk metrics are unusually easy to game and unusually easy to misread. First Contact Resolution goes up when agents close tickets prematurely. Average handle time goes down when agents rush users off the phone. Customer satisfaction (CSAT) looks fine when only satisfied users respond. A number moving is not the same as performance changing, and a dashboard full of green is not the same as a service working. This skill exists to read the numbers against each other rather than individually, and to get from &quot;this went up&quot; to &quot;here&#x27;s what to do.&quot;</p></div>
             <div class="skill-locked" data-skill="service-desk-performance"><span class="lock-mark">&#9679;</span> Full skill source is encrypted. Unlock at the foot of this page to read it.</div>
           </details>
         </li>
@@ -505,8 +522,7 @@ should exist. This is the most valuable output of the system.</pre>
 
       <div class="tool-controls-sticky">
       <div class="flow-controls flow-controls-flush">
-        <button class="run-btn run-btn-secondary" id="toolStepBtn">Step through</button>
-        <button class="run-btn" id="toolBtn">Run all</button>
+        <button class="run-btn" id="toolStepBtn">Step through</button>
         <span class="flow-status" id="toolStatus">Idle</span>
         <span class="mode-switch" role="group" aria-label="Desk type">
           <button class="mode-btn is-selected" id="modeInternal" aria-pressed="true">Internal IT</button>
@@ -554,7 +570,7 @@ should exist. This is the most valuable output of the system.</pre>
         <div class="rack-group">
           <p class="rack-label">Voice of customer</p>
           <span class="tool-chip" data-tool="csat" data-mode="internal">Employee CSAT survey</span>
-          <span class="tool-chip" data-tool="csat" data-mode="external" style="display:none">Qualtrics / Medallia &middot; CSAT + NPS</span>
+          <span class="tool-chip" data-tool="csat" data-mode="external" style="display:none">Qualtrics / Medallia &middot; CSAT + Net Promoter Score</span>
         </div>
         <div class="rack-group">
           <p class="rack-label">Analytics</p>
@@ -586,7 +602,7 @@ should exist. This is the most valuable output of the system.</pre>
             <h3>First-touch resolution</h3>
             <p class="tool-line"><b>Reads:</b> known error database, troubleshooting guides</p>
             <p class="tool-line"><b>Writes:</b> work notes, link to the matched known error</p>
-            <p class="tool-line"><b>Captures:</b> FCR, KEDB hit rate, TSG coverage</p>
+            <p class="tool-line"><b>Captures:</b> First Contact Resolution (FCR), Known Error Database hit rate, troubleshooting guide coverage</p>
           </div>
         </li>
         <li class="tool-step" data-tools="itsm,idp,portal">
@@ -620,7 +636,7 @@ should exist. This is the most valuable output of the system.</pre>
           <div class="tool-step-body">
             <h3>Closure &amp; satisfaction</h3>
             <p class="tool-line"><b>Writes:</b> resolution record, knowledge article draft, survey trigger</p>
-            <p class="tool-line"><b>Captures:</b> reopen rate, CSAT, MTTR, article creation</p>
+            <p class="tool-line"><b>Captures:</b> reopen rate, customer satisfaction (CSAT), mean time to resolve (MTTR), article creation</p>
           </div>
         </li>
         <li class="tool-step" data-tools="analytics,bi,itsm,problem">
@@ -641,7 +657,7 @@ should exist. This is the most valuable output of the system.</pre>
 
       <div class="handoff-band">
         <p class="handoff-label">Escalation path into incident management</p>
-        <p class="handoff-body">Most incidents don't start with an alert: they start with people calling. When the desk sees the same symptom from several users, or a single contact with enterprise-wide impact, the ticket stops being a ticket and becomes an incident. That trigger is a defined step in <b>04 &middot; Escalation &amp; handoff</b>, not a judgment call someone makes informally.</p>
+        <p class="handoff-body">Another signal that is critical to consider as part of monitoring and event management is users contacting the service desk. When the desk sees the same symptom from several users, or a single contact with enterprise-wide impact, the ticket stops being a ticket and becomes an incident. That trigger is a defined step in <b>04 &middot; Escalation &amp; handoff</b>, not a judgment call someone makes informally.</p>
         <div class="handoff-chain">
           <span class="handoff-node">Self-service chat</span>
           <span class="handoff-arrow" aria-hidden="true">&rarr;</span>
@@ -664,7 +680,7 @@ should exist. This is the most valuable output of the system.</pre>
 
   <section id="metrics" class="metrics-section">
     <div class="wrap">
-      <p class="section-label">Key process indicators</p>
+      <p class="section-label">Key performance indicators</p>
       <h2>What gets measured, and where it gets captured.</h2>
       <p class="section-sub">Metrics aren't a reporting afterthought bolted on at the end: each is captured at the step that produces it, because most of them can't be reconstructed later. Channel and contact type only exist at intake. Escalation reason only exists at the moment of escalation.</p>
 
@@ -685,7 +701,7 @@ should exist. This is the most valuable output of the system.</pre>
           <ul>
             <li><b>Time to first response</b> <span>what users feel most acutely</span></li>
             <li><b>Average speed of answer / abandonment</b> <span>staffing and forecasting signal</span></li>
-            <li><b>MTTR by priority</b> <span>aggregate MTTR hides both ends</span></li>
+            <li><b>Mean time to resolve (MTTR) by priority</b> <span>an aggregate figure hides both ends</span></li>
             <li><b>Time in state</b> <span>working vs waiting on user vs waiting on another team</span></li>
           </ul>
         </div>
@@ -693,12 +709,12 @@ should exist. This is the most valuable output of the system.</pre>
         <div class="metric-group">
           <h3>Quality</h3>
           <ul>
-            <li><b>First Contact Resolution</b> <span>the headline efficiency measure</span></li>
+            <li><b>First Contact Resolution (FCR)</b> <span>the headline efficiency measure: resolved without escalation or a follow-up contact</span></li>
             <li><b>Reopen rate</b> <span>the counterweight: never read FCR without it</span></li>
             <li><b>Escalation rate with reason</b> <span>the reason is what makes it actionable</span></li>
             <li><b>Bounce-back rate from tier 2</b> <span>handoff quality</span></li>
-            <li><b>CSAT with response rate</b> <span>a score without its response rate is unreliable</span></li>
-            <li><b>SLA attainment by priority</b></li>
+            <li><b>Customer satisfaction (CSAT), with response rate</b> <span>a score without its response rate is unreliable</span></li>
+            <li><b>Service level agreement (SLA) attainment by priority</b></li>
           </ul>
         </div>
 
@@ -706,8 +722,8 @@ should exist. This is the most valuable output of the system.</pre>
           <h3>Capacity</h3>
           <ul>
             <li><b>Backlog and aging by priority</b> <span>aging P1s and a low-priority pile are different problems</span></li>
-            <li><b>KEDB hit rate</b> <span>falling hits usually means stale knowledge, not harder problems</span></li>
-            <li><b>TSG coverage</b> <span>contacts where a guide existed vs didn't</span></li>
+            <li><b>Known Error Database (KEDB) hit rate</b> <span>falling hits usually means stale knowledge, not harder problems</span></li>
+            <li><b>Troubleshooting guide (TSG) coverage</b> <span>contacts where a documented guide existed and where none did</span></li>
             <li><b>Cost per contact</b></li>
           </ul>
         </div>
@@ -718,11 +734,11 @@ should exist. This is the most valuable output of the system.</pre>
         <h3>Read them in pairs, never singly</h3>
         <p>Almost every service desk metric is misleading alone, and the most common management error is celebrating one number while its counterweight moves the wrong way.</p>
         <ul>
-          <li><b>FCR &times; reopen rate</b>: FCR rising while reopens rise means tickets are being closed prematurely. A worse outcome disguised as a better number.</li>
-          <li><b>Handle time &times; FCR &times; CSAT</b>: falling handle time with falling FCR means agents are rushing and pushing work downstream.</li>
-          <li><b>CSAT &times; survey response rate</b>: a high score from a 4% response rate tells you about the 4%. Dissatisfied users often don't respond at all.</li>
+          <li><b>First Contact Resolution &times; reopen rate</b>: FCR rising while reopens rise means tickets are being closed prematurely. A worse outcome disguised as a better number.</li>
+          <li><b>Handle time &times; First Contact Resolution &times; satisfaction</b>: falling handle time with falling FCR means agents are rushing and pushing work downstream.</li>
+          <li><b>Satisfaction score &times; survey response rate</b>: a high score from a 4% response rate tells you about the 4%. Dissatisfied users often don't respond at all.</li>
           <li><b>Volume &times; deflection</b>: volume falling is only good news if deflection is rising. Otherwise users may have stopped asking.</li>
-          <li><b>Escalation rate &times; KEDB hit rate</b>: escalations up while KEDB hits fall means the knowledge base went stale.</li>
+          <li><b>Escalation rate &times; Known Error Database hit rate</b>: escalations up while KEDB hits fall means the knowledge base went stale.</li>
         </ul>
       </div>
     </div>
