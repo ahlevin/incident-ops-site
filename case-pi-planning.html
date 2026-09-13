@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recovering developer capacity | Alan Levin</title>
+<meta name="description" content="Reframing quarterly planning for an engineering organisation of more than 1,000 developers, restoring roughly 90% of output during a formerly low-output window.">
+
+<!-- Link previews -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Alan Levin">
+<meta property="og:url" content="https://alanlevin.dev/case-pi-planning.html">
+<meta property="og:title" content="Recovering developer capacity by reframing PI planning">
+<meta property="og:description" content="A two-week quarterly planning window was producing close to zero story points across 1,000+ developers. Separating direction-setting from delivery planning returned an estimated 10% of capacity.">
+<meta property="og:image" content="https://alanlevin.dev/og/home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Recovering developer capacity by reframing PI planning">
+<meta name="twitter:description" content="Separating quarterly direction-setting from team-level delivery planning across an organisation of more than 1,000 developers.">
+<meta name="twitter:image" content="https://alanlevin.dev/og/home.png">
+<link rel="canonical" href="https://alanlevin.dev/case-pi-planning.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=13">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="spectrum"><span class="s0"></span><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><span class="s5"></span></div>
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html">A. Levin &middot; Case File</a>
+    <nav class="topnav" id="topnav">
+      <a href="index.html">Home</a>
+      <a href="service-desk.html">Service desk</a>
+      <a href="incident-problem.html">Incident &amp; problem</a>
+      <a href="change-enablement.html">Change</a>
+      <a href="index.html#case-files" class="is-active">Case files</a>
+      <a href="resume.html">R&eacute;sum&eacute;</a>
+    </nav>
+    <button class="navtoggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="topnav">
+      <span class="navtoggle-bar"></span>
+      <span class="navtoggle-bar"></span>
+      <span class="navtoggle-bar"></span>
+    </button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="case-header">
+    <span>Case file: <b>Quarterly planning, reframed</b></span>
+    <span>Filed by: <b>Alan Levin</b></span>
+    <span>Figures: <b>My own, approximate</b></span>
+  </div>
+</div>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="kicker">Case file &middot; software delivery</p>
+      <h1>Returning roughly 10% of developer capacity to product delivery.</h1>
+      <p class="hero-sub">As head of technical program management, I was looking at software delivery opportunities across this program. An engineering organisation of more than 1,000 developers gave two weeks of every quarter to an innovation and planning iteration holding the planning event, training, hackathons and defect work, during which story-point completion fell close to zero. I proposed separating quarterly direction-setting from team-level delivery planning. Story-point output during that window recovered to approximately 90% of a normal period, returning an estimated 10% of annual developer capacity to project work.</p>
+    </div>
+  </section>
+
+  <section class="proof-section">
+    <div class="wrap">
+      <div class="proof-grid">
+        <div class="proof"><b>1,000+</b><span>developers affected</span></div>
+        <div class="proof"><b>~90%</b><span>of normal story-point output restored during the former planning window, up from close to zero</span></div>
+        <div class="proof"><b>~10%</b><span>of annual developer capacity returned to project work, net of the new model&rsquo;s own costs</span></div>
+        <div class="proof"><b>~$10m</b><span>annualised recovered-capacity value, at an estimated $100k per developer</span></div>
+      </div>
+      <p class="proof-note">These are my own figures from the engagement, not audited or externally published numbers, and they are approximate. The financial figure is annualised recovered-capacity value on an estimated cost basis, not booked cash savings. The arithmetic is set out in full further down so you can judge it yourself.</p>
+    </div>
+  </section>
+
+  <section id="situation" class="case-section">
+    <div class="wrap">
+      <p class="section-label">Situation</p>
+      <h2>Everyone followed the framework. Nobody added it up.</h2>
+      <p class="case-p">Every quarter contained a two-week innovation and planning iteration. It held the planning event itself along with training, hackathons, defect work and maintenance, and it was used broadly as intended. Story-point completion during those weeks ran close to zero, not because people were idle but because none of that work is measured in story points.</p>
+      <p class="case-p">The secondary effects mattered as much as the fortnight itself. Learning, defect correction and maintenance were concentrated into a prescribed interval rather than happening when they were most useful, which meant teams scheduled necessary engineering work against a framework calendar instead of operational need. A recurring two-week interruption also meant context switching and delayed feedback on either side of it.</p>
+      <p class="case-p">At more than 1,000 developers, that iteration consumed roughly 15% of the engineering year, so a small percentage of recovered capacity represented a large amount of delivery capability. The obstacle was not that anyone defended the cost. It was a specific and reasonable concern: that reducing broad developer participation would cost teams the context of what they were building.</p>
+    </div>
+  </section>
+
+  <section id="surfaced" class="case-section">
+    <div class="wrap">
+      <p class="section-label">How it surfaced</p>
+      <h2>The teams told us before any metric did.</h2>
+      <p class="case-p">This did not start with a spreadsheet. It started with asking, and then with listening to answers that were not especially comfortable.</p>
+      <p class="case-p">We surveyed the teams. Two signals came back consistently. <b>Delivery was too slow</b>, which leadership already suspected and which nobody enjoys hearing confirmed. And <b>developers felt they were in too many meetings</b>, which is the kind of complaint that is easy to file under general grumbling and move past.</p>
+      <p class="case-p">Those two answers are far more interesting together than apart. The second is a plausible cause of the first, and it is specific enough to investigate. If developers believe their time is going to coordination rather than building, the question stops being &ldquo;how do we go faster&rdquo; and becomes &ldquo;where is developer time actually going, and who decided it should go there?&rdquo;</p>
+      <p class="case-p">That is what sent me looking at the calendar rather than at the teams. And once you look at where the time goes across a quarter, the innovation and planning iteration is not a contributing factor among many. It is the single largest block, and it is the one nobody was questioning because the framework had prescribed it.</p>
+      <p class="case-p">It also mattered for how the change landed. Narrowing who attends a planning event is a difficult thing to propose from the top. It is considerably easier when the people whose attendance you are proposing to narrow have already said, in their own words, that they are in too many meetings.</p>
+    </div>
+  </section>
+
+  <section id="insight" class="case-section">
+    <div class="wrap">
+      <p class="section-label">Insight</p>
+      <h2>Alignment outcomes and developer attendance were being treated as one thing.</h2>
+      <p class="case-p">The organisation genuinely needed what quarterly planning produced: shared strategic direction, a general roadmap, relative priorities, capacity guardrails, major dependencies, architectural and technical constraints, explicit business trade-offs, and clear communication back to teams. None of that was in question.</p>
+      <p class="case-p">What I questioned was whether producing those outcomes required every developer to spend the entire iteration producing them, and whether the rest of the iteration&rsquo;s content needed a dedicated block at all. The context concern was real, but it assumed quarterly planning was where context came from. Developer context is in fact carried by frequent team-level interaction: iteration planning, daily coordination, refinement, reviews, demonstrations and retrospectives. Those happen every fortnight, not every quarter.</p>
+      <p class="case-p">The same logic applied to new requests. They did not need to wait for one large planning event. They could enter a continuous intake and triage flow, with only material roadmap or capacity trade-offs escalated to quarterly leadership.</p>
+    </div>
+  </section>
+
+  <section id="bythebook" class="case-section">
+    <div class="wrap">
+      <p class="section-label">The judgement</p>
+      <h2>Nothing here was a deviation. That is what made it worth questioning.</h2>
+      <p class="case-p">It is worth being precise about what the framework asks for, because the opportunity I found was not a broken implementation. Everything was being done as prescribed.</p>
+      <p class="case-p">Scaled Agile states the principle as <b>&ldquo;the people who do the work plan the work,&rdquo;</b> and describes planning as effective <b>as long as all members of the train participate</b>. It describes a two-day event for a single Agile Release Train of roughly five to twelve teams, on the order of 50 to 125 people. It also prescribes an innovation and planning iteration: a dedicated block for planning the next increment alongside innovation, training and technical health work. All of that was in place.</p>
+      <p class="case-p">So the two-week window was not planning that had sprawled. It was <b>the innovation and planning iteration being used as designed</b>: the planning event itself, plus training, hackathons, defect work and maintenance. Real work, and largely valuable work. Story-point completion fell close to zero during those weeks because story points do not measure training, hackathons or defect clean-up. The teams were not idle; they were doing work the framework had deliberately set aside time for, in a currency the delivery metric could not see.</p>
+      <p class="case-p">What I assessed was therefore not the planning event in isolation but <b>the whole iteration and everything it contained</b>. At more than 1,000 developers, that container consumed roughly 15% of the engineering year, every year. The question nobody was asking was whether all of that content genuinely needed a dedicated block, or whether the block existed because the framework offered one.</p>
+      <p class="case-p">My conclusion was that none of it did, and the same two reasons covered all of it. Learning, defect correction, maintenance and innovation produce more value when they happen at the moment something calls for them rather than when a calendar says it is their turn. And planning needed two focused days with the people accountable for direction, not universal attendance. That applied to the hackathon and the training as much as to the defect work: protected time is only protection if the thing being protected is better for being scheduled, and none of this was.</p>
+      <p class="case-p case-caveat">This is a point about fit and scale, not a criticism of the framework. At 50 to 125 people the economics of a dedicated iteration look very different from the economics at more than 1,000. The judgement was recognising that a faithful implementation had become expensive enough to re-examine, and having the standing to say so.</p>
+    </div>
+  </section>
+
+  <section id="decisions" class="case-section">
+    <div class="wrap">
+      <p class="section-label">Observation and decision</p>
+      <h2>What I saw, and what I changed.</h2>
+      <p class="section-sub">Each observation below led to a specific decision. Setting them side by side is the clearest way to show where the judgement was, and where it was mine.</p>
+
+      <ol class="obs-list">
+        <li class="obs">
+          <span class="obs-n">01</span>
+          <div class="obs-body">
+            <p class="obs-o"><b>Observed</b> Story-point completion fell close to zero for two weeks every quarter, yet nobody was idle. The delivery metric simply could not see training, hackathons, defect work or planning.</p>
+            <p class="obs-d"><b>Decided</b> To assess the whole iteration rather than the planning event alone, and to treat &ldquo;is this work valuable?&rdquo; and &ldquo;does it need its own two-week container?&rdquo; as two separate questions.</p>
+          </div>
+        </li>
+        <li class="obs">
+          <span class="obs-n">02</span>
+          <div class="obs-body">
+            <p class="obs-o"><b>Observed</b> Learning, hackathons, defect correction and maintenance were all happening because the calendar had arrived at them, not because anything had called for them.</p>
+            <p class="obs-d"><b>Decided</b> To move all of it inside normal iterations &mdash; training and hackathons included, not just defects and maintenance &mdash; so teams do it at the point of need. It still costs capacity; it now buys more.</p>
+          </div>
+        </li>
+        <li class="obs">
+          <span class="obs-n">03</span>
+          <div class="obs-body">
+            <p class="obs-o"><b>Observed</b> The quarterly outcomes the organisation actually needed &mdash; direction, priority order, capacity guardrails, major dependencies &mdash; were being produced by a small number of accountable people, while more than 1,000 developers attended.</p>
+            <p class="obs-d"><b>Decided</b> To separate quarterly direction-setting from team-level delivery planning, and to run a focused two-day alignment with the leaders accountable for those outcomes plus selected team representatives.</p>
+          </div>
+        </li>
+        <li class="obs">
+          <span class="obs-n">04</span>
+          <div class="obs-body">
+            <p class="obs-o"><b>Observed</b> The objection to narrowing participation was context loss, and it was a fair one. But context was already being carried every fortnight by iteration planning, daily coordination, refinement, review and retrospective.</p>
+            <p class="obs-d"><b>Decided</b> To rest the whole design on those ceremonies, and to say so explicitly rather than asking anyone to take it on trust. If they had not genuinely carried context, the objection would have been right and the change would have been wrong.</p>
+          </div>
+        </li>
+        <li class="obs">
+          <span class="obs-n">05</span>
+          <div class="obs-body">
+            <p class="obs-o"><b>Observed</b> New requests were being held for the quarterly event, which made the event larger and the response to customers slower.</p>
+            <p class="obs-d"><b>Decided</b> To route them through continuous intake and triage, with ordinary changes flowing to team backlogs and only material roadmap or capacity trade-offs escalating to quarterly leadership.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="model" class="case-section">
+    <div class="wrap">
+      <p class="section-label">The operating model</p>
+      <h2>Direction at the edge, delivery at the centre.</h2>
+      <p class="section-sub">Select any step to see who takes part, what goes in, and what comes out. The quarterly alignment sits outside the cycle and feeds into it, rather than replacing two weeks of it.</p>
+
+      <div class="bullseye-wrap">
+        <div class="bullseye-host" id="bullseye">
+          <svg viewBox="0 0 580 670" role="img" aria-labelledby="byTitle byDesc" class="by-svg">
+          <title id="byTitle">The operating model as concentric rings</title>
+          <desc id="byDesc">Continuous delivery sits at the centre. A ring of ten weekday touchpoints forms the two-week team cycle. Continuous intake surrounds it. A focused quarterly alignment at the top feeds into Week 1 iteration planning. Select any step to read who takes part, what goes in, and what comes out.</desc>
+          <defs><marker id="byAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" class="by-arrow-head"/></marker></defs>
+          <circle cx="290" cy="350" r="268" class="by-ring by-ring-outer"/>
+          <circle cx="290" cy="350" r="196" class="by-ring"/>
+          <circle cx="290" cy="350" r="76" class="by-core"/>
+          <text x="290" y="342" class="by-core-t">Continuous</text>
+          <text x="290" y="363" class="by-core-t">delivery</text>
+          <text x="290" y="384" class="by-core-s">most developers</text>
+          <text x="290" y="648" class="by-ring-label">Continuous intake: requests enter on any day</text>
+          <g class="by-node by-ceremony" tabindex="0" role="button" data-id="d0" aria-label="W1 Mon, Plan">
+          <circle cx="290.0" cy="154.0" r="46"/>
+          <text x="290.0" y="148.0" class="by-n-day">W1 Mon</text>
+          <text x="290.0" y="169.0" class="by-n-short">Plan</text>
+          </g>
+          <g class="by-node by-deliver" tabindex="0" role="button" data-id="d1" aria-label="W1 Tue, Deliver">
+          <circle cx="405.2" cy="191.4" r="46"/>
+          <text x="405.2" y="185.4" class="by-n-day">W1 Tue</text>
+          <text x="405.2" y="206.4" class="by-n-short">Deliver</text>
+          </g>
+          <g class="by-node by-deliver" tabindex="0" role="button" data-id="d2" aria-label="W1 Wed, Deliver">
+          <circle cx="476.4" cy="289.4" r="46"/>
+          <text x="476.4" y="283.4" class="by-n-day">W1 Wed</text>
+          <text x="476.4" y="304.4" class="by-n-short">Deliver</text>
+          </g>
+          <g class="by-node by-ceremony" tabindex="0" role="button" data-id="d3" aria-label="W1 Thu, Refine">
+          <circle cx="476.4" cy="410.6" r="46"/>
+          <text x="476.4" y="404.6" class="by-n-day">W1 Thu</text>
+          <text x="476.4" y="425.6" class="by-n-short">Refine</text>
+          </g>
+          <g class="by-node by-deliver" tabindex="0" role="button" data-id="d4" aria-label="W1 Fri, Deliver">
+          <circle cx="405.2" cy="508.6" r="46"/>
+          <text x="405.2" y="502.6" class="by-n-day">W1 Fri</text>
+          <text x="405.2" y="523.6" class="by-n-short">Deliver</text>
+          </g>
+          <g class="by-node by-deliver" tabindex="0" role="button" data-id="d5" aria-label="W2 Mon, Deliver">
+          <circle cx="290.0" cy="546.0" r="46"/>
+          <text x="290.0" y="540.0" class="by-n-day">W2 Mon</text>
+          <text x="290.0" y="561.0" class="by-n-short">Deliver</text>
+          </g>
+          <g class="by-node by-ceremony" tabindex="0" role="button" data-id="d6" aria-label="W2 Tue, Refine">
+          <circle cx="174.8" cy="508.6" r="46"/>
+          <text x="174.8" y="502.6" class="by-n-day">W2 Tue</text>
+          <text x="174.8" y="523.6" class="by-n-short">Refine</text>
+          </g>
+          <g class="by-node by-deliver" tabindex="0" role="button" data-id="d7" aria-label="W2 Wed, Finish">
+          <circle cx="103.6" cy="410.6" r="46"/>
+          <text x="103.6" y="404.6" class="by-n-day">W2 Wed</text>
+          <text x="103.6" y="425.6" class="by-n-short">Finish</text>
+          </g>
+          <g class="by-node by-ceremony" tabindex="0" role="button" data-id="d8" aria-label="W2 Thu, Review">
+          <circle cx="103.6" cy="289.4" r="46"/>
+          <text x="103.6" y="283.4" class="by-n-day">W2 Thu</text>
+          <text x="103.6" y="304.4" class="by-n-short">Review</text>
+          </g>
+          <g class="by-node by-ceremony" tabindex="0" role="button" data-id="d9" aria-label="W2 Fri, Improve">
+          <circle cx="174.8" cy="191.4" r="46"/>
+          <text x="174.8" y="185.4" class="by-n-day">W2 Fri</text>
+          <text x="174.8" y="206.4" class="by-n-short">Improve</text>
+          </g>
+          <g class="by-node by-quarter" tabindex="0" role="button" data-id="q" aria-label="Quarterly alignment">
+          <rect x="140" y="10" width="300" height="48"/>
+          <text x="290" y="29" class="by-q-t">Quarterly alignment</text>
+          <text x="290" y="47" class="by-q-s">leaders and selected reps</text>
+          </g>
+          <path d="M 290 60 L 290 100" class="by-arrow" marker-end="url(#byAr)"/>
+          <text x="308" y="76" class="by-arrow-label" text-anchor="start">direction flows into Week 1</text>
+          </svg>
+        <ol class="by-list" aria-label="The operating model, step by step">
+          <li><button type="button" class="by-li by-quarter" data-id="q"><span class="by-li-k">Quarter</span><span class="by-li-t">Quarterly alignment</span></button></li>
+          <li><button type="button" class="by-li by-ceremony" data-id="d0"><span class="by-li-k">W1 Mon</span><span class="by-li-t">Plan</span></button></li>
+          <li><button type="button" class="by-li by-deliver" data-id="d1"><span class="by-li-k">W1 Tue</span><span class="by-li-t">Deliver</span></button></li>
+          <li><button type="button" class="by-li by-deliver" data-id="d2"><span class="by-li-k">W1 Wed</span><span class="by-li-t">Deliver</span></button></li>
+          <li><button type="button" class="by-li by-ceremony" data-id="d3"><span class="by-li-k">W1 Thu</span><span class="by-li-t">Refine</span></button></li>
+          <li><button type="button" class="by-li by-deliver" data-id="d4"><span class="by-li-k">W1 Fri</span><span class="by-li-t">Deliver</span></button></li>
+          <li><button type="button" class="by-li by-deliver" data-id="d5"><span class="by-li-k">W2 Mon</span><span class="by-li-t">Deliver</span></button></li>
+          <li><button type="button" class="by-li by-ceremony" data-id="d6"><span class="by-li-k">W2 Tue</span><span class="by-li-t">Refine</span></button></li>
+          <li><button type="button" class="by-li by-deliver" data-id="d7"><span class="by-li-k">W2 Wed</span><span class="by-li-t">Finish</span></button></li>
+          <li><button type="button" class="by-li by-ceremony" data-id="d8"><span class="by-li-k">W2 Thu</span><span class="by-li-t">Review</span></button></li>
+          <li><button type="button" class="by-li by-ceremony" data-id="d9"><span class="by-li-k">W2 Fri</span><span class="by-li-t">Improve</span></button></li>
+          </ol>
+        </div>
+        <div class="bullseye-detail" id="bullseyeDetail" role="status" aria-live="polite"><p class="by-d-title">Quarter start &middot; Monday to Tuesday: Focused alignment</p><p class="by-d-row"><b>Who takes part</b>Alignment facilitator (Release Train Engineer or equivalent), product direction (Product Management), technical direction (System Architect), investment and trade-off authority (Business Owners), and selected team representatives such as Product Owners and engineering leads. Not the entire development organization.</p><p class="by-d-row"><b>What goes in</b>Strategy, economics, customer evidence, delivery history, capacity, dependencies, and major risks.</p><p class="by-d-row"><b>What comes out</b>Quarterly objectives, priority order, capacity guardrails, major dependencies, and a general roadmap. Most developers continue normal delivery.</p></div>
+      </div>
+
+      <div class="model-layers">
+        <div class="layer">
+          <p class="layer-n">Centre</p>
+          <h3>Continuous delivery</h3>
+          <p>Most developers stay in the delivery cycle through the quarter, including the weeks that previously stopped.</p>
+        </div>
+        <div class="layer">
+          <p class="layer-n">Ring</p>
+          <h3>Two-week team cycle</h3>
+          <p>Iteration planning, daily coordination, refinement, review and retrospective. This is where context is preserved and where teams plan their own work.</p>
+        </div>
+        <div class="layer">
+          <p class="layer-n">Around it</p>
+          <h3>Continuous intake and triage</h3>
+          <p>Requests, defects, security concerns and product ideas enter on any day. Ordinary changes flow to team backlogs; material trade-offs escalate.</p>
+        </div>
+        <div class="layer">
+          <p class="layer-n">Quarterly</p>
+          <h3>Direction and guardrails</h3>
+          <p>A focused two-day alignment sets objectives, priority order, capacity guardrails and major dependencies, then flows into Week 1 iteration planning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="buffer" class="case-section">
+    <div class="wrap">
+      <p class="section-label">The objection worth answering</p>
+      <h2>&ldquo;You have removed the buffer.&rdquo;</h2>
+      <p class="case-p">Anyone who knows the framework well will raise this, and it is the sharpest challenge to the change. The innovation and planning iteration is not only a container for training and innovation; it is deliberate slack. It absorbs variability so that quarterly objectives stay achievable. Take it away and, on the framework&rsquo;s own logic, predictability should suffer.</p>
+      <p class="case-p">My answer is that you do not plan to fail. You plan to deliver against the capacity you actually have, for the period you actually have it.</p>
+      <p class="case-p">A buffer sitting at the end of the quarter changes how teams commit. It invites padding, because there is always somewhere for a miss to land. Removing it does not make the work harder; it makes the commitment honest. Teams have to reason about real capacity, including the defect work, the maintenance and the learning now happening inside the iterations rather than parked at the end of the quarter. What we asked for in exchange was that they be genuinely thoughtful about what they committed to, and that anything that could not be committed with confidence was said so out loud rather than absorbed quietly.</p>
+      <p class="case-p">That is a harder discipline than holding slack in reserve, and it is a better one. Slack at the end of a quarter hides estimation problems. Committing to real capacity surfaces them, where they can be dealt with.</p>
+    </div>
+  </section>
+
+  <section id="accountabilities" class="case-section">
+    <div class="wrap">
+      <p class="section-label">Who decides what</p>
+      <h2>Accountabilities, not seat count.</h2>
+      <p class="section-sub">The change was to participation and cadence, not to who holds which responsibility. Accountabilities are named first, with the equivalent scaled-framework role in parentheses.</p>
+      <ul class="acct-list">
+        <li><b>Alignment facilitator</b> <span>(Release Train Engineer or equivalent)</span><p>Facilitates the event, cross-team dependencies, risks and impediments.</p></li>
+        <li><b>Product direction</b> <span>(Product Management)</span><p>Brings strategy, customer needs, roadmap and ordered priorities.</p></li>
+        <li><b>Technical direction</b> <span>(System Architect)</span><p>Brings architecture, non-functional requirements, technical risks, enablers and capacity needs.</p></li>
+        <li><b>Investment and trade-off authority</b> <span>(Business Owners)</span><p>Makes return, governance, compliance, risk and material priority decisions.</p></li>
+        <li><b>Team backlog ownership</b> <span>(Product Owner)</span><p>Owns the team backlog, vets incoming requests, and represents delivery evidence and feasibility.</p></li>
+        <li><b>Team facilitation</b> <span>(Scrum Master or team coach)</span><p>Supports flow, removes impediments, and runs the team-level ceremonies that carry context.</p></li>
+      </ul>
+      <p class="case-p case-caveat">This is a tailored operating model and not official SAFe. It keeps the accountabilities and the alignment outcomes those roles exist to produce, while deliberately changing who attends and how often. Anyone running something like it should be explicit with their organisation that they are adapting the framework rather than applying it.</p>
+    </div>
+  </section>
+
+  <section id="impact" class="case-section">
+    <div class="wrap">
+      <p class="section-label">Impact</p>
+      <h2>What changed, and what it was worth.</h2>
+      <p class="section-sub">Select or hover a bar for its detail. The first panel is the operational result; the second converts it into value on a stated cost assumption.</p>
+
+      <div class="bars-wrap">
+        <div class="bars-host" id="impactBars">
+          <svg viewBox="0 0 720 542" role="img" aria-labelledby="brTitle brDesc" class="br-svg">
+          <title id="brTitle">Planning-window output and recovered value by quarter</title>
+          <desc id="brDesc">Before the change, story-point output during the planning window was close to zero in the first two quarters and no value was recovered. After implementation in the third quarter, output during that window reached approximately ninety percent of a normal period, with approximately two and a half million dollars of recovered-capacity value attributed to each of the remaining two quarters. That is about five million in the transition year against a roughly ten million annual run rate.</desc>
+          <text x="60" y="22" class="br-h">Story-point output during the former planning window</text>
+          <text x="60" y="36" class="br-a">% of a normal period, measured in story points</text>
+          <line x1="60" y1="216" x2="704" y2="216" class="br-base"/>
+          <g class="br-bar br-before" tabindex="0" role="button" aria-label="Q1, Before, 5 percent of normal output" data-text="Q1 &middot; Before: approximately 5% of a normal period's story-point output during the two-week planning window.">
+          <rect x="109.5" y="208.0" width="62.0" height="8.0"/>
+          <text x="140.5" y="200.0" class="br-v">5%</text>
+          <text x="140.5" y="234" class="br-q">Q1</text>
+          <text x="140.5" y="247" class="br-s">Before</text>
+          </g>
+          <g class="br-bar br-before" tabindex="0" role="button" aria-label="Q2, Before, 5 percent of normal output" data-text="Q2 &middot; Before: approximately 5% of a normal period's story-point output during the two-week planning window.">
+          <rect x="270.5" y="208.0" width="62.0" height="8.0"/>
+          <text x="301.5" y="200.0" class="br-v">5%</text>
+          <text x="301.5" y="234" class="br-q">Q2</text>
+          <text x="301.5" y="247" class="br-s">Before</text>
+          </g>
+          <g class="br-bar br-after" tabindex="0" role="button" aria-label="Q3, After, 90 percent of normal output" data-text="Q3 &middot; After: approximately 90% of a normal period's story-point output during the two-week planning window.">
+          <rect x="431.5" y="72.0" width="62.0" height="144.0"/>
+          <text x="462.5" y="64.0" class="br-v">90%</text>
+          <text x="462.5" y="234" class="br-q">Q3</text>
+          <text x="462.5" y="247" class="br-s">After</text>
+          </g>
+          <g class="br-bar br-after" tabindex="0" role="button" aria-label="Q4, After, 90 percent of normal output" data-text="Q4 &middot; After: approximately 90% of a normal period's story-point output during the two-week planning window.">
+          <rect x="592.5" y="72.0" width="62.0" height="144.0"/>
+          <text x="623.5" y="64.0" class="br-v">90%</text>
+          <text x="623.5" y="234" class="br-q">Q4</text>
+          <text x="623.5" y="247" class="br-s">After</text>
+          </g>
+          <text x="60" y="302" class="br-h">Recovered-capacity value attributed to the quarter</text>
+          <text x="60" y="316" class="br-a">$m, estimated</text>
+          <line x1="60" y1="496" x2="704" y2="496" class="br-base"/>
+          <g class="br-bar br-before" tabindex="0" role="button" aria-label="Q1, Before, 0 million dollars recovered value" data-text="Q1 &middot; Before: approximately $0m of recovered-capacity value attributed to this quarter.">
+          <rect x="109.5" y="496.0" width="62.0" height="1.0"/>
+          <text x="140.5" y="488.0" class="br-v">$0</text>
+          <text x="140.5" y="514" class="br-q">Q1</text>
+          <text x="140.5" y="527" class="br-s">Before</text>
+          </g>
+          <g class="br-bar br-before" tabindex="0" role="button" aria-label="Q2, Before, 0 million dollars recovered value" data-text="Q2 &middot; Before: approximately $0m of recovered-capacity value attributed to this quarter.">
+          <rect x="270.5" y="496.0" width="62.0" height="1.0"/>
+          <text x="301.5" y="488.0" class="br-v">$0</text>
+          <text x="301.5" y="514" class="br-q">Q2</text>
+          <text x="301.5" y="527" class="br-s">Before</text>
+          </g>
+          <g class="br-bar br-after" tabindex="0" role="button" aria-label="Q3, After, 2.5 million dollars recovered value" data-text="Q3 &middot; After: approximately $2.5m of recovered-capacity value attributed to this quarter.">
+          <rect x="431.5" y="349.3" width="62.0" height="146.7"/>
+          <text x="462.5" y="341.3" class="br-v">$2.5m</text>
+          <text x="462.5" y="514" class="br-q">Q3</text>
+          <text x="462.5" y="527" class="br-s">After</text>
+          </g>
+          <g class="br-bar br-after" tabindex="0" role="button" aria-label="Q4, After, 2.5 million dollars recovered value" data-text="Q4 &middot; After: approximately $2.5m of recovered-capacity value attributed to this quarter.">
+          <rect x="592.5" y="349.3" width="62.0" height="146.7"/>
+          <text x="623.5" y="341.3" class="br-v">$2.5m</text>
+          <text x="623.5" y="514" class="br-q">Q4</text>
+          <text x="623.5" y="527" class="br-s">After</text>
+          </g>
+          </svg>
+        </div>
+        <div class="bars-detail" id="barsDetail" role="status" aria-live="polite"><p>Select a bar to see its detail.</p></div>
+      </div>
+
+      <div class="calc">
+        <p class="calc-h">Why 10%</p>
+        <p class="case-p">Eight weeks is roughly 15% of the year, and output inside that window went from close to zero to about 90%, so the gross arithmetic lands nearer 13%. I use 10% because none of that work disappeared: the alignment event still costs time, and the training, hackathons and defect work moved into sprints rather than vanishing. Rounding down was deliberate. I would rather the figure survive scrutiny than flatter the outcome.</p>
+
+        <p class="calc-h calc-h2">How the value is built</p>
+        <pre class="calc-box">1,000 developers
+  &times; 10% net annual capacity recovered
+  = 100 developer-years returned each year
+
+100 developer-years
+  &times; $100,000 estimated annual cost per developer
+  = approximately $10,000,000 annualised value</pre>
+        <p class="case-p">The quarter of implementation below is illustrative rather than a record of when this happened. On a third-quarter start, the value would land as $0 in the first two quarters, roughly $2.5m in each of the remaining two, about $5m realised in the transition year, and an approximate $10m annual run rate thereafter.</p>
+        <p class="case-p case-caveat">Four things worth stating plainly. It is not booked cash savings; it is capacity returned to project work, valued at an assumed cost basis. The 90% is <b>story-point</b> output restored during the former planning window, not a 90% rise in annual productivity. The $100,000 is my estimate of an annual cost basis, not an approved or documented figure. And the quarterly phasing is illustrative, shown to make the arithmetic legible rather than to record actual timing.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="cost" class="case-section">
+    <div class="wrap">
+      <p class="section-label">What it cost</p>
+      <h2>The recovered capacity was not free.</h2>
+      <p class="case-p">The figures above are what the change returned. They are not what it took to get there, and a case study that only counts the benefit is not worth much.</p>
+      <p class="case-p">The transformation itself was the real cost. Designing the operating model, working through the objections, and building consensus among leaders who had implemented the existing model in good faith all took time before anything changed. So did developing the materials: the model had to be written down clearly enough that teams could follow it without me in the room, which is a different and slower job than explaining it in a meeting.</p>
+      <p class="case-p">Then the organisation had to be trained and brought along. Not just in the mechanics, but in why the change was being made, because a model people follow without understanding reverts the moment attention moves elsewhere. Teams had to learn to carry it forward themselves, which meant investing in the people who would run it after the transition rather than keeping the knowledge with whoever designed it.</p>
+      <p class="case-p">None of that is captured in the recovered-capacity figure, which is another reason to treat 10% as conservative rather than generous. The benefit is a run rate; the cost was concentrated up front.</p>
+    </div>
+  </section>
+
+  <section id="lesson" class="case-section">
+    <div class="wrap">
+      <p class="section-label">Leadership lesson</p>
+      <h2>Put each decision at the right level and cadence.</h2>
+      <p class="case-p">The goal was never to remove alignment, and framing it as a fight with the framework would have lost the argument and deserved to. Leaders kept responsibility for strategy, priorities, capacity, architecture and major trade-offs. Teams kept responsibility for planning and adapting their own delivery. What changed was the assumption that both had to happen in the same room, in the same fortnight, with everyone present.</p>
+      <p class="case-p">The context objection turned out to be the most useful part of the discussion, because taking it seriously is what produced the design. If team ceremonies had not genuinely carried context, the concern would have been correct and the change would have been wrong.</p>
+      <p class="case-p">The other thing I would carry forward is where the evidence came from. The teams named the symptom before any metric did, and the complaint that mattered most was the one easiest to dismiss as grumbling. Surveying people and then treating their answers as data rather than sentiment is what made the rest of this possible.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="wrap contact-grid">
+      <div class="contact-card">
+        <h3>Hiring for TPM or incident management roles</h3>
+        <p>I'd like to talk about how this kind of work applies to your team.</p>
+        <a class="contact-link" href="mailto:ahlevin@hotmail.com">ahlevin@hotmail.com</a><br>
+        <a class="contact-link" href="https://linkedin.com/in/alanlevin/">linkedin.com/in/alanlevin</a>
+      </div>
+      <div class="contact-card">
+        <h3>Want this running for your team</h3>
+        <p>Interested in these skills, or something like them, supporting how your team actually operates. Let's talk about what that would take.</p>
+        <a class="contact-link" href="mailto:ahlevin@hotmail.com">ahlevin@hotmail.com</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="js/case-data.js"></script>
+<script src="js/case-visuals.js"></script>
+<script src="js/nav.js"></script>
+
+<footer class="footer">
+  <div class="wrap">
+    <p>Built with Claude skills, by Alan Levin.</p>
+  </div>
+</footer>
+</body>
+</html>
